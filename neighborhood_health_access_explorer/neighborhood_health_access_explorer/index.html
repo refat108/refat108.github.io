@@ -1,0 +1,66 @@
+<!DOCTYPE html> <!-- declare the document type as HTML5 -->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Neighborhood Health Access Explorer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="title-wrap">
+      <h1>Neighborhood Health Access Explorer</h1>
+      <p>Census tract map using PLACES health indicators</p>
+    </div>
+
+    <div class="controls">
+      <label for="indicatorSelect">Indicator</label>
+      <select id="indicatorSelect">
+        <option value="OBESITY_CrudePrev">Obesity</option>
+        <option value="DIABETES_CrudePrev">Diabetes</option>
+        <option value="ACCESS2_CrudePrev">No health insurance</option>
+        <option value="DEPRESSION_CrudePrev">Depression</option>
+      </select>
+
+      <button id="resetCompareBtn" type="button">Reset comparison</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="panel">
+        <h2>Hover</h2>
+        <div id="hoverInfo" class="info-block">
+          Hover over a tract to view details.
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Comparison</h2>
+        <div id="compareInfo" class="info-block">
+          Click two tracts on the map to compare them.
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Data Notes</h2>
+        <div class="info-block small">
+          <p><strong>Geometry file:</strong> tl_2025_35_tract.json</p>
+          <p><strong>CSV file:</strong> PLACES__Census_Tract_Data.csv</p>
+          <p><strong>Join field:</strong> GEOID ↔ TractFIPS</p>
+          <p>The app filters the CSV to New Mexico tracts and joins PLACES estimates to census tract polygons in the browser.</p>
+        </div>
+      </section>
+    </aside>
+
+    <section class="map-wrap">
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
