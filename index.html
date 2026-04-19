@@ -1,21 +1,163 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <title>GEOG-585L: My first map </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Website</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <style>
+        body {
+            position: relative;
+        }
+
+        section {
+            padding: 80px 20px;
+            min-height: 600px;
+        }
+
+        .carousel-item img {
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
-<body>
-    <p> 
-        My first map
-    </p>
-    <div id="map" style="height: 500px; width: 600px"></div>
-    <script>    
-        //Economics Buidling 35.08617889651901° N, 106.62053610456539° W
-        //Create a variable named mymap. Use the L.map function to create the map in the "map" div. Set the view to the coordinates of Bandelier Hall East with a zoom level of 17.
-        var mymap = L.map('map').setView([35.08617889651901, -106.62053610456539], 17);
-        var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-        osm.addTo(mymap);
-    </script>
+
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="70" tabindex="0">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">My Site</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mywebapp">My Web App</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="bg-light">
+        <div class="container">
+            <h1 class="mb-4">Welcome to My Personal Website</h1>
+            <p class="mb-4">
+                This website introduces my background, projects, and my future web application.
+            </p>
+
+            <!-- Carousel -->
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"></button>
+                </div>
+
+                <!-- Slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/slide1.jpg" class="d-block w-100" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Welcome</h5>
+                            <p>This is my personal website.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="images/slide2.jpg" class="d-block w-100" alt="Second slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>My Projects</h5>
+                            <p>Explore my academic and research work.</p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="images/slide3.jpg" class="d-block w-100" alt="Third slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>My Web App</h5>
+                            <p>Learn about my final web application project.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-secondary text-white">
+        <div class="container">
+            <h1>About Me</h1>
+            <p>
+                I am a student interested in research, data analysis, and web development.
+                This page gives an overview of my work and interests.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-light">
+        <div class="container">
+            <h1>Projects</h1>
+            <p>
+                Here I will present my projects, coursework, and research activities.
+            </p>
+        </div>
+    </section>
+
+    <!-- MyWebApp Section -->
+    <section id="mywebapp" class="bg-dark text-white">
+        <div class="container">
+            <h1>My Web Application</h1>
+            <p>
+                This web application will focus on analyzing health data and presenting results in an interactive way.
+                It will help users better understand the topic through visualizations and simple tools.
+            </p>
+
+            <h4>Project Link</h4>
+            <p>(Link will be added after completion)</p>
+
+            <h4>Demo Video</h4>
+            <p>(Video link will be added after completion)</p>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
+
 </html>
