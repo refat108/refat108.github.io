@@ -1,25 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My Web App</title>
+    <meta charset="UTF-8">
+    <title>My Personal Website</title>
+
+    <!-- Bootstrap CSS (local file) -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <style>
+        body {
+            position: relative;
+        }
+        section {
+            height: 600px;
+            padding: 80px 20px;
+        }
+    </style>
 </head>
-<body>
 
-    <h1>My Web Application</h1>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="70">
 
+<!-- Navbar -->
+<nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">My Site</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#mywebapp">My Web App</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Sections -->
+
+<section id="home" class="bg-light">
+    <h1>Home</h1>
+    <p>Welcome to my personal website.</p>
+</section>
+
+<section id="about" class="bg-secondary text-white">
+    <h1>About Me</h1>
     <p>
-        This web application will show the health parameter of 500 locations of usa based on CDC data.
-        The goal is to provide insights and visualizations for users.
+        I am a PhD student working on economics, policy, and health research.
+    </p>
+</section>
+
+<section id="projects" class="bg-light">
+    <h1>Projects</h1>
+    <p>
+        Here you can find my academic and research projects.
+    </p>
+</section>
+
+<section id="mywebapp" class="bg-secondary text-white">
+    <h1>My Web Application</h1>
+    
+    <p>
+        This web application will analyze public health data to study disparities 
+        in emergency department wait times. It will provide interactive visualizations 
+        and insights for users.
     </p>
 
-    <h3>Project Link</h3>
+    <h4>Project Link</h4>
     <p>(Link will be added after completion)</p>
 
-    <h3>Demo Video</h3>
+    <h4>Demo Video</h4>
     <p>(Video will be added after completion)</p>
+</section>
 
-    <br>
-    <a href="../index.html">Back to Home</a>
+<!-- Bootstrap JS (local file) -->
+<script src="js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
