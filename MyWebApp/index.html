@@ -2,84 +2,157 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Personal Website</title>
 
-    <!-- Bootstrap CSS (local file) -->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <style>
         body {
             position: relative;
         }
+
         section {
-            height: 600px;
             padding: 80px 20px;
+            min-height: 600px;
+        }
+
+        .carousel-item img {
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
     </style>
 </head>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="70" tabindex="0">
 
-<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="70">
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">My Site</a>
 
-<!-- Navbar -->
-<nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">My Site</a>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#projects">Projects</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#mywebapp">My Web App</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-<!-- Sections -->
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mywebapp">My Web App</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-<section id="home" class="bg-light">
-    <h1>Home</h1>
-    <p>Welcome to my personal website.</p>
-</section>
+    <!-- Home Section -->
+    <section id="home" class="bg-light">
+        <div class="container">
+            <h1 class="mb-4">Welcome to My Personal Website</h1>
+            <p class="mb-4">
+                This website introduces my background, projects, and my future web application.
+            </p>
 
-<section id="about" class="bg-secondary text-white">
-    <h1>About Me</h1>
-    <p>
-        I am a PhD student working on economics, policy, and health research.
-    </p>
-</section>
+            <!-- Carousel -->
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"></button>
+                </div>
 
-<section id="projects" class="bg-light">
-    <h1>Projects</h1>
-    <p>
-        Here you can find my academic and research projects.
-    </p>
-</section>
+                <!-- Slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/slide1.jpg" class="d-block w-100" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Welcome</h5>
+                            <p>This is my personal website.</p>
+                        </div>
+                    </div>
 
-<section id="mywebapp" class="bg-secondary text-white">
-    <h1>My Web Application</h1>
-    
-    <p>
-        This web application will analyze public health data to study disparities 
-        in emergency department wait times. It will provide interactive visualizations 
-        and insights for users.
-    </p>
+                    <div class="carousel-item">
+                        <img src="images/slide2.jpg" class="d-block w-100" alt="Second slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>My Projects</h5>
+                            <p>Explore my academic and research work.</p>
+                        </div>
+                    </div>
 
-    <h4>Project Link</h4>
-    <p>(Link will be added after completion)</p>
+                    <div class="carousel-item">
+                        <img src="images/slide3.jpg" class="d-block w-100" alt="Third slide">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>My Web App</h5>
+                            <p>Learn about my final web application project.</p>
+                        </div>
+                    </div>
+                </div>
 
-    <h4>Demo Video</h4>
-    <p>(Video will be added after completion)</p>
-</section>
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
 
-<!-- Bootstrap JS (local file) -->
-<script src="js/bootstrap.bundle.min.js"></script>
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
 
+    <!-- About Section -->
+    <section id="about" class="bg-secondary text-white">
+        <div class="container">
+            <h1>About Me</h1>
+            <p>
+                I am a student interested in research, data analysis, and web development.
+                This page gives an overview of my work and interests.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="bg-light">
+        <div class="container">
+            <h1>Projects</h1>
+            <p>
+                Here I will present some of my projects, coursework, and research activities.
+            </p>
+        </div>
+    </section>
+
+    <!-- MyWebApp Section -->
+    <section id="mywebapp" class="bg-dark text-white">
+        <div class="container">
+            <h1>My Web Application</h1>
+            <p>
+                This web application will focus on analyzing data and presenting results in an interactive way.
+                It will help users better understand the topic through visualizations and simple tools.
+            </p>
+
+            <h4>Project Link</h4>
+            <p>(Link will be added after completion)</p>
+
+            <h4>Demo Video</h4>
+            <p>(Video link will be added after completion)</p>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
