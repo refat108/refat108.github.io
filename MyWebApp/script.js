@@ -6,5 +6,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-// Optional: console message (just to show JS is working)
+// console message
 console.log("Custom JS loaded successfully");
