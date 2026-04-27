@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CDC PLACES New Mexico Health Map</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- original lab-code library structure retained -->
+    <link rel="icon" href="images/Final_small_Square.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/leaflet/leaflet.css">
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/jQuery/jquery.dataTables.css">
+
+    <!-- original lab style sheet retained; CDC-specific styles are added after it -->
+    <link rel="stylesheet" type="text/css" href="myCSS_styleFiles/main.css">
+    <link rel="stylesheet" type="text/css" href="myCSS_styleFiles/cdc_nm.css">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="100">
+    <!--
+        CDC/NM ADAPTATION COMMENT:
+        The original lab navigation linked to CEJST, SVI, Food Justice, small multiples,
+        regression charts, and a data table. For this CDC version, the navbar is updated
+        to match the seven CDC PLACES category rows used in the map interface below.
+    -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#top">CDC PLACES NM</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#health-outcomes">Health Outcomes</a></li>
+                    <li><a href="#prevention">Prevention</a></li>
+                    <li><a href="#health-risk-behaviors">Risk Behaviors</a></li>
+                    <li><a href="#disabilities">Disabilities</a></li>
+                    <li><a href="#health-status">Health Status</a></li>
+                    <li><a href="#health-related-social-needs">Social Needs</a></li>
+                    <li><a href="#non-medical-factors">Non-Medical Factors</a></li>
+                    <li><a href="#cdc-data-table-section">Data Table</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">About the Project, License, and Data Explanation <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <!--
+                                CDC/NM NAV UPDATE COMMENT:
+                                The four original lab information buttons below are intentionally kept visible
+                                inside the About / Original Lab Files dropdown, while the CDC-version and
+                                "Original..." submenu links are preserved below as commented-out code.
+                            -->
+                            <li><button type="button" class="btn btn-default info" data-toggle="modal" data-target="#myModal_originalAbout">About the Project</button></li>
+                            <li><button type="button" class="btn btn-default info" onclick="window.open('dataStructureExplaination.html','_blank')">Data Explanation</button></li>
+                            <li><button type="button" class="btn btn-default info" data-toggle="modal" data-target="#myModal_copyRight">License & Copyright</button></li>
+                            <li><button type="button" class="btn btn-default info" data-toggle="modal" data-target="#myModal_landAcknowledgement">Land Acknowledgement</button></li>
+
+                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main id="top" class="container-fluid cdc-page">
+        <section class="cdc-hero">
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
+                    <h1>CDC PLACES Health Measures for New Mexico Census Tracts</h1>
+                    <p>
+                        This  adaptation from Dr.Yang GeoAIR lab uses the  <code>Clean_NM.csv</code> file and the original New Mexico census-tract
+                        GeoJSON from the lab project. Each map row corresponds to a CDC PLACES measure category.
+                    </p>
+                    <p class="text-muted">
+                        Teaching note: <code>*_CrudePrev</code> fields store crude prevalence estimates. Matching
+                        <code>*_Crude95CI</code> fields store the 95% confidence interval shown in map popups.
+                    </p>
+                </div>
+                <div class="col-md-4 col-sm-12 cdc-data-note">
+                    <h4>Current data join</h4>
+                    <p><b>CSV key:</b> <code>TractFIPS</code></p>
+                    <p><b>GeoJSON key:</b> <code>GEOID</code></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="cdc-status-panel" class="cdc-status-panel">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="cdc-stat-card">
+                        <span class="cdc-stat-label">CDC rows loaded</span>
+                        <span class="cdc-stat-value" id="cdc-row-count">Loading...</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cdc-stat-card">
+                        <span class="cdc-stat-label">Tract polygons loaded</span>
+                        <span class="cdc-stat-value" id="tract-count">Loading...</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="cdc-stat-card">
+                        <span class="cdc-stat-label">Active measure columns</span>
+                        <span class="cdc-stat-value" id="measure-count">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--
+            CDC/NM ADAPTATION COMMENT:
+            The following seven map rows replace the original CEJST/SVI/Food Justice rows.
+            Each row uses the same HTML pattern:
+            1. A category title and short  comment for Miguel and Refat.
+            2. A dropdown populated by myJS_scripts/main.js.
+            3. A Leaflet map.
+            4. A legend and quick summary.
+        -->
+        <section id="cdc-map-rows"></section>
+
+        <section id="cdc-data-table-section" class="cdc-section">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2>Data Table</h2>
+                    <p class="text_guideInfo">
+                        The table updates to show the currently selected measure from each CDC category. Use the dropdowns above
+                        to change which variables appear in the category columns.
+                    </p>
+                    <div class="table-responsive">
+                        <table id="cdc-data-table" class="display compact table table-striped table-bordered" style="width:100%">
+                            <thead></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+    </main>
+
+
+    <!--
+        CDC/NM NAV UPDATE COMMENT:
+        The following three modal dialogs keep from the original lab information buttons
+        
+    -->
+    <div class="modal fade" id="myModal_originalAbout" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">About info for the iNMsocialJusticeMap web app developed by <a href="https://geoair.lipingyang.org/" target="_blank">GeoAIR Lab</a></h4>
+                    <a href="https://geoair.lipingyang.org/" target="_blank"><img src="images/Final_small_Square.png" alt="GeoAIR_icon" style="width:22%;height:14%;" class="geoairIcon"></a>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        The iNMSocialJusticeMap is a web map application designed to visualize and analyze
+                        systemic inequalities across social, economic, environmental, and food justice domains. By
+                        integrating frameworks such as environmental justice, food justice, and the Social
+                        Vulnerability Index (SVI), the platform enables policymakers, researchers, and community
+                        leaders to identify and address disparities in resource access, health outcomes, and
+                        environmental risks. Marginalized communities often face heightened vulnerability due to
+                        systemic barriers, including limited infrastructure, economic hardship, and environmental
+                        hazards. The SVI, developed by the CDC, helps pinpoint at-risk populations by analyzing
+                        factors like poverty, housing conditions, and transportation access, guiding targeted
+                        interventions. Through interactive data visualization, the iNMSocialJusticeMap empowers
+                        users to explore spatial patterns of inequality, enhance data-driven decision-making, and
+                        promote equitable policies that foster resilience and sustainability.
+                        <br><br>
+                        iNMSocialJusticeMap is also one of the three case study maps for the paper titled
+                        "<i>dciWebMapper2</i> Enhancing the dciWebMapper framework toward integrated,
+                        interactive visualization of linked multi-type maps, charts, and spatial statistics and
+                        analysis", which is submitted to <i>Cartography and Geographic Information Science (CaGIS)</i>.
+                        The other two maps are the
+                        <a href="https://geoair-lab.github.io/iPathogenTrackingMap/index.html" target="_blank">iPathogenTrackingMap</a>
+                        and the
+                        <a href="https://geoair-lab.github.io/iABQtrafficCrashMap/index.html" target="_blank">iABQtrafficCrashMap</a>.
+                    </p>
+
+                    <h4><strong>Data Sources:</strong></h4>
+                    <ul>
+                        <li>Climate and Economic Justice: <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/B6ULET" target="_blank">CEJST Data</a></li>
+                        <li>Food Access: <a href="https://www.ers.usda.gov/data-products/food-access-research-atlas/" target="_blank">USDA</a></li>
+                        <li>Social Vulnerability Index: <a href="https://www.atsdr.cdc.gov/placeandhealth/svi/index.html" target="_blank">CDC/ATSDR</a></li>
+                        <li>Census Tracts: <a href="https://www.cabq.gov/gis/geographic-information-systems-data" target="_blank">CABQ</a></li>
+                    </ul>
+
+                    <h4><strong>Acknowledgements:</strong></h4>
+                    <ul>
+                        <li><a href="https://dc-js.github.io/dc.js/" target="_blank">DC.js</a></li>
+                        <li><a href="https://d3js.org/" target="_blank">D3.js</a></li>
+                        <li><a href="https://leafletjs.com/" target="_blank">Leaflet.js</a></li>
+                        <li><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.13277" target="_blank"><i>dciWebMapper</i></a></li>
+                        <li><a href="https://cj-allen-git.github.io/MyWebApp/" target="_blank">Food Access & Social Justice in NM</a></li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal_landAcknowledgement" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><b> Land Acknowledgement</b></h4>
+                </div>
+                <div class="modal-body">
+                    <p>As we engage in work across the diverse landscapes of New Mexico, we recognize and honor the
+                        deep-rooted connection that Indigenous peoples have maintained with this land since time
+                        immemorial. New Mexico is home to 23 federally recognized Native Nations, including the
+                        Navajo Nation, the Jicarilla and Mescalero Apache Tribes, and 19 Pueblo nations: Acoma,
+                        Cochiti, Isleta, Jemez, Kewa, Laguna, Nambe, Ohkay Owingeh, Picuris, Pojoaque, Sandia, San
+                        Felipe, San Ildefonso, Santa Ana, Santa Clara, Taos, Tesuque, Zuni, and Zia. We also
+                        acknowledge the historical presence of the Fort Sill Apache Tribe, now located in Oklahoma,
+                        and the Ysleta del Sur Pueblo, now located in Texas, whose ancestral ties to New Mexico
+                        continue to be significant. These sovereign nations each hold their own government,
+                        traditions, languages, and cultural practices.
+                        <br><br> We acknowledge the vital role that the Indigenous peoples of New Mexico have played
+                        in stewarding and protecting these lands and waters. Their wisdom continues to guide and
+                        inspire our efforts in conservation, environmental stewardship, and geospatial work. In
+                        alignment with this respect, we are committed to elevating and supporting the essential
+                        voices of these Tribes and Pueblos in our ongoing projects. We also recognize that Indigenous
+                        perspectives on land boundaries may differ from the administrative lines used in our tools and
+                        maps, and we invite any Tribes or Pueblos to collaborate with us to ensure their lands are
+                        represented in a way that reflects their sovereignty and cultural values.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal_copyRight" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><b> License & copyright</b></h4>
+                </div>
+                <div class="modal-body">
+                    <p>GeoAIR lab advocates open source and supports open science. Any one can use/modify our web
+                        app code, commercial or personal use, <i><b>BUT</b> you are <b>REQUIRED</b> to give credits
+                        explicitly to <a href="https://geoair.lipingyang.org/" target="_blank">GeoAIR lab</a></i>.
+                        The iNMsocialJusticeMap web app is under the
+                        <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank"><b>GNU GPLv3 license</b></a>.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal_about" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content cdc-modal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><b>About this CDC PLACES NM lab version</b></h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        This version adapts the original GeoAIR Lab web-mapping example to the CDC PLACES New Mexico
+                        dataset. The code keeps the original folder structure and local library links, while replacing the
+                        active map logic with seven CDC category rows.
+                    </p>
+                    <p>
+                        Note: the CDC NM CSV includes the PLACES health-measure fields, but it does not include the ACS-derived
+                        Non-Medical Factors fields. The seventh row is therefore kept as a placeholder for future data expansion.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- original lab-code library order retained where useful -->
+    <script src="JS_CSS_downloaded_libraries/d3/d3v5.16.0.js"></script>
+    <script src="JS_CSS_downloaded_libraries/leaflet/Leafletv1.6.0.js"></script>
+    <script src="JS_CSS_downloaded_libraries/jQuery/jQuery.js"></script>
+    <script src="JS_CSS_downloaded_libraries/bootstrap/Bootstrap.js"></script>
+    <script src="JS_CSS_downloaded_libraries/jQuery/jquery.dataTables.js"></script>
+    <script src="JS_CSS_downloaded_libraries/other/colorbrewer.js"></script>
+
+    <!-- active CDC/NM adaptation script; old lab JS is commented out at the bottom of this file -->
+    <script src="myJS_scripts/main.js"></script>
+</body>
+
+</html>

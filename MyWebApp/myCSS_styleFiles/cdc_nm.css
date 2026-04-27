@@ -1,0 +1,226 @@
+/*
+    CDC/NM ADAPTATION COMMENT:
+    These styles are intentionally added in a new CSS file instead of editing the old main.css heavily.
+    This keeps the original lab design structure available while giving the CDC maps their own layout.
+*/
+
+body {
+    padding-top: 55px;
+}
+
+.cdc-page {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.cdc-hero {
+    padding: 28px 24px;
+    margin: 18px 0 22px 0;
+    background: #f5f7fa;
+    border-radius: 10px;
+    border: 1px solid #d9e2ec;
+}
+
+.cdc-hero h1 {
+    margin-top: 0;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.cdc-data-note {
+    background: white;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.cdc-status-panel {
+    margin-bottom: 24px;
+}
+
+.cdc-stat-card {
+    min-height: 92px;
+    padding: 18px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #d9e2ec;
+    background: white;
+}
+
+.cdc-stat-label {
+    display: block;
+    font-size: 13px;
+    color: #52606d;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.cdc-stat-value {
+    display: block;
+    margin-top: 8px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.cdc-section {
+    padding-top: 72px;
+    margin-top: -52px;
+    margin-bottom: 26px;
+}
+
+.cdc-map-card {
+    margin-bottom: 26px;
+    border: 1px solid #d9e2ec;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.cdc-map-card-header {
+    padding: 16px 18px 10px 18px;
+    border-bottom: 1px solid #e6edf3;
+    background: #fbfcfd;
+}
+
+.cdc-map-card-header h2 {
+    margin: 0 0 6px 0;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.cdc-map-card-body {
+    padding: 16px 18px 18px 18px;
+}
+
+.cdc-select-label {
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.cdc-measure-select {
+    min-width: 280px;
+    max-width: 100%;
+    margin-bottom: 12px;
+}
+
+.cdc-map {
+    height: 390px;
+    width: 100%;
+    border: 1px solid #ccd6e0;
+    border-radius: 8px;
+}
+
+.cdc-legend {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.cdc-legend-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.cdc-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 3px 0;
+}
+
+.cdc-swatch {
+    width: 18px;
+    height: 14px;
+    border: 1px solid #555;
+    display: inline-block;
+}
+
+.cdc-summary {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border-left: 4px solid #4a5568;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.cdc-placeholder {
+    padding: 28px;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: repeating-linear-gradient(45deg,
+            #f5f7fa,
+            #f5f7fa 10px,
+            #edf2f7 10px,
+            #edf2f7 20px);
+    border: 1px dashed #9aa5b1;
+    border-radius: 8px;
+}
+
+.cdc-placeholder strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+.cdc-modal p {
+    font-size: 15px;
+}
+
+.leaflet-popup-content {
+    font-size: 13px;
+}
+
+.leaflet-popup-content b {
+    color: #1f2933;
+}
+
+.cdc-compare-box {
+    margin-top: 12px;
+    padding: 12px;
+    background: #f8fafc;
+    border: 1px solid #d9e2ec;
+    border-left: 4px solid #2563eb;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.cdc-compare-box table {
+    width: 100%;
+    margin-top: 8px;
+    border-collapse: collapse;
+}
+
+.cdc-compare-box th,
+.cdc-compare-box td {
+    padding: 6px;
+    border-bottom: 1px solid #d9e2ec;
+    text-align: left;
+}
+
+.cdc-compare-box th {
+    font-weight: 700;
+    background: #eef2f7;
+}
+
+@media (max-width: 768px) {
+    .cdc-page {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .cdc-map {
+        height: 320px;
+    }
+
+    .cdc-measure-select {
+        width: 100%;
+    }
+}

@@ -1,0 +1,271 @@
+[
+  {
+    "id": "health-outcomes",
+    "title": "Health Outcomes",
+    "shortTitle": "Outcomes",
+    "default": "ARTHRITIS_CrudePrev",
+    "description": "Estimated prevalence of chronic disease and oral health outcomes.",
+    "variables": [
+      {
+        "field": "ARTHRITIS_CrudePrev",
+        "label": "Arthritis",
+        "ciField": "ARTHRITIS_Crude95CI"
+      },
+      {
+        "field": "BPHIGH_CrudePrev",
+        "label": "High blood pressure",
+        "ciField": "BPHIGH_Crude95CI"
+      },
+      {
+        "field": "CANCER_CrudePrev",
+        "label": "Cancer excluding skin cancer",
+        "ciField": "CANCER_Crude95CI"
+      },
+      {
+        "field": "CASTHMA_CrudePrev",
+        "label": "Current asthma",
+        "ciField": "CASTHMA_Crude95CI"
+      },
+      {
+        "field": "CHD_CrudePrev",
+        "label": "Coronary heart disease",
+        "ciField": "CHD_Crude95CI"
+      },
+      {
+        "field": "COPD_CrudePrev",
+        "label": "COPD",
+        "ciField": "COPD_Crude95CI"
+      },
+      {
+        "field": "DEPRESSION_CrudePrev",
+        "label": "Depression",
+        "ciField": "DEPRESSION_Crude95CI"
+      },
+      {
+        "field": "DIABETES_CrudePrev",
+        "label": "Diabetes",
+        "ciField": "DIABETES_Crude95CI"
+      },
+      {
+        "field": "HIGHCHOL_CrudePrev",
+        "label": "High cholesterol",
+        "ciField": "HIGHCHOL_Crude95CI"
+      },
+      {
+        "field": "OBESITY_CrudePrev",
+        "label": "Obesity",
+        "ciField": "OBESITY_Crude95CI"
+      },
+      {
+        "field": "STROKE_CrudePrev",
+        "label": "Stroke",
+        "ciField": "STROKE_Crude95CI"
+      },
+      {
+        "field": "TEETHLOST_CrudePrev",
+        "label": "All teeth lost",
+        "ciField": "TEETHLOST_Crude95CI"
+      }
+    ]
+  },
+  {
+    "id": "prevention",
+    "title": "Prevention",
+    "shortTitle": "Prevention",
+    "default": "ACCESS2_CrudePrev",
+    "description": "Health care access and preventive service use measures.",
+    "variables": [
+      {
+        "field": "ACCESS2_CrudePrev",
+        "label": "Lack of health insurance",
+        "ciField": "ACCESS2_Crude95CI"
+      },
+      {
+        "field": "BPMED_CrudePrev",
+        "label": "Taking medicine for high blood pressure",
+        "ciField": "BPMED_Crude95CI"
+      },
+      {
+        "field": "CHECKUP_CrudePrev",
+        "label": "Annual checkup",
+        "ciField": "CHECKUP_Crude95CI"
+      },
+      {
+        "field": "CHOLSCREEN_CrudePrev",
+        "label": "Cholesterol screening",
+        "ciField": "CHOLSCREEN_Crude95CI"
+      },
+      {
+        "field": "COLON_SCREEN_CrudePrev",
+        "label": "Colorectal cancer screening",
+        "ciField": "COLON_SCREEN_Crude95CI"
+      },
+      {
+        "field": "DENTAL_CrudePrev",
+        "label": "Dental visit",
+        "ciField": "DENTAL_Crude95CI"
+      },
+      {
+        "field": "MAMMOUSE_CrudePrev",
+        "label": "Mammography use",
+        "ciField": "MAMMOUSE_Crude95CI"
+      }
+    ]
+  },
+  {
+    "id": "health-risk-behaviors",
+    "title": "Health Risk Behaviors",
+    "shortTitle": "Risk Behaviors",
+    "default": "CSMOKING_CrudePrev",
+    "description": "Behaviors that may increase chronic disease risk.",
+    "variables": [
+      {
+        "field": "BINGE_CrudePrev",
+        "label": "Binge drinking",
+        "ciField": "BINGE_Crude95CI"
+      },
+      {
+        "field": "CSMOKING_CrudePrev",
+        "label": "Current smoking",
+        "ciField": "CSMOKING_Crude95CI"
+      },
+      {
+        "field": "LPA_CrudePrev",
+        "label": "No leisure-time physical activity",
+        "ciField": "LPA_Crude95CI"
+      },
+      {
+        "field": "SLEEP_CrudePrev",
+        "label": "Short sleep duration",
+        "ciField": "SLEEP_Crude95CI"
+      }
+    ]
+  },
+  {
+    "id": "disabilities",
+    "title": "Disabilities",
+    "shortTitle": "Disabilities",
+    "default": "DISABILITY_CrudePrev",
+    "description": "Disability status and functional limitation measures.",
+    "variables": [
+      {
+        "field": "HEARING_CrudePrev",
+        "label": "Hearing disability",
+        "ciField": "HEARING_Crude95CI"
+      },
+      {
+        "field": "VISION_CrudePrev",
+        "label": "Vision disability",
+        "ciField": "VISION_Crude95CI"
+      },
+      {
+        "field": "COGNITION_CrudePrev",
+        "label": "Cognitive disability",
+        "ciField": "COGNITION_Crude95CI"
+      },
+      {
+        "field": "MOBILITY_CrudePrev",
+        "label": "Mobility disability",
+        "ciField": "MOBILITY_Crude95CI"
+      },
+      {
+        "field": "SELFCARE_CrudePrev",
+        "label": "Self-care disability",
+        "ciField": "SELFCARE_Crude95CI"
+      },
+      {
+        "field": "INDEPLIVE_CrudePrev",
+        "label": "Independent living disability",
+        "ciField": "INDEPLIVE_Crude95CI"
+      },
+      {
+        "field": "DISABILITY_CrudePrev",
+        "label": "Any disability",
+        "ciField": "DISABILITY_Crude95CI"
+      }
+    ]
+  },
+  {
+    "id": "health-status",
+    "title": "Health Status",
+    "shortTitle": "Health Status",
+    "default": "GHLTH_CrudePrev",
+    "description": "Self-reported general, mental, and physical health status.",
+    "variables": [
+      {
+        "field": "GHLTH_CrudePrev",
+        "label": "Fair or poor general health",
+        "ciField": "GHLTH_Crude95CI"
+      },
+      {
+        "field": "MHLTH_CrudePrev",
+        "label": "Frequent mental distress",
+        "ciField": "MHLTH_Crude95CI"
+      },
+      {
+        "field": "PHLTH_CrudePrev",
+        "label": "Frequent physical distress",
+        "ciField": "PHLTH_Crude95CI"
+      }
+    ]
+  },
+  {
+    "id": "health-related-social-needs",
+    "title": "Health-Related Social Needs",
+    "shortTitle": "Social Needs",
+    "default": "FOODINSECU_CrudePrev",
+    "description": "Social needs that can shape health outcomes and access to resources.",
+    "variables": [
+      {
+        "field": "LONELINESS_CrudePrev",
+        "label": "Feeling lonely",
+        "ciField": "LONELINESS_Crude95CI"
+      },
+      {
+        "field": "FOODSTAMP_CrudePrev",
+        "label": "Received food stamps / SNAP",
+        "ciField": "FOODSTAMP_Crude95CI"
+      },
+      {
+        "field": "FOODINSECU_CrudePrev",
+        "label": "Food insecurity",
+        "ciField": "FOODINSECU_Crude95CI"
+      },
+      {
+        "field": "HOUSINSECU_CrudePrev",
+        "label": "Housing insecurity",
+        "ciField": "HOUSINSECU_Crude95CI"
+      },
+      {
+        "field": "SHUTUTILITY_CrudePrev",
+        "label": "Utility services threat",
+        "ciField": "SHUTUTILITY_Crude95CI"
+      },
+      {
+        "field": "LACKTRPT_CrudePrev",
+        "label": "Lack of reliable transportation",
+        "ciField": "LACKTRPT_Crude95CI"
+      },
+      {
+        "field": "EMOTIONSPT_CrudePrev",
+        "label": "Lack of social and emotional support",
+        "ciField": "EMOTIONSPT_Crude95CI"
+      }
+    ]
+  },
+  {
+    "id": "non-medical-factors",
+    "title": "Non-Medical Factors",
+    "shortTitle": "Non-Medical",
+    "default": null,
+    "description": "Placeholder row for the CDC/PLACES non-medical factors category. These ACS-derived fields are not included in the uploaded Clean_NM.csv.",
+    "variables": [
+      {
+        "field": "NOT_IN_CURRENT_CSV",
+        "label": "Non-medical factor fields are not included in Clean_NM.csv",
+        "ciField": null
+      }
+    ],
+    "disabled": true
+  }
+]
