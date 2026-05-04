@@ -210,6 +210,95 @@ body {
     background: #eef2f7;
 }
 
+.cdc-north-arrow {
+    width: 52px;
+    height: 84px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 4px;
+}
+
+.north-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.north-svg {
+    width: 30px;
+    height: 58px;
+    display: block;
+}
+
+.compass-arrow {
+    position: relative;
+    width: 34px;
+    height: 52px;
+    margin: 0 auto;
+}
+
+.arrow-left {
+    position: absolute;
+    left: 7px;
+    top: 2px;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 50px solid #000000;
+    transform: skewX(-8deg);
+}
+
+.arrow-right {
+    position: absolute;
+    right: 7px;
+    top: 2px;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 50px solid #ffffff;
+    transform: skewX(8deg);
+    filter: drop-shadow(0 0 1px #000000);
+}
+
+.cdc-coordinates-control {
+    background: #ffffff;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: #333333;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    min-width: 165px;
+    line-height: 1.2;
+}
+
+.leaflet-control-scale {
+    background: #ffffff;
+    padding: 2px 8px 4px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 0 !important;
+}
+
+.leaflet-control-scale-line {
+    border: 2px solid #333333;
+    border-top: none;
+    background: transparent;
+    line-height: 1.1;
+}
+
 @media (max-width: 768px) {
     .cdc-page {
         padding-left: 12px;

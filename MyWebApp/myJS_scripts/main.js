@@ -457,6 +457,53 @@ function buildCategoryRows() {
    Each map uses the same tract geometry, but it styles the polygons
    using a different selected CDC measure.
 */
+function addNorthArrow(map) {
+    const northControl = L.control({ position: "topright" });
+
+    northControl.onAdd = function () {
+        const div = L.DomUtil.create("div", "cdc-north-arrow");
+
+        div.innerHTML = `
+            <div class="north-label">N</div>
+            <svg class="north-svg" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- black outer arrow -->
+                <path d="M30 8 L44 72 L30 58 L16 72 Z" fill="black"/>
+                <!-- white inner cut -->
+                <path d="M30 18 L38 64 L30 54 L22 64 Z" fill="white"/>
+            </svg>
+        `;
+
+        L.DomEvent.disableClickPropagation(div);
+        L.DomEvent.disableScrollPropagation(div);
+
+        return div;
+    };
+
+    northControl.addTo(map);
+}
+function addMouseCoordinates(map) {
+    const coordControl = L.control({ position: "bottomleft" });
+
+    coordControl.onAdd = function () {
+        const div = L.DomUtil.create("div", "cdc-coordinates-control");
+        div.innerHTML = "Move mouse";
+        L.DomEvent.disableClickPropagation(div);
+        L.DomEvent.disableScrollPropagation(div);
+        return div;
+    };
+
+    coordControl.addTo(map);
+
+    map.on("mousemove", function (e) {
+        const lat = e.latlng.lat.toFixed(6);
+        const lng = e.latlng.lng.toFixed(6);
+        coordControl.getContainer().innerHTML = `${lat} | ${lng}`;
+    });
+
+    map.on("mouseout", function () {
+        coordControl.getContainer().innerHTML = "Move mouse";
+    });
+}
 function initializeAllCategoryViews() {
     categoryViews = [];
 
@@ -480,6 +527,15 @@ function initializeAllCategoryViews() {
             maxZoom: 18,
             attribution: "&copy; OpenStreetMap contributors"
         }).addTo(map);
+        addNorthArrow(map);
+        L.control.scale({
+            position: "bottomleft",
+            imperial: true,
+            metric: false,
+            maxWidth: 100
+        }).addTo(map);
+
+        addMouseCoordinates(map);
 
         const tractLayer = L.geoJson(tractGeojson, {
             style: function (feature) {
