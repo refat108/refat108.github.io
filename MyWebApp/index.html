@@ -168,51 +168,85 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">About info for the iNMsocialJusticeMap web app developed by <a
-                            href="https://geoair.lipingyang.org/" target="_blank">GeoAIR Lab</a></h4>
-                    <a href="https://geoair.lipingyang.org/" target="_blank"><img src="images/Final_small_Square.png"
-                            alt="GeoAIR_icon" style="width:22%;height:14%;" class="geoairIcon"></a>
+                    <h4 class="modal-title">About the project</a></h4>
+                    <!-- <a href="https://geoair.lipingyang.org/" target="_blank"><img src="images/Final_small_Square.png"
+                            alt="GeoAIR_icon" style="width:22%;height:14%;" class="geoairIcon"></a> -->
                 </div>
                 <div class="modal-body">
                     <p>
-                        The iNMSocialJusticeMap is a web map application designed to visualize and analyze
-                        systemic inequalities across social, economic, environmental, and food justice domains. By
-                        integrating frameworks such as environmental justice, food justice, and the Social
-                        Vulnerability Index (SVI), the platform enables policymakers, researchers, and community
-                        leaders to identify and address disparities in resource access, health outcomes, and
-                        environmental risks. Marginalized communities often face heightened vulnerability due to
-                        systemic barriers, including limited infrastructure, economic hardship, and environmental
-                        hazards. The SVI, developed by the CDC, helps pinpoint at-risk populations by analyzing
-                        factors like poverty, housing conditions, and transportation access, guiding targeted
-                        interventions. Through interactive data visualization, the iNMSocialJusticeMap empowers
-                        users to explore spatial patterns of inequality, enhance data-driven decision-making, and
-                        promote equitable policies that foster resilience and sustainability.
-                        <br><br>
-                        iNMSocialJusticeMap is also one of the three case study maps for the paper titled
-                        "<i>dciWebMapper2</i> Enhancing the dciWebMapper framework toward integrated,
-                        interactive visualization of linked multi-type maps, charts, and spatial statistics and
-                        analysis", which is submitted to <i>Cartography and Geographic Information Science (CaGIS)</i>.
-                        The other two maps are the
-                        <a href="https://geoair-lab.github.io/iPathogenTrackingMap/index.html"
-                            target="_blank">iPathogenTrackingMap</a>
-                        and the
-                        <a href="https://geoair-lab.github.io/iABQtrafficCrashMap/index.html"
-                            target="_blank">iABQtrafficCrashMap</a>.
+                        <b>Health Measures for New Mexico</b> is an interactive web mapping project that presents
+                        selected CDC PLACES health measures at the census-tract level across New Mexico. The map is
+                        designed to help users explore how health-related conditions and needs vary across different
+                        communities within the state.
                     </p>
+
+                    <p>
+                        The project focuses on several major categories of health indicators, including health outcomes,
+                        preventive care, health risk behaviors, disability, health status, and health-related social
+                        needs.
+                        By organizing the data into these categories, the web map allows users to examine both medical
+                        and
+                        social dimensions of health in a spatial format.
+                    </p>
+
+                    <p>
+                        Users can select different indicators from the dropdown menus to update each map. Each census
+                        tract
+                        is shaded according to the selected measure, allowing users to identify geographic patterns,
+                        compare areas, and observe where certain health conditions or needs appear more concentrated.
+                        Clicking on a census tract opens a popup with additional information, including the selected
+                        prevalence estimate, population information, and confidence intervals where available.
+                    </p>
+
+                    <p>
+                        This project uses CDC PLACES data linked to New Mexico census-tract boundary data. CDC PLACES
+                        provides local-level estimates for chronic disease, prevention, health behaviors, disability,
+                        and related health measures. The census-tract geography makes it possible to examine variation
+                        within counties and across smaller communities rather than only at the state or county level.
+                    </p>
+
+                    <p>
+                        The purpose of this project is educational and exploratory. It is intended to support visual
+                        analysis, public health learning, and community-level comparison. The map can help students,
+                        researchers, public health professionals, and community members better understand spatial
+                        differences in health measures across New Mexico.
+                    </p>
+
+                    <p>
+                        This web map was adapted from the GeoAIR Lab web-mapping framework developed by Dr. Liping Yang.
+                        The original framework was modified for a CDC PLACES-focused analysis of New Mexico health
+                        measures while preserving the interactive mapping structure of the original lab project.
+                    </p>
+
 
                     <h4><strong>Data Sources:</strong></h4>
                     <ul>
-                        <li>Climate and Economic Justice: <a
-                                href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/B6ULET"
-                                target="_blank">CEJST Data</a></li>
-                        <li>Food Access: <a href="https://www.ers.usda.gov/data-products/food-access-research-atlas/"
-                                target="_blank">USDA</a></li>
-                        <li>Social Vulnerability Index: <a
-                                href="https://www.atsdr.cdc.gov/placeandhealth/svi/index.html"
-                                target="_blank">CDC/ATSDR</a></li>
-                        <li>Census Tracts: <a href="https://www.cabq.gov/gis/geographic-information-systems-data"
-                                target="_blank">CABQ</a></li>
+                        <li>CDC PLACES health measure data: <a
+                                href="https://data.cdc.gov/500-Cities-Places/PLACES-Census-Tract-Data-GIS-Friendly-Format-2025-/yjkw-uj5s/data_preview"
+                                target="_blank">CDC Data</a></li>
+                        <li>Census-tract boundary data: <a
+                                href="https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2025&layergroup=Census+Tracts"
+                                target="_blank">Census-tract</a></li>
                     </ul>
+                    <h4><strong>Map Features:</strong></h4>
+                    <ul>
+                        <li>Interactive census-tract maps for multiple health measure categories</li>
+                        <li>Dropdown menus for selecting different CDC PLACES indicators</li>
+                        <li>Color-shaded maps showing tract-level variation in selected measures</li>
+                        <li>Popups with tract-level values, population information, and confidence intervals</li>
+                        <li>Two-location comparison tool for selected census tracts</li>
+                        <li>Summary statistics for each selected measure</li>
+                        <li>Searchable data table for reviewing selected indicators across tracts</li>
+                    </ul>
+
+                    <h4><strong>Important Note:</strong></h4>
+                    <p>
+                        The values shown in this project are estimates and should be interpreted as tools for
+                        exploration,
+                        comparison, and learning. They should not be treated as direct clinical diagnoses or
+                        individual-level
+                        health records. The map shows population-level patterns across geographic areas.
+                    </p>
 
                     <h4><strong>Acknowledgements:</strong></h4>
                     <ul>
@@ -221,8 +255,6 @@
                         <li><a href="https://leafletjs.com/" target="_blank">Leaflet.js</a></li>
                         <li><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.13277"
                                 target="_blank"><i>dciWebMapper</i></a></li>
-                        <li><a href="https://cj-allen-git.github.io/MyWebApp/" target="_blank">Food Access & Social
-                                Justice in NM</a></li>
                     </ul>
                 </div>
                 <div class="modal-footer">
