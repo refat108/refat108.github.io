@@ -57,9 +57,8 @@
                             -->
                             <li><button type="button" class="btn btn-default info" data-toggle="modal"
                                     data-target="#myModal_originalAbout">About the Project</button></li>
-                            <li><button type="button" class="btn btn-default info"
-                                    onclick="window.open('dataStructureExplaination.html','_blank')">Data
-                                    Explanation</button></li>
+                            <li><button type="button" class="btn btn-default info" data-toggle="modal"
+                                    data-target="#myModal_dataExplanation">Data Explanation</button></li>
                             <li><button type="button" class="btn btn-default info" data-toggle="modal"
                                     data-target="#myModal_copyRight">License & Copyright</button></li>
                             <li><button type="button" class="btn btn-default info" data-toggle="modal"
@@ -263,6 +262,48 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="myModal_dataExplanation" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content cdc-modal">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><b>Data Explanation</b></h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>
+                        This project uses CDC PLACES health measure data for New Mexico census tracts.
+                        Each row in the dataset represents one census tract, and each health measure
+                        represents an estimated population-level percentage for that tract.
+                    </p>
+
+                    <p>
+                        Measures ending in <code>_CrudePrev</code> show crude prevalence estimates.
+                        These values are displayed on the maps as percentages. Measures ending in
+                        <code>_Crude95CI</code> provide the 95% confidence interval for the corresponding
+                        estimate and are shown in the map popups when available.
+                    </p>
+
+                    <p>
+                        The data are joined to census-tract boundaries using tract FIPS codes. The CSV
+                        field <code>TractFIPS</code> is matched with the GeoJSON field <code>GEOID</code>.
+                        This allows each census tract polygon on the map to display the corresponding
+                        CDC PLACES health measure values.
+                    </p>
+
+                    <p>
+                        The maps are intended for exploratory and educational use. They show geographic
+                        patterns in population-level health estimates and should not be interpreted as
+                        individual-level health records or clinical diagnoses.
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="myModal_landAcknowledgement" role="dialog">
         <div class="modal-dialog">
@@ -307,12 +348,57 @@
                     <h4 class="modal-title"><b> License & copyright</b></h4>
                 </div>
                 <div class="modal-body">
-                    <p>GeoAIR lab advocates open source and supports open science. Any one can use/modify our web
-                        app code, commercial or personal use, <i><b>BUT</b> you are <b>REQUIRED</b> to give credits
-                            explicitly to <a href="https://geoair.lipingyang.org/" target="_blank">GeoAIR lab</a></i>.
-                        The iNMsocialJusticeMap web app is under the
-                        <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank"><b>GNU GPLv3
-                                license</b></a>.
+                    <p>
+                        This project, <b>Health Measures for New Mexico</b>, was created for educational and
+                        academic purposes. The web map adapts an existing GeoAIR Lab web-mapping framework
+                        and modifies it to visualize CDC PLACES health measures for New Mexico census tracts.
+                    </p>
+
+                    <p>
+                        The original web-mapping framework and design structure were developed by the
+                        GeoAIR Lab under the direction of Dr. Liping Yang. This version was adapted and
+                        customized for a CDC PLACES-based health mapping project.
+                    </p>
+
+                    <h4><strong>Data Attribution</strong></h4>
+                    <ul>
+                        <li>
+                            <b>CDC PLACES:</b> Health measure estimates used in this project are based on
+                            CDC PLACES data.
+                        </li>
+                        <li>
+                            <b>Census-tract boundaries:</b> New Mexico census-tract boundary data are used
+                            to display tract-level geographic patterns.
+                        </li>
+                        <li>
+                            <b>County boundaries:</b> New Mexico county boundary data are used as reference
+                            layers on the maps.
+                        </li>
+                    </ul>
+
+                    <h4><strong>Software and Libraries</strong></h4>
+                    <ul>
+                        <li>Leaflet.js is used for interactive web mapping.</li>
+                        <li>D3.js is used for loading and processing data.</li>
+                        <li>Bootstrap is used for page layout and interface styling.</li>
+                        <li>DataTables is used for the searchable data table.</li>
+                        <li>OpenStreetMap map tiles are used as the basemap.</li>
+                    </ul>
+
+                    <h4><strong>Copyright Notice</strong></h4>
+                    <p>
+                        Map design, code modifications, text, and project-specific organization are part of
+                        this adapted student project. Original framework elements remain credited to the
+                        GeoAIR Lab and its contributors. Data and third-party libraries remain subject to
+                        their original terms of use and licenses.
+                    </p>
+
+                    <h4><strong>Use Statement</strong></h4>
+                    <p>
+                        This project is intended for educational, exploratory, and non-commercial use.
+                        The health values shown are population-level estimates and should not be interpreted
+                        as individual-level health records, clinical diagnoses, or official public health
+                        determinations.
                     </p>
                 </div>
                 <div class="modal-footer">
