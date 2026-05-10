@@ -277,22 +277,22 @@ const CDC_CATEGORIES = [
                 "ciField": "EMOTIONSPT_Crude95CI"
             }
         ]
-    },
-    {
-        "id": "non-medical-factors",
-        "title": "Non-Medical Factors",
-        "shortTitle": "Non-Medical",
-        "default": null,
-        "description": "Placeholder row for the CDC/PLACES non-medical factors category. These ACS-derived fields are not included in the Clean_NM.csv.",
-        "variables": [
-            {
-                "field": "NOT_IN_CURRENT_CSV",
-                "label": "Non-medical factor fields are not included in Clean_NM.csv",
-                "ciField": null
-            }
-        ],
-        "disabled": true
     }
+    // {
+    //     "id": "non-medical-factors",
+    //     "title": "Non-Medical Factors",
+    //     "shortTitle": "Non-Medical",
+    //     "default": null,
+    //     "description": "Placeholder row for the CDC/PLACES non-medical factors category. These ACS-derived fields are not included in the Clean_NM.csv.",
+    //     "variables": [
+    //         {
+    //             "field": "NOT_IN_CURRENT_CSV",
+    //             "label": "Non-medical factor fields are not included in Clean_NM.csv",
+    //             "ciField": null
+    //         }
+    //     ],
+    //     "disabled": true
+    // }
 ];
 
 /* ------------------------------------------------------------
