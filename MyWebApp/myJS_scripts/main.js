@@ -91,7 +91,7 @@ const CDC_CATEGORIES = [
                 "label": "All teeth lost",
                 "ciField": "TEETHLOST_Crude95CI"
             }
-        ]
+        ] // End of variables array for the "Health Outcomes" category
     },
     {
         "id": "prevention",
@@ -135,7 +135,7 @@ const CDC_CATEGORIES = [
                 "label": "Mammography use",
                 "ciField": "MAMMOUSE_Crude95CI"
             }
-        ]
+        ] // End of variables array for the "Prevention" category
     },
     {
         "id": "health-risk-behaviors",
@@ -164,7 +164,7 @@ const CDC_CATEGORIES = [
                 "label": "Short sleep duration",
                 "ciField": "SLEEP_Crude95CI"
             }
-        ]
+        ] // End of variables array for the "Health Risk Behaviors" category
     },
     {
         "id": "disabilities",
@@ -208,7 +208,7 @@ const CDC_CATEGORIES = [
                 "label": "Any disability",
                 "ciField": "DISABILITY_Crude95CI"
             }
-        ]
+        ] // End of variables array for the "Disabilities" category
     },
     {
         "id": "health-status",
@@ -232,7 +232,7 @@ const CDC_CATEGORIES = [
                 "label": "Frequent physical distress",
                 "ciField": "PHLTH_Crude95CI"
             }
-        ]
+        ] // End of variables array for the "Health Status" category
     },
     {
         "id": "health-related-social-needs",
@@ -276,8 +276,8 @@ const CDC_CATEGORIES = [
                 "label": "Lack of social and emotional support",
                 "ciField": "EMOTIONSPT_Crude95CI"
             }
-        ]
-    }
+        ] // End of variables array for the "Health-Related Social Needs" category
+    } // End of the six defined categories in the "CDC_CATEGORIES" array
     // {
     //     "id": "non-medical-factors",
     //     "title": "Non-Medical Factors",
@@ -293,34 +293,34 @@ const CDC_CATEGORIES = [
     //     ],
     //     "disabled": true
     // }
-];
+]; // End of the "CDC_CATEGORIES" array that defines the configuration for each CDC category, including its ID, title, description, and the variables associated with it. Each variable includes the field name for the crude prevalence estimate, a label for display purposes, and the corresponding confidence interval field name.
 
 /* ------------------------------------------------------------
    2. File paths
    ------------------------------------------------------------
    These paths keep the original GeoAIR lab data-folder structure.
 */
-const CDC_CSV_PATH = "data/Clean_NM.csv";
-const NM_TRACT_GEOJSON_PATH = "data/census_tract_county_nm_2020.geojson";
-const NM_COUNTY_GEOJSON_PATH = "data/tl_2018_nm_county.geojson";
+const CDC_CSV_PATH = "data/Clean_NM.csv"; // This path points to the Clean_NM.csv file, which contains the CDC PLACES data for New Mexico. The "CDC_CSV_PATH" constant is used in the code to load and access the CSV data for mapping and analysis.
+const NM_TRACT_GEOJSON_PATH = "data/census_tract_county_nm_2020.geojson"; // This path points to the census tract GeoJSON file for New Mexico, which contains the geographic boundaries of census tracts in the state. The "NM_TRACT_GEOJSON_PATH" constant is used in the code to load and access the GeoJSON data for mapping and spatial analysis.
+const NM_COUNTY_GEOJSON_PATH = "data/tl_2018_nm_county.geojson"; // This path points to the county boundary GeoJSON file for New Mexico, which contains the geographic boundaries of counties in the state. The "NM_COUNTY_GEOJSON_PATH" constant is used in the code to load and access the GeoJSON data for mapping and spatial analysis, particularly for displaying county boundaries as reference layers on the maps.
 
 /* ------------------------------------------------------------
    3. Shared map settings
    ------------------------------------------------------------
 */
-const NO_DATA_COLOR = "#d9d9d9";
-const MAP_CLASS_COUNT = 5;
+const NO_DATA_COLOR = "#d9d9d9"; // This constant defines the color used to represent areas with no data on the maps. The "NO_DATA_COLOR" variable is set to a light gray color (#d9d9d9) and is used in the code to style map features that do not have associated data values, ensuring that they are visually distinct from areas with data.
+const MAP_CLASS_COUNT = 5; // This constant defines the number of classes (or breaks) used in the choropleth maps. The "MAP_CLASS_COUNT" variable is set to 5, which means that the data will be categorized into five distinct classes for visualization purposes. This variable is used in the code to determine how to classify and color the map features based on their data values, often in conjunction with a color scheme like ColorBrewer.
 const CDC_COLOR_SCHEME = (typeof colorbrewer !== "undefined" && colorbrewer.YlOrRd)
     ? colorbrewer.YlOrRd[MAP_CLASS_COUNT]
     : ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"];
 
-let cdcRows = [];
-let cdcByTractFips = new Map();
-let tractGeojson = null;
-let countyGeojson = null;
-let categoryViews = [];
-let dataTable = null;
-let selectedCompareFeatures = {};
+let cdcRows = []; // This variable is initialized as an empty array and is intended to hold the normalized rows of CDC data loaded from the Clean_NM.csv file. After the CSV data is loaded and processed, the "cdcRows" variable will contain an array of objects, where each object represents a census tract with its associated CDC measures and demographic information. This variable is used throughout the code to access and manipulate the CDC data for mapping, analysis, and display purposes.
+let cdcByTractFips = new Map(); // This variable is initialized as a new Map object and is intended to provide a quick lookup for CDC data rows based on census tract FIPS codes. After the CDC data is loaded and normalized, the "cdcByTractFips" Map will be populated with key-value pairs, where the key is the tract FIPS code (as a string) and the value is the corresponding data row object from the "cdcRows" array. This allows for efficient retrieval of CDC data for specific census tracts when rendering the maps, popups, and other visualizations that require access to tract-level data.
+let tractGeojson = null; // This variable is initialized as null and is intended to hold the GeoJSON data for New Mexico census tracts. After the GeoJSON file specified by "NM_TRACT_GEOJSON_PATH" is loaded, the "tractGeojson" variable will contain the parsed GeoJSON object representing the geographic boundaries and properties of the census tracts in New Mexico. This variable is used in the code to create Leaflet map layers, style the tracts based on CDC data, and enable spatial interactions such as popups and comparisons on the maps.
+let countyGeojson = null; // This variable is initialized as null and is intended to hold the GeoJSON data for New Mexico counties. After the GeoJSON file specified by "NM_COUNTY_GEOJSON_PATH" is loaded, the "countyGeojson" variable will contain the parsed GeoJSON object representing the geographic boundaries and properties of the counties in New Mexico. This variable is used in the code to create Leaflet map layers, style the counties based on CDC data, and enable spatial interactions such as popups and comparisons on the maps.
+let categoryViews = []; // This variable is initialized as an empty array and is intended to hold the view objects for each CDC category. Each view object will contain references to the category configuration, associated DOM elements (such as the select dropdown, legend, summary, and comparison panel), the Leaflet map instance, and the tract layer for that category. After the maps are initialized, the "categoryViews" array will be populated with these view objects, allowing for easy access and management of the different category views when updating the maps, legends, summaries, and comparison panels based on user interactions.
+let dataTable = null; // This variable is initialized as null and is intended to hold the instance of the DataTable created using the jQuery DataTables library. After the CDC data is loaded and rendered into an HTML table, the "dataTable" variable will be assigned the DataTable instance, which provides functionalities such as searching, sorting, and pagination for the tabular display of CDC data. This variable is used in the code to manage and update the data table as needed when users interact with the maps or change category selections.
+let selectedCompareFeatures = {}; // This variable is initialized as an empty object and is intended to keep track of the selected census tract features for comparison in each category. The keys of the "selectedCompareFeatures" object will correspond to category IDs, and the values will be arrays that hold the selected GeoJSON features (census tracts) for comparison. When a user clicks on a tract in the map to compare it with another tract, the corresponding feature will be added to the array for that category in this object. This allows the code to manage and update the comparison panel with the selected tracts' data when users interact with the maps.
 
 /* ------------------------------------------------------------
    4. Load CDC CSV and New Mexico tract/county boundaries
@@ -333,25 +333,25 @@ Promise.all([
     d3.json(NM_TRACT_GEOJSON_PATH),
     d3.json(NM_COUNTY_GEOJSON_PATH)
 ]).then(function ([cdcCsv, tracts, counties]) {
-    cdcRows = normalizeCdcRows(cdcCsv);
-    tractGeojson = tracts;
-    countyGeojson = counties;
+    cdcRows = normalizeCdcRows(cdcCsv); // This line calls the "normalizeCdcRows" function, passing in the raw CSV data loaded from the "CDC_CSV_PATH". The function processes and normalizes the CDC data rows, and the resulting array of normalized row objects is assigned to the "cdcRows" variable. This normalized data will be used for mapping, analysis, and display throughout the application.
+    tractGeojson = tracts; // This line assigns the loaded GeoJSON data for New Mexico census tracts (stored in the "tracts" variable) to the "tractGeojson" variable. This GeoJSON data will be used to create map layers, style the tracts based on CDC data, and enable spatial interactions on the maps.
+    countyGeojson = counties; // This line assigns the loaded GeoJSON data for New Mexico counties (stored in the "counties" variable) to the "countyGeojson" variable. This GeoJSON data will be used to create map layers, style the counties based on CDC data, and enable spatial interactions on the maps, particularly for displaying county boundaries as reference layers.
 
     cdcByTractFips = new Map(cdcRows.map(function (row) {
-        return [row.TractFIPS, row];
-    }));
+        return [row.TractFIPS, row]; // This line creates a new Map object called "cdcByTractFips" by mapping over the "cdcRows" array. For each row in the "cdcRows" array, it returns a key-value pair where the key is the "TractFIPS" property of the row (which is the census tract FIPS code) and the value is the entire row object itself. This allows for efficient lookup of CDC data rows based on tract FIPS codes when rendering the maps, popups, and other visualizations that require access to tract-level data.
+    })); // End of the mapping function for creating the "cdcByTractFips" Map.
 
-    buildCategoryRows();
-    initializeAllCategoryViews();
-    updateStatusPanel();
-    renderDataTable();
+    buildCategoryRows(); // This line calls the "buildCategoryRows" function, which is responsible for dynamically creating the HTML structure for each CDC category row on the page. This function uses the configuration defined in the "CDC_CATEGORIES" array to generate the necessary DOM elements, such as the map containers, select dropdowns for variable selection, legends, summaries, and comparison panels for each category. By calling this function after loading the data, the application ensures that the page structure is set up and ready for initializing the maps and rendering the data based on user interactions.
+    initializeAllCategoryViews(); // This line calls the "initializeAllCategoryViews" function, which is responsible for initializing the Leaflet maps and associated view objects for each CDC category. This function iterates over the "CDC_CATEGORIES" array, creates a Leaflet map instance for each category, adds necessary controls (such as the north arrow and mouse coordinates), and sets up the initial state for each category view. By calling this function after building the category rows, the application ensures that each category's map and interactive elements are properly initialized and ready to display the CDC data when users interact with the page.
+    updateStatusPanel(); // This line calls the "updateStatusPanel" function, which is responsible for updating the status panel on the page to reflect the current state of the application. This function may display messages about data loading, errors, or other relevant information to the user. By calling this function after initializing the category views, the application can provide feedback to the user about the successful loading of data and readiness of the maps for interaction.
+    renderDataTable(); // This line calls the "renderDataTable" function, which is responsible for rendering the CDC data into an HTML table format on the page. This function uses the normalized CDC data stored in the "cdcRows" variable to populate the table, and it may also initialize the DataTable instance for enhanced functionality such as searching, sorting, and pagination. By calling this function after loading and processing the data, the application ensures that users have access to a tabular view of the CDC data in addition to the interactive maps.
 }).catch(function (error) {
-    console.error("Data loading failed:", error);
+    console.error("Data loading failed:", error); // This line logs an error message to the console if there is a failure in loading any of the data files (CDC CSV, tract GeoJSON, or county GeoJSON). The "catch" block is used to handle any errors that occur during the Promise.all data loading process, allowing the application to gracefully handle issues such as missing files or network errors.
     document.getElementById("cdc-map-rows").innerHTML = `
         <div class="alert alert-danger">
             <b>Data loading failed.</b> Please check that Clean_NM.csv and the New Mexico GeoJSON files are inside the data folder.
-        </div>`;
-});
+        </div>`; // This line updates the inner HTML of the element with the ID "cdc-map-rows" to display an alert message to the user if there is a failure in loading the data. The message informs the user that data loading has failed and suggests checking that the necessary files (Clean_NM.csv and the New Mexico GeoJSON files) are present in the data folder. This provides feedback to the user about the issue and potential steps to resolve it.
+}); // End of the Promise.all data loading and initialization block.
 
 /* ------------------------------------------------------------
    5. Normalize CSV rows
@@ -363,60 +363,60 @@ Promise.all([
 */
 function normalizeCdcRows(rows) {
     return rows.map(function (rawRow) {
-        const row = {};
+        const row = {}; // Start with an empty object for the normalized row.
 
         Object.keys(rawRow).forEach(function (key) {
-            const cleanKey = key.trim();
-            row[cleanKey] = rawRow[key];
-        });
+            const cleanKey = key.trim(); // This line trims any leading or trailing whitespace from the original key from the CSV row, creating a "cleanKey" that is used for the normalized row object. This helps ensure that there are no issues with extra spaces in the keys when accessing properties of the row later in the code.
+            row[cleanKey] = rawRow[key]; // This line assigns the value from the original "rawRow" object to the "row" object using the "cleanKey" as the property name. This effectively creates a new object with cleaned keys while preserving the original values from the CSV row. The resulting "row" object will have properties with trimmed keys, making it easier to work with in subsequent data processing and mapping steps.
+        }); // End of the loop that creates the normalized "row" object with cleaned keys.
 
-        row.TractFIPS = String(row.TractFIPS || "").trim().padStart(11, "0");
-        row.CountyFIPS = String(row.CountyFIPS || "").trim().padStart(5, "0");
-        row.TotalPopulation_number = parseNumber(row.TotalPopulation);
-        row.TotalPop18plus_number = parseNumber(row.TotalPop18plus);
+        row.TractFIPS = String(row.TractFIPS || "").trim().padStart(11, "0"); // This line processes the "TractFIPS" property of the row to ensure it is a string, trims any whitespace, and pads it with leading zeros to ensure it is 11 characters long. This standardizes the format of the tract FIPS codes, which is important for correctly joining the CDC data with the GeoJSON tract geometries based on their FIPS codes.
+        row.CountyFIPS = String(row.CountyFIPS || "").trim().padStart(5, "0"); // This line processes the "CountyFIPS" property of the row in a similar way to the "TractFIPS" property. It ensures that the county FIPS code is treated as a string, trims any whitespace, and pads it with leading zeros to ensure it is 5 characters long. This standardization is important for any operations that may involve county-level data or joins based on county FIPS codes.
+        row.TotalPopulation_number = parseNumber(row.TotalPopulation); // This line creates a new property "TotalPopulation_number" on the row object by parsing the "TotalPopulation" field from the CSV. The "parseNumber" function is used to remove any commas and convert the value to a number. This allows for easier numerical operations and mapping based on the total population of each census tract.
+        row.TotalPop18plus_number = parseNumber(row.TotalPop18plus); // This line creates a new property "TotalPop18plus_number" on the row object by parsing the "TotalPop18plus" field from the CSV. Similar to the previous line, it uses the "parseNumber" function to clean and convert the value to a number. This provides a numeric representation of the population aged 18 and over for each census tract, which can be useful for mapping and analysis based on adult population counts.
 
         CDC_CATEGORIES.forEach(function (category) {
             category.variables.forEach(function (measure) {
                 if (measure.field && measure.field.endsWith("_CrudePrev")) {
-                    row[measure.field + "_number"] = parseNumber(row[measure.field]);
+                    row[measure.field + "_number"] = parseNumber(row[measure.field]); // This line checks if the "field" property of the measure exists and ends with "_CrudePrev", which indicates that it is a CDC prevalence measure. If this condition is met, it creates a new property on the row object with the name of the original field plus "_number" (e.g., "ARTHRITIS_CrudePrev_number") and assigns it the parsed numeric value of the original field using the "parseNumber" function. This allows for easier numerical operations and mapping based on the CDC prevalence measures, as they will now have corresponding numeric properties in the row object.
                 }
-            });
-        });
+            }); // End of the loop that processes each measure in the category.
+        }); // End of the loop that processes each category in the "CDC_CATEGORIES" array.
 
-        return row;
-    });
-}
+        return row; // This line returns the normalized "row" object for the current CSV row after processing and adding the cleaned keys, standardized FIPS codes, and parsed numeric values for population and CDC measures. The resulting array of normalized rows will be used for mapping, analysis, and display in the application.
+    }); // End of the mapping function that processes each raw CSV row and returns an array of normalized row objects.
+} // End of the "normalizeCdcRows" function, which takes an array of raw CSV rows and returns an array of normalized row objects with cleaned keys, standardized FIPS codes, and parsed numeric values for population and CDC measures.
 
 function parseNumber(value) {
-    if (value === undefined || value === null || value === "") return null;
-    const cleaned = String(value).replace(/,/g, "").trim();
-    const numberValue = Number(cleaned);
-    return Number.isFinite(numberValue) ? numberValue : null;
-}
+    if (value === undefined || value === null || value === "") return null; // This line checks if the input "value" is undefined, null, or an empty string. If any of these conditions are true, it returns null, indicating that there is no valid number to parse. This helps handle cases where the CSV data may have missing or empty values for numeric fields.
+    const cleaned = String(value).replace(/,/g, "").trim(); // This line converts the input "value" to a string, removes any commas (which are often used as thousand separators in numbers), and trims any leading or trailing whitespace. The resulting "cleaned" string is then used for parsing into a number. This step ensures that the input is in a format that can be correctly interpreted as a numeric value, especially for fields like population counts that may include commas.
+    const numberValue = Number(cleaned); // This line attempts to convert the "cleaned" string into a number using the built-in Number function. If the "cleaned" string represents a valid numeric value, it will be converted to that number. If it does not represent a valid number (e.g., if it contains non-numeric characters), the result will be NaN (Not-a-Number).
+    return Number.isFinite(numberValue) ? numberValue : null; // This line checks if the "numberValue" is a finite number using the Number.isFinite function. If it is finite, it returns the "numberValue". If it is not finite (e.g., if it is NaN or Infinity), it returns null. This ensures that only valid numeric values are returned, and any invalid or non-numeric inputs are handled gracefully by returning null.
+} // End of the "parseNumber" function, which is used to clean and convert string inputs into numeric values while handling cases of missing or invalid data.
 
 /* ------------------------------------------------------------
    6. Build the seven map rows from the category configuration
    ------------------------------------------------------------
 */
 function buildCategoryRows() {
-    const container = document.getElementById("cdc-map-rows");
-    container.innerHTML = "";
+    const container = document.getElementById("cdc-map-rows"); // This line selects the DOM element with the ID "cdc-map-rows" and assigns it to the variable "container". This element is intended to be the parent container where the category rows (including maps, legends, summaries, and comparison panels) will be dynamically inserted based on the configuration defined in the "CDC_CATEGORIES" array.
+    container.innerHTML = ""; // This line clears the inner HTML of the "container" element, ensuring that it starts empty before dynamically adding the category rows. This is important to prevent any existing content from interfering with the new content that will be generated based on the "CDC_CATEGORIES" configuration.
 
     CDC_CATEGORIES.forEach(function (category, index) {
-        const selectId = `select-${category.id}`;
-        const mapId = `map-${category.id}`;
-        const legendId = `legend-${category.id}`;
-        const summaryId = `summary-${category.id}`;
-        const comparisonId = `comparison-${category.id}`;
+        const selectId = `select-${category.id}`; // This line constructs a unique ID for the select dropdown element for the current category by concatenating the string "select-" with the category's ID. This ID will be used in the HTML structure for the category row and will allow for easy reference to the select element when adding event listeners or updating its value based on user interactions.
+        const mapId = `map-${category.id}`; // This line constructs a unique ID for the map container element for the current category by concatenating the string "map-" with the category's ID. This ID will be used in the HTML structure for the category row and will allow for easy reference to the map container when initializing the Leaflet map and rendering the CDC data on it.
+        const legendId = `legend-${category.id}`; // This line constructs a unique ID for the legend container element for the current category by concatenating the string "legend-" with the category's ID. This ID will be used in the HTML structure for the category row and will allow for easy reference to the legend container when updating the legend based on the selected variable and its corresponding data values.
+        const summaryId = `summary-${category.id}`; // This line constructs a unique ID for the summary container element for the current category by concatenating the string "summary-" with the category's ID. This ID will be used in the HTML structure for the category row and will allow for easy reference to the summary container when updating the summary information based on user interactions, such as selecting different variables or comparing locations.
+        const comparisonId = `comparison-${category.id}`; // This line constructs a unique ID for the comparison panel container element for the current category by concatenating the string "comparison-" with the category's ID. This ID will be used in the HTML structure for the category row and will allow for easy reference to the comparison panel when updating its content based on user interactions, such as selecting census tracts on the map for comparison.
 
         const optionsHtml = category.variables.map(function (measure) {
-            const selected = measure.field === category.default ? "selected" : "";
-            return `<option value="${measure.field}" ${selected}>${measure.label}</option>`;
-        }).join("");
+            const selected = measure.field === category.default ? "selected" : ""; // This line checks if the "field" property of the current measure matches the "default" field specified for the category. If it does, it assigns the string "selected" to the variable "selected", which will be used in the HTML option element to indicate that this option should be selected by default in the dropdown. If it does not match, it assigns an empty string, meaning that the option will not be selected by default.
+            return `<option value="${measure.field}" ${selected}>${measure.label}</option>`; // This line returns a string of HTML that represents an option element for a select dropdown. The "value" attribute of the option is set to the "field" property of the measure, and the display text of the option is set to the "label" property of the measure. Additionally, if this measure is the default for the category, the "selected" attribute will be included in the option element, making it the default selection when the dropdown is rendered.
+        }).join(""); // This line joins the array of option HTML strings into a single string that can be inserted into the select element for the category. The resulting "optionsHtml" variable will contain the complete set of option elements for the select dropdown based on the measures defined in the category configuration.
 
         const disabledText = category.disabled
             ? " disabled"
-            : "";
+            : ""; // This line checks if the current category has a "disabled" property set to true. If it does, it assigns the string " disabled" to the variable "disabledText", which will be used in the HTML select element to disable it. If the category is not disabled, it assigns an empty string, meaning that the select element will be enabled and interactive for the user.
 
         const mapContent = category.disabled
             ? `<div id="${mapId}" class="cdc-placeholder">
@@ -425,7 +425,7 @@ function buildCategoryRows() {
                         <p>The  Clean_NM.csv does not contain the ACS-derived non-medical-factor fields. Add those columns later to activate this row.</p>
                     </div>
                </div>`
-            : `<div id="${mapId}" class="cdc-map"></div>`;
+            : `<div id="${mapId}" class="cdc-map"></div>`; // This line checks if the current category is disabled. If it is, it assigns a string of HTML to the variable "mapContent" that represents a placeholder div with a message indicating that the data for this category is not included in the current CSV. This placeholder will be displayed instead of an interactive map. If the category is not disabled, it assigns a string of HTML that represents a div with the ID corresponding to the map container for this category, which will be used to initialize the Leaflet map and display the CDC data.
 
         container.insertAdjacentHTML("beforeend", `
             <section id="${category.id}" class="cdc-section cdc-map-card">
@@ -447,9 +447,9 @@ function buildCategoryRows() {
                     </div>
                 </div>
             </section>
-        `);
-    });
-}
+        `); // This block of code uses the insertAdjacentHTML method to append a new section of HTML to the "container" element for each category defined in the "CDC_CATEGORIES" array. The HTML structure includes a header with the category title and description, a select dropdown for choosing the map variable, a div for the map (or a placeholder if the category is disabled), and additional divs for the legend, summary, and comparison panel. The IDs for these elements are dynamically generated based on the category ID, allowing for easy reference when initializing maps and updating content based on user interactions.
+    }); // End of the loop that iterates over each category in the "CDC_CATEGORIES" array and builds the corresponding HTML structure for the map rows.
+} // End of the "buildCategoryRows" function that dynamically creates the HTML structure for each CDC category row on the page based on the configuration defined in the "CDC_CATEGORIES" array.
 
 /* ------------------------------------------------------------
    7. Initialize each Leaflet category map
@@ -458,10 +458,10 @@ function buildCategoryRows() {
    using a different selected CDC measure.
 */
 function addNorthArrow(map) {
-    const northControl = L.control({ position: "topright" });
+    const northControl = L.control({ position: "topright" }); // This line creates a new Leaflet control called "northControl" and sets its position to "topright". This control will be used to display a north arrow on the map, providing users with orientation and helping them understand the directionality of the map. By specifying the position as "topright", the control will be placed in the upper right corner of the map interface.
 
     northControl.onAdd = function () {
-        const div = L.DomUtil.create("div", "cdc-north-arrow");
+        const div = L.DomUtil.create("div", "cdc-north-arrow"); // This line creates a new div element using the Leaflet DOM utility function "L.DomUtil.create". The div is assigned the class "cdc-north-arrow", which can be used for styling purposes in CSS. This div will serve as the container for the north arrow graphic and label that will be added to the map.
 
         div.innerHTML = `
             <div class="north-label">N</div>
@@ -471,75 +471,75 @@ function addNorthArrow(map) {
                 <!-- white inner cut -->
                 <path d="M30 18 L38 64 L30 54 L22 64 Z" fill="white"/>
             </svg>
-        `;
+        `; // This block of code sets the inner HTML of the "div" element to include a label "N" for north and an SVG graphic that represents a north arrow. The SVG consists of two path elements: a black outer arrow and a white inner cut, creating a stylized north arrow symbol. This HTML structure will be displayed in the control on the map, providing users with a visual indication of the north direction.
 
-        L.DomEvent.disableClickPropagation(div);
-        L.DomEvent.disableScrollPropagation(div);
+        L.DomEvent.disableClickPropagation(div); // This line uses the Leaflet DOM event utility function "L.DomEvent.disableClickPropagation" to prevent click events on the "div" element from propagating to the underlying map. This is important because it allows users to interact with the north arrow control (e.g., clicking on it) without triggering unintended interactions with the map itself, such as panning or zooming.
+        L.DomEvent.disableScrollPropagation(div); // This line uses the Leaflet DOM event utility function "L.DomEvent.disableScrollPropagation" to prevent scroll events on the "div" element from propagating to the underlying map. This is important because it allows users to interact with the north arrow control (e.g., using the mouse wheel while hovering over it) without triggering unintended zooming interactions with the map itself.
 
-        return div;
-    };
+        return div; // This line returns the "div" element that contains the north arrow graphic and label. This returned element will be added to the map as part of the control when it is initialized, allowing it to be displayed in the specified position on the map interface.
+    }; // End of the "onAdd" function that defines the content and behavior of the north arrow control.
 
-    northControl.addTo(map);
-}
+    northControl.addTo(map); // This line adds the "northControl" to the Leaflet map instance using the "addTo" method. This will render the north arrow control on the map in the position specified when the control was created (in this case, "topright"). By adding the control to the map, users will be able to see the north arrow and use it for orientation while interacting with the map.
+} // End of the "addNorthArrow" function that defines the behavior of the north arrow control on the map.
 function addMouseCoordinates(map) {
-    const coordControl = L.control({ position: "bottomleft" });
+    const coordControl = L.control({ position: "bottomleft" }); // This line creates a new Leaflet control called "coordControl" and sets its position to "bottomleft". This control will be used to display the latitude and longitude coordinates of the mouse cursor as it moves over the map. By specifying the position as "bottomleft", the control will be placed in the lower left corner of the map interface, allowing users to easily see the coordinates while interacting with the map. 
 
     coordControl.onAdd = function () {
-        const div = L.DomUtil.create("div", "cdc-coordinates-control");
-        div.innerHTML = "Move mouse";
-        L.DomEvent.disableClickPropagation(div);
-        L.DomEvent.disableScrollPropagation(div);
-        return div;
-    };
+        const div = L.DomUtil.create("div", "cdc-coordinates-control"); // This line creates a new div element using the Leaflet DOM utility function "L.DomUtil.create". The div is assigned the class "cdc-coordinates-control", which can be used for styling purposes in CSS. This div will serve as the container for displaying the mouse coordinates (latitude and longitude) as the user moves the cursor over the map.
+        div.innerHTML = "Move mouse"; // This line sets the initial inner HTML of the "div" element to the text "Move mouse". This serves as a prompt to the user, indicating that they should move their mouse over the map to see the coordinates. As the user moves the mouse, this content will be updated to show the current latitude and longitude of the cursor position on the map.
+        L.DomEvent.disableClickPropagation(div); // This line uses the Leaflet DOM event utility function "L.DomEvent.disableClickPropagation" to prevent click events on the "div" element from propagating to the underlying map. This is important because it allows users to interact with the coordinates control (e.g., clicking on it) without triggering unintended interactions with the map itself, such as panning or zooming.
+        L.DomEvent.disableScrollPropagation(div); // This line uses the Leaflet DOM event utility function "L.DomEvent.disableScrollPropagation" to prevent scroll events on the "div" element from propagating to the underlying map. This is important because it allows users to interact with the coordinates control (e.g., using the mouse wheel while hovering over it) without triggering unintended zooming interactions with the map itself.
+        return div; // This line returns the "div" element that contains the initial prompt for mouse coordinates. This returned element will be added to the map as part of the control when it is initialized, allowing it to be displayed in the specified position on the map interface and updated with the current mouse coordinates as the user interacts with the map.
+    }; // End of the "onAdd" function that defines the content and behavior of the mouse coordinates control.
 
-    coordControl.addTo(map);
+    coordControl.addTo(map); // This line adds the "coordControl" to the Leaflet map instance using the "addTo" method. This will render the mouse coordinates control on the map in the position specified when the control was created (in this case, "bottomleft"). By adding the control to the map, users will be able to see the prompt and eventually the latitude and longitude coordinates as they move their mouse over the map.
 
     map.on("mousemove", function (e) {
-        const lat = e.latlng.lat.toFixed(6);
-        const lng = e.latlng.lng.toFixed(6);
-        coordControl.getContainer().innerHTML = `${lat} | ${lng}`;
-    });
+        const lat = e.latlng.lat.toFixed(6); // This line retrieves the latitude from the mouse event object "e" (specifically from "e.latlng.lat") and formats it to six decimal places using the "toFixed(6)" method. The resulting string is assigned to the variable "lat". This formatted latitude value will be displayed in the coordinates control on the map, providing users with precise information about their cursor's latitude position as they move it over the map.
+        const lng = e.latlng.lng.toFixed(6); // This line retrieves the longitude from the mouse event object "e" (specifically from "e.latlng.lng") and formats it to six decimal places using the "toFixed(6)" method. The resulting string is assigned to the variable "lng". This formatted longitude value will be displayed in the coordinates control on the map, providing users with precise information about their cursor's longitude position as they move it over the map.
+        coordControl.getContainer().innerHTML = `${lat} | ${lng}`; // This line updates the inner HTML of the container element of the "coordControl" with a string that combines the formatted latitude and longitude values, separated by a vertical bar ("|"). This allows users to see the current coordinates of their mouse cursor in real-time as they move it over the map, providing them with useful spatial information about their location on the map.
+    }); // End of the event listener for mouse movement on the map that updates the coordinates control with the current latitude and longitude.
 
     map.on("mouseout", function () {
-        coordControl.getContainer().innerHTML = "Move mouse";
-    });
-}
+        coordControl.getContainer().innerHTML = "Move mouse"; // This line sets up an event listener for when the mouse cursor leaves the map area ("mouseout" event). When this event occurs, it resets the inner HTML of the coordinates control back to the initial prompt "Move mouse". This provides a clear indication to users that they are no longer hovering over the map and that they can move their mouse back onto the map to see the coordinates again.
+    }); // End of the event listener for mouse leaving the map area that resets the coordinates control prompt.
+} // End of the "addMouseCoordinates" function that defines the behavior of the mouse coordinates control on the map.
 function initializeAllCategoryViews() {
-    categoryViews = [];
+    categoryViews = []; // This line resets the "categoryViews" array to an empty array. This is important to ensure that any previous views are cleared out before initializing new views for each category. By resetting the array, the function can safely populate it with fresh view objects for each category without any risk of retaining outdated or duplicate views from previous initializations.
 
     CDC_CATEGORIES.forEach(function (category) {
-        const select = document.getElementById(`select-${category.id}`);
-        const legend = document.getElementById(`legend-${category.id}`);
-        const summary = document.getElementById(`summary-${category.id}`);
-        const comparison = document.getElementById(`comparison-${category.id}`);
+        const select = document.getElementById(`select-${category.id}`); // This line selects the DOM element for the select dropdown corresponding to the current category using its unique ID (constructed as "select-" followed by the category ID). The selected element is assigned to the variable "select", which will be used to manage user interactions with the dropdown and to determine which CDC measure is currently selected for mapping in this category.
+        const legend = document.getElementById(`legend-${category.id}`); // This line selects the DOM element for the legend container corresponding to the current category using its unique ID (constructed as "legend-" followed by the category ID). The selected element is assigned to the variable "legend", which will be used to display the legend for the map based on the selected CDC measure and its corresponding data values. The legend will help users understand the color coding and data representation on the map for this category.
+        const summary = document.getElementById(`summary-${category.id}`); // This line selects the DOM element for the summary container corresponding to the current category using its unique ID (constructed as "summary-" followed by the category ID). The selected element is assigned to the variable "summary", which will be used to display summary information about the data being visualized on the map for this category. The summary may include statistics, insights, or explanations related to the selected CDC measure and the spatial patterns observed in the map.
+        const comparison = document.getElementById(`comparison-${category.id}`); // This line selects the DOM element for the comparison panel container corresponding to the current category using its unique ID (constructed as "comparison-" followed by the category ID). The selected element is assigned to the variable "comparison", which will be used to display information when users select census tracts on the map for comparison. The comparison panel will show details about the selected tracts and their values for the chosen CDC measure, allowing users to compare different locations based on the data visualized in this category.
 
         if (category.disabled) {
             legend.innerHTML = "<b>No active legend.</b> Non-medical-factor columns are not in the Clean_NM CSV.";
             summary.innerHTML = "This row is kept so the page structure mirrors the seven CDC PLACES categories.";
             return;
-        }
+        } // This block of code checks if the current category is marked as disabled. If it is, it updates the inner HTML of the legend and summary elements to display messages indicating that there is no active legend and providing an explanation for why this category is disabled (i.e., the non-medical-factor columns are not included in the Clean_NM CSV). After updating the content for the disabled category, it returns from the function, meaning that no map will be initialized for this category, and it will skip to the next iteration of the loop for any remaining categories.
 
         const map = L.map(`map-${category.id}`, {
             scrollWheelZoom: false
-        }).setView([34.5, -106.0], 6);
+        }).setView([34.5, -106.0], 6); // This block of code initializes a Leaflet map for the current category. It creates a new map instance using the "L.map" function, targeting the div element with the ID corresponding to the map container for this category (constructed as "map-" followed by the category ID). The map is initialized with scroll wheel zooming disabled and a default view centered on New Mexico (latitude 34.5, longitude -106.0) with a zoom level of 6. This sets up the initial map interface for this category, allowing users to interact with it and visualize the CDC data based on their selections.
 
         L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             maxZoom: 18,
             attribution: "&copy; OpenStreetMap contributors"
-        }).addTo(map);
-        addNorthArrow(map);
+        }).addTo(map); // This block of code initializes a Leaflet map for the current category. It creates a new map instance using the "L.map" function, targeting the div element with the ID corresponding to the map container for this category (constructed as "map-" followed by the category ID). The map is initialized with scroll wheel zooming disabled and a default view centered on New Mexico (latitude 34.5, longitude -106.0) with a zoom level of 6. Then, it adds a tile layer to the map using OpenStreetMap tiles, specifying the maximum zoom level and attribution text. This sets up the base map on which the CDC data will be visualized for this category.
+        addNorthArrow(map); // This line calls the "addNorthArrow" function, passing the initialized Leaflet map instance as an argument. The "addNorthArrow" function is responsible for creating and adding a north arrow control to the map, which provides users with orientation and helps them understand the directionality of the map. By calling this function after initializing the map, the application ensures that the north arrow is displayed on the map interface, enhancing the user experience and spatial understanding while interacting with the CDC data visualized on the map.
         L.control.scale({
             position: "bottomleft",
             imperial: true,
             metric: false,
             maxWidth: 100
-        }).addTo(map);
+        }).addTo(map); // This block of code creates a scale control using the Leaflet "L.control.scale" function and adds it to the map. The control is configured to be positioned in the "bottomleft" corner of the map, display distances in imperial units (miles and feet) while hiding metric units, and have a maximum width of 100 pixels. By adding this control to the map, users can easily gauge distances on the map, which can help them better understand the spatial relationships and scales of the CDC data visualized for this category.
 
-        addMouseCoordinates(map);
+        addMouseCoordinates(map); // This line calls the "addMouseCoordinates" function, passing the initialized Leaflet map instance as an argument. The "addMouseCoordinates" function is responsible for creating and adding a control to the map that displays the latitude and longitude coordinates of the mouse cursor as it moves over the map. By calling this function after initializing the map, the application ensures that users can see real-time coordinate information in the specified control on the map interface, enhancing their spatial awareness and interaction with the CDC data visualized on the map.
 
         const tractLayer = L.geoJson(tractGeojson, {
             style: function (feature) {
-                return getFeatureStyle(feature, select.value);
+                return getFeatureStyle(feature, select.value); // This line defines the style for each feature in the tract GeoJSON layer based on the currently selected variable in the dropdown for this category. The "getFeatureStyle" function is called with the feature and the selected variable (accessed through "select.value") to determine the appropriate styling (such as fill color, opacity, etc.) for that feature on the map. This allows each census tract to be visually represented according to its value for the selected CDC measure, enabling users to easily interpret spatial patterns and differences across tracts based on the data.
             },
             onEachFeature: function (feature, layer) {
                 layer.on({
@@ -547,21 +547,21 @@ function initializeAllCategoryViews() {
                         e.target.setStyle({
                             weight: 2.5,
                             color: "#111827"
-                        });
-                        e.target.bringToFront();
+                        }); // This block of code sets up an event listener for the "mouseover" event on each feature layer in the tract GeoJSON. When a user hovers their mouse over a census tract on the map, this function is triggered, and it updates the style of the target layer (the tract being hovered over) to have a thicker border (weight of 2.5) and a darker color ("#111827"). This visual change provides feedback to the user, highlighting the tract they are currently hovering over and making it easier to identify on the map.
+                        e.target.bringToFront(); // This line calls the "bringToFront" method on the target layer (the tract being hovered over) to ensure that it is rendered above other layers on the map. This is important because it prevents the hovered tract from being obscured by adjacent tracts or other map features, allowing users to clearly see the highlighted tract and its boundaries when they hover over it.
                     },
                     mouseout: function (e) {
-                        tractLayer.resetStyle(e.target);
+                        tractLayer.resetStyle(e.target); // This block of code sets up an event listener for the "mouseout" event on each feature layer in the tract GeoJSON. When a user moves their mouse away from a census tract on the map, this function is triggered, and it calls the "resetStyle" method on the "tractLayer" for the target layer (the tract that was previously hovered over). This resets the style of that tract back to its original styling as defined by the "style" function for the layer. This ensures that once the user is no longer hovering over a tract, it returns to its default appearance, maintaining a consistent visual representation of all tracts on the map.
                     },
                     click: function (e) {
-                        handleCompareClick(view, feature, e.target);
+                        handleCompareClick(view, feature, e.target); // This block of code sets up an event listener for the "click" event on each feature layer in the tract GeoJSON. When a user clicks on a census tract on the map, this function is triggered, and it calls the "handleCompareClick" function, passing in the current view object (which contains references to the category, select element, legend, summary, comparison panel, map, and tract layer), the feature that was clicked, and the target layer (the tract that was clicked). The "handleCompareClick" function is responsible for managing the logic of selecting tracts for comparison in the comparison panel. It updates the list of selected features for comparison and opens a popup with information about the clicked tract. This allows users to interactively compare different census tracts based on their values for the selected CDC measure.
                     }
-                });
+                }); // End of the event listeners for mouseover, mouseout, and click events on each feature layer in the tract GeoJSON.
                 layer.bindPopup(function () {
-                    return buildPopupContent(feature, select.value);
-                });
+                    return buildPopupContent(feature, select.value); // This line binds a popup to each feature layer in the tract GeoJSON. The content of the popup is generated by calling the "buildPopupContent" function, passing in the feature and the currently selected variable (accessed through "select.value"). The "buildPopupContent" function constructs the HTML content for the popup based on the properties of the feature and the selected CDC measure, providing users with detailed information about that specific census tract when they click on it. This enhances the interactivity of the map and allows users to explore the data in more depth by viewing specific values and details for each tract.
+                }); // End of the "onEachFeature" function that defines the event listeners and popup content for each feature layer in the tract GeoJSON.
             }
-        }).addTo(map);
+        }).addTo(map); // This line creates a new Leaflet GeoJSON layer using the "L.geoJson" function, passing in the "tractGeojson" data and the defined style and event listeners for each feature. The resulting layer is then added to the map using the "addTo" method, allowing the census tract geometries to be displayed on the map with the appropriate styling and interactivity based on the selected CDC measure for this category.
 
         L.geoJson(countyGeojson, {
             style: {
@@ -571,7 +571,7 @@ function initializeAllCategoryViews() {
                 opacity: 0.7
             },
             interactive: false
-        }).addTo(map);
+        }).addTo(map); // This block of code creates a new Leaflet GeoJSON layer for the county boundaries using the "L.geoJson" function, passing in the "countyGeojson" data. The style for this layer is defined with a specific color ("#252525"), weight (1), fill opacity (0), and overall opacity (0.7). The "interactive" option is set to false, meaning that users will not be able to interact with the county boundaries (e.g., no hover or click events). This layer is then added to the map using the "addTo" method, allowing the county boundaries to be displayed on top of the tract layer, providing additional geographic context for users as they explore the CDC data visualized on the map.
 
         try {
             map.fitBounds(tractLayer.getBounds(), { padding: [10, 10] });
@@ -580,74 +580,74 @@ function initializeAllCategoryViews() {
         }
 
         const view = { category, select, legend, summary, comparison, map, tractLayer };
-        categoryViews.push(view);
+        categoryViews.push(view); // This line creates a new view object that contains references to the current category, select element, legend container, summary container, comparison panel, map instance, and tract layer for this category. This view object is then pushed into the "categoryViews" array, which will hold the state and references for all category views on the page. By storing these references in the "categoryViews" array, the application can easily access and update the relevant elements and map layers for each category when users interact with the dropdowns or click on the map for comparisons.
 
         select.addEventListener("change", function () {
-            selectedCompareFeatures[category.id] = [];
-            updateCategoryView(view);
-            updateComparisonPanel(view);
-            renderDataTable();
-        });
+            selectedCompareFeatures[category.id] = []; // This line resets the list of selected features for comparison for the current category when the user changes the selected variable in the dropdown. By setting "selectedCompareFeatures[category.id]" to an empty array, it ensures that any previously selected tracts for comparison are cleared out, allowing users to start fresh with their comparisons based on the new variable they have selected. This is important because different variables may have different values for the same tracts, and it prevents confusion by ensuring that comparisons are relevant to the currently selected measure.
+            updateCategoryView(view); // This line calls the "updateCategoryView" function, passing in the current view object for this category. The "updateCategoryView" function is responsible for updating the styling of the tract layer, the content of the popups, the legend, and the summary based on the newly selected variable in the dropdown. By calling this function after resetting the selected features for comparison, it ensures that the map and related elements are updated to reflect the new variable selection, providing users with an accurate and relevant visualization of the CDC data for this category.
+            updateComparisonPanel(view); // This line calls the "updateComparisonPanel" function, passing in the current view object for this category. The "updateComparisonPanel" function is responsible for updating the content of the comparison panel based on the currently selected variable and the list of selected features for comparison. By calling this function after resetting the selected features and updating the category view, it ensures that the comparison panel is also updated to reflect the new variable selection and any changes in the selected tracts for comparison, providing users with accurate and relevant information in the comparison panel based on their interactions with the dropdown and map.
+            renderDataTable(); // This line calls the "renderDataTable" function, which is responsible for rendering or updating the data table that displays the CDC data in a tabular format. By calling this function after the user changes the selected variable in the dropdown, it ensures that the data table is updated to reflect the new variable selection, allowing users to see the relevant data values for the selected measure in a tabular format alongside the map visualization. This enhances the user's ability to explore and analyze the CDC data by providing both spatial and tabular representations of the information.
+        }); // End of the event listener for changes to the select dropdown that updates the category view, comparison panel, and data table based on the new variable selection.
 
-        updateCategoryView(view);
-    });
-}
+        updateCategoryView(view); // This line calls the "updateCategoryView" function for the current view object immediately after initializing the map and setting up the event listeners. This ensures that the map, popups, legend, and summary are all updated to reflect the default variable selection for this category when the page first loads. By calling this function at the end of the initialization process for each category, it guarantees that users will see a properly styled and informative map visualization for each category right from the start, without needing to interact with the dropdowns first.
+    }); // End of the loop that iterates over each category in the "CDC_CATEGORIES" array and initializes the Leaflet map, layers, controls, and event listeners for each category view.
+} // End of the "initializeAllCategoryViews" function that sets up the maps and interactions for all categories defined in the "CDC_CATEGORIES" array.
 
 function updateCategoryView(view) {
     view.tractLayer.setStyle(function (feature) {
         return getFeatureStyle(feature, view.select.value);
-    });
+    }); // This line updates the style of the tract layer for the current view based on the newly selected variable in the dropdown. It calls the "setStyle" method on the "tractLayer", passing in a function that takes a feature as an argument and returns the appropriate style for that feature based on the selected variable (accessed through "view.select.value"). This ensures that when a user changes the selected variable, the map is updated to reflect the new styling for each census tract according to its value for the newly selected CDC measure.
 
     view.tractLayer.eachLayer(function (layer) {
         layer.bindPopup(function () {
             return buildPopupContent(layer.feature, view.select.value);
-        });
-    });
+        }); // This block of code iterates over each layer in the "tractLayer" using the "eachLayer" method. For each layer (which represents a census tract), it re-binds the popup content by calling the "bindPopup" method with a function that generates the popup content based on the feature associated with that layer and the newly selected variable (accessed through "view.select.value"). This ensures that when a user changes the selected variable, the popups for each tract are updated to display information relevant to the new variable, providing users with accurate and up-to-date information when they click on a tract after changing the selection.
+    }); // End of the iteration over each layer in the tract layer to update the popup content based on the new variable selection.
 
-    renderLegend(view.legend, view.select.value);
-    renderSummary(view.summary, view.select.value);
-}
+    renderLegend(view.legend, view.select.value); // This line calls the "renderLegend" function, passing in the legend container element for the current view and the newly selected variable (accessed through "view.select.value"). The "renderLegend" function is responsible for generating and displaying the legend for the map based on the selected variable and its corresponding data values. By calling this function after a user changes the selected variable, it ensures that the legend is updated to reflect the new variable selection, providing users with an accurate guide to understanding the color coding and data representation on the map for this category.
+    renderSummary(view.summary, view.select.value); // This line calls the "renderSummary" function, passing in the summary container element for the current view and the newly selected variable (accessed through "view.select.value"). The "renderSummary" function is responsible for generating and displaying summary information about the data being visualized on the map for this category based on the selected variable. By calling this function after a user changes the selected variable, it ensures that the summary is updated to reflect the new variable selection, providing users with relevant statistics, insights, or explanations related to the selected CDC measure and the spatial patterns observed in the map for this category.
+} // End of the "updateCategoryView" function that updates the map styling, popups, legend, and summary based on the selected variable for a given category view.
 function handleCompareClick(view, feature, layer) {
-    const categoryId = view.category.id;
+    const categoryId = view.category.id; // This line retrieves the unique ID of the current category from the view object and assigns it to the variable "categoryId". This ID is used to manage the state of selected features for comparison specific to this category, allowing the application to keep track of which tracts have been selected for comparison within each category independently.
 
     if (!selectedCompareFeatures[categoryId]) {
-        selectedCompareFeatures[categoryId] = [];
+        selectedCompareFeatures[categoryId] = []; // This line checks if there is already an array initialized for storing selected features for comparison for the current category (using the "categoryId" as the key). If it does not exist, it initializes it as an empty array. This ensures that there is a dedicated array to store the selected features for comparison for each category, allowing users to select and compare tracts within each category without interference from selections made in other categories.
     }
 
-    const row = getRowForFeature(feature);
+    const row = getRowForFeature(feature); // This line calls the "getRowForFeature" function, passing in the feature that was clicked on the map. The "getRowForFeature" function retrieves the corresponding data row from the CDC dataset based on the GEOID of the feature. The resulting row is assigned to the variable "row". This row contains the data values for the specific census tract that was clicked, which will be used to display information in the comparison panel and manage the selection of features for comparison.
 
     if (!row) {
-        layer.openPopup();
-        return;
+        layer.openPopup(); // This line opens the popup for the clicked layer (census tract) if the corresponding data row could not be found in the CDC dataset. This provides feedback to the user that there is no data available for that specific tract, allowing them to understand why it cannot be selected for comparison or why it may not have a value displayed on the map.
+        return; // This line exits the function early if the corresponding data row for the clicked feature could not be found. This prevents any further processing or attempts to add the feature to the comparison selection if there is no data available for that tract, ensuring that the application handles this case gracefully without errors.
     }
 
-    const selectedList = selectedCompareFeatures[categoryId];
+    const selectedList = selectedCompareFeatures[categoryId]; // This line retrieves the array of selected features for comparison for the current category (using the "categoryId" as the key). This array will be used to manage the selection of features for comparison within each category.
 
     if (selectedList.length === 2) {
-        selectedList.length = 0;
+        selectedList.length = 0; // This line checks if the length of the "selectedList" array is equal to 2, which means that two features have already been selected for comparison. If this condition is true, it resets the length of the array to 0, effectively clearing the selection of features for comparison. This allows users to start a new comparison by selecting two new tracts after they have already compared two tracts, ensuring that only two tracts can be compared at a time and providing a clear way to reset the comparison selection.
     }
 
-    selectedList.push(feature);
+    selectedList.push(feature); // This line adds the currently clicked feature to the "selectedList" array for comparison. This allows users to select up to two features (census tracts) for comparison in the comparison panel. By pushing the clicked feature into the array, it updates the state of selected features for comparison, which will be used to display information about the selected tracts in the comparison panel and manage the logic of comparing their values for the selected CDC measure.
 
-    layer.openPopup();
-    updateComparisonPanel(view);
-}
+    layer.openPopup(); // This line opens the popup for the clicked layer (census tract) after it has been added to the comparison selection. This provides immediate feedback to the user about the tract they have selected for comparison, allowing them to see the relevant information in the popup and understand which tract they have chosen before proceeding to select a second tract for comparison.
+    updateComparisonPanel(view); // This line calls the "updateComparisonPanel" function, passing in the current view object for this category. The "updateComparisonPanel" function is responsible for updating the content of the comparison panel based on the currently selected variable and the list of selected features for comparison. By calling this function after a user clicks on a tract and adds it to the comparison selection, it ensures that the comparison panel is updated to reflect the new selection, providing users with accurate and relevant information about the selected tracts and their values for the chosen CDC measure, allowing them to compare different locations effectively.
+} // End of the "handleCompareClick" function that manages the logic of selecting features for comparison and updating the comparison panel based on user interactions with the map.
 
 function updateComparisonPanel(view) {
-    const selectedList = selectedCompareFeatures[view.category.id] || [];
-    const measureField = view.select.value;
-    const label = getMeasureLabel(measureField);
+    const selectedList = selectedCompareFeatures[view.category.id] || []; // This line retrieves the array of selected features for comparison for the current category from the "selectedCompareFeatures" object using the category ID as the key. If there is no array initialized for that category, it defaults to an empty array. This allows the function to manage the state of selected features for comparison specific to each category and ensures that it can safely access the list of selected features without encountering undefined values.
+    const measureField = view.select.value; // This line retrieves the currently selected variable (measure) from the dropdown for the current view and assigns it to the variable "measureField". This variable will be used to access the corresponding data values for the selected tracts in the comparison panel, allowing the function to display relevant information based on the user's selection of the CDC measure for this category.
+    const label = getMeasureLabel(measureField); // This line calls the "getMeasureLabel" function, passing in the "measureField" variable that represents the currently selected variable (measure) from the dropdown. The "getMeasureLabel" function returns a human-readable label for the selected measure, which is assigned to the variable "label". This label will be used in the comparison panel to provide a clear and descriptive title for the information being compared, enhancing the user's understanding of what is being displayed in the comparison panel based on their selection of the CDC measure for this category.
 
     if (selectedList.length === 0) {
         view.comparison.innerHTML = `
             <b>Compare two locations</b><br>
             Click two census tracts on the map to compare their values.
-        `;
-        return;
+        `; // This block of code checks if the length of the "selectedList" array is 0, which means that no features have been selected for comparison. If this condition is true, it updates the inner HTML of the comparison panel to display a prompt for the user to click on two census tracts on the map to compare their values. This provides guidance to users on how to use the comparison feature when they have not yet selected any tracts for comparison, ensuring that they understand the steps needed to compare different locations based on the selected CDC measure for this category.
+        return; // This block of code checks if the length of the "selectedList" array is 0, which means that no features have been selected for comparison. If this condition is true, it updates the inner HTML of the comparison panel to display a prompt for the user to click on two census tracts on the map to compare their values. This provides guidance to users on how to use the comparison feature when they have not yet selected any tracts for comparison, ensuring that they understand the steps needed to compare different locations based on the selected CDC measure for this category.
     }
 
     if (selectedList.length === 1) {
-        const row1 = getRowForFeature(selectedList[0]);
+        const row1 = getRowForFeature(selectedList[0]); // This line retrieves the corresponding data row for the first selected feature in the "selectedList" array by calling the "getRowForFeature" function with the first feature (accessed as "selectedList[0]"). The resulting row is assigned to the variable "row1". This row contains the data values for the specific census tract that was first selected for comparison, which will be used to display information in the comparison panel and provide context for when the user selects a second tract for comparison.
 
         view.comparison.innerHTML = `
             <b>Compare two locations</b><br>
@@ -655,16 +655,16 @@ function updateComparisonPanel(view) {
             ${row1.CountyName} County, Tract ${row1.TractFIPS}<br>
             <b>${label}:</b> ${formatPercent(row1[measureField + "_number"])}<br><br>
             Now click a second tract to compare.
-        `;
-        return;
-    }
+        `; // This block of code updates the inner HTML of the comparison panel to display information about the first selected location for comparison. It includes the county name, tract FIPS code, and the value for the selected measure (formatted as a percentage) for the first selected tract. It also prompts the user to click a second tract to complete the comparison. This provides users with immediate feedback about their first selection and guides them on how to proceed with selecting a second tract for comparison based on the selected CDC measure for this category.
+        return; // This line exits the function early if only one feature has been selected for comparison. This allows the function to wait until a second feature is selected before attempting to perform the comparison and display the results in the comparison panel, ensuring that users are guided through the process of selecting two tracts for comparison before any comparison information is displayed.
+    } // At this point, we know that there are exactly two features in the "selectedList" array for comparison, so we can proceed with retrieving their data and calculating the comparison values.
 
-    const row1 = getRowForFeature(selectedList[0]);
-    const row2 = getRowForFeature(selectedList[1]);
+    const row1 = getRowForFeature(selectedList[0]); // This line retrieves the corresponding data row for the first selected feature in the "selectedList" array by calling the "getRowForFeature" function with the first feature (accessed as "selectedList[0]"). The resulting row is assigned to the variable "row1". This row contains the data values for the specific census tract that was first selected for comparison, which will be used to display information in the comparison panel and provide context for when the user selects a second tract for comparison.
+    const row2 = getRowForFeature(selectedList[1]); // This line retrieves the corresponding data row for the second selected feature in the "selectedList" array by calling the "getRowForFeature" function with the second feature (accessed as "selectedList[1]"). The resulting row is assigned to the variable "row2". This row contains the data values for the specific census tract that was second selected for comparison, which will be used to display information in the comparison panel and allow users to compare it against the first selected tract based on the selected CDC measure for this category.
 
-    const value1 = row1[measureField + "_number"];
-    const value2 = row2[measureField + "_number"];
-    const difference = value2 - value1;
+    const value1 = row1[measureField + "_number"]; // This line retrieves the value for the selected measure (accessed using "measureField + '_number'") from the first selected row (row1) and assigns it to the variable "value1". This value represents the data for the first selected tract for the currently selected CDC measure, which will be used in the comparison panel to show the value for the first location and to calculate the difference when compared to the second selected tract.
+    const value2 = row2[measureField + "_number"]; // This line retrieves the value for the selected measure (accessed using "measureField + '_number'") from the second selected row (row2) and assigns it to the variable "value2". This value represents the data for the second selected tract for the currently selected CDC measure, which will be used in the comparison panel to show the value for the second location and to calculate the difference when compared to the first selected tract.
+    const difference = value2 - value1; // This line calculates the difference between the value of the second selected tract (value2) and the value of the first selected tract (value1) for the currently selected CDC measure. The result is assigned to the variable "difference". This difference will be used in the comparison panel to show how much higher or lower the second location's value is compared to the first location, providing users with a clear comparison of the two selected tracts based on the chosen CDC measure for this category.
 
     view.comparison.innerHTML = `
         <b>Comparison: ${label}</b>
@@ -692,13 +692,13 @@ function updateComparisonPanel(view) {
         <b>Direction:</b> The second location is ${difference >= 0 ? "higher" : "lower"} than the first.
         <br><br>
         Click another tract to start a new comparison.
-    `;
-}
+    `; // This block of code updates the inner HTML of the comparison panel to display a detailed comparison between the two selected locations for the chosen CDC measure. It includes a table that shows the county name, tract FIPS code, and value for both the first and second selected tracts. It also calculates and displays the absolute difference between the two values and indicates whether the second location is higher or lower than the first. Finally, it prompts users to click another tract to start a new comparison, providing a clear and informative comparison of the two selected tracts based on the selected CDC measure for this category.
+} // End of the "updateComparisonPanel" function that manages the content of the comparison panel based on the selected features and the chosen CDC measure for this category.
 
 function getFeatureStyle(feature, measureField) {
-    const row = getRowForFeature(feature);
-    const value = row ? row[measureField + "_number"] : null;
-    const breaks = getBreaksForMeasure(measureField);
+    const row = getRowForFeature(feature); // This line calls the "getRowForFeature" function, passing in the feature for which the style is being determined. The "getRowForFeature" function retrieves the corresponding data row from the CDC dataset based on the GEOID of the feature. The resulting row is assigned to the variable "row". This row contains the data values for the specific census tract represented by the feature, which will be used to determine the appropriate styling (such as fill color and opacity) for that tract on the map based on its value for the selected CDC measure.
+    const value = row ? row[measureField + "_number"] : null; // This line retrieves the value for the selected measure (accessed using "measureField + '_number'") from the retrieved row if it exists. If the row is null (which means there was no matching data for the feature), it assigns null to the variable "value". This value will be used to determine the fill color and opacity for the feature on the map based on its value for the selected CDC measure, allowing for appropriate styling even when there is no data available for a particular tract.
+    const breaks = getBreaksForMeasure(measureField); // This line calls the "getBreaksForMeasure" function, passing in the "measureField" variable that represents the currently selected variable (measure) from the dropdown. The "getBreaksForMeasure" function calculates and returns the quantile breaks for the values of the selected measure across all census tracts. These breaks are used to determine how to classify the values for styling purposes on the map, allowing for a consistent color scheme based on the distribution of values for the selected CDC measure.
 
     return {
         fillColor: getColorForValue(value, breaks),
@@ -706,13 +706,13 @@ function getFeatureStyle(feature, measureField) {
         opacity: 1,
         color: "#ffffff",
         fillOpacity: value === null ? 0.45 : 0.78
-    };
-}
+    }; // This block of code returns an object that defines the style for the given feature based on its value for the selected CDC measure. The "fillColor" is determined by calling the "getColorForValue" function, which takes the value and the calculated breaks to determine the appropriate color from the color scheme. The "weight", "opacity", and "color" properties define the border styling for the feature, while the "fillOpacity" is set to a lower value (0.45) if there is no data (value is null) and a higher value (0.78) if there is valid data. This styling allows for a clear visual representation of the data on the map, with different colors indicating different ranges of values for the selected CDC measure and a distinct appearance for tracts with no data.
+} // End of the "getFeatureStyle" function that determines the styling for a given feature based on its value for the selected CDC measure and the calculated breaks for that measure.
 
 function getRowForFeature(feature) {
-    const geoid = String(feature.properties.GEOID || "").trim();
-    return cdcByTractFips.get(geoid) || null;
-}
+    const geoid = String(feature.properties.GEOID || "").trim(); // This line retrieves the GEOID from the properties of the input feature, ensuring that it is treated as a string and trimming any whitespace. The GEOID is a unique identifier for each census tract, and it is used to look up the corresponding data row in the CDC dataset. By converting it to a string and trimming it, the function ensures that the GEOID is in a consistent format for accurate lookup in the "cdcByTractFips" map, which maps GEOIDs to their respective data rows from the CDC dataset.
+    return cdcByTractFips.get(geoid) || null; // This line retrieves the GEOID from the properties of the input feature, ensuring that it is treated as a string and trimming any whitespace. It then uses this GEOID to look up the corresponding data row in the "cdcByTractFips" map, which is a mapping of GEOIDs to their respective data rows from the CDC dataset. If a matching row is found, it is returned; otherwise, null is returned to indicate that there is no corresponding data for that feature. This function allows the application to efficiently retrieve the relevant data for each census tract feature on the map based on its GEOID, enabling accurate styling and information display based on the CDC dataset.
+} // This function takes a GeoJSON feature as input and retrieves the corresponding data row from the CDC dataset based on the GEOID property of the feature. It first extracts the GEOID from the feature's properties, ensuring it is a string and trimming any whitespace. Then, it uses this GEOID to look up the corresponding row in the "cdcByTractFips" map, which is a mapping of GEOIDs to their respective data rows from the CDC dataset. If a matching row is found, it is returned; otherwise, null is returned to indicate that there is no corresponding data for that feature.
 
 /* ------------------------------------------------------------
    8. Classification, colors, legends, and summaries
@@ -724,109 +724,109 @@ function getValuesForMeasure(measureField) {
     return cdcRows
         .map(function (row) { return row[measureField + "_number"]; })
         .filter(function (value) { return value !== null && Number.isFinite(value); })
-        .sort(function (a, b) { return a - b; });
-}
+        .sort(function (a, b) { return a - b; }); // This block of code defines the "getValuesForMeasure" function, which takes a measure field as input and retrieves the corresponding values for that measure across all census tracts from the CDC dataset. It does this by mapping over the "cdcRows" array, extracting the value for the specified measure (accessed using "measureField + '_number'") from each row. It then filters out any values that are null or not finite numbers to ensure that only valid numeric values are included. Finally, it sorts the resulting array of values in ascending order before returning it. This sorted array of values is used to calculate quantile breaks for classification and styling on the map based on the distribution of values for the selected CDC measure.
+} // This function takes a measure field (representing a selected CDC measure) as input and retrieves the corresponding values for that measure across all census tracts from the CDC dataset. It does this by mapping over the "cdcRows" array, extracting the value for the specified measure (accessed using "measureField + '_number'") from each row. It then filters out any values that are null or not finite numbers to ensure that only valid numeric values are included. Finally, it sorts the resulting array of values in ascending order before returning it. This sorted array of values is used to calculate quantile breaks for classification and styling on the map based on the distribution of values for the selected CDC measure.
 
 function getBreaksForMeasure(measureField) {
-    const values = getValuesForMeasure(measureField);
-    if (values.length === 0) return [];
+    const values = getValuesForMeasure(measureField); // This line calls the "getValuesForMeasure" function, passing in the "measureField" variable that represents the currently selected variable (measure) from the dropdown. The "getValuesForMeasure" function retrieves the corresponding values for that measure across all census tracts from the CDC dataset, filters out invalid values, and returns a sorted array of valid numeric values. The resulting array is assigned to the variable "values", which will be used to calculate the quantile breaks for classification and styling on the map based on the distribution of values for the selected CDC measure.
+    if (values.length === 0) return []; // This line checks if the length of the "values" array is 0, which means that there are no valid values available for the specified measure across all census tracts. If this condition is true, it returns an empty array, indicating that there are no breaks to calculate for this measure. This prevents any further processing or attempts to calculate quantile breaks when there is no data available, ensuring that the application can handle this case gracefully without errors.
 
-    const breaks = [];
+    const breaks = []; // This line initializes an empty array called "breaks" that will be used to store the calculated quantile break values for the specified measure. As the function iterates through the desired number of classes (defined by "MAP_CLASS_COUNT"), it will calculate the corresponding quantile value for each class and push it into this "breaks" array. This array of breaks will then be used for classifying and styling the map based on the distribution of values for the selected CDC measure.
     for (let i = 1; i <= MAP_CLASS_COUNT; i++) {
-        breaks.push(quantile(values, i / MAP_CLASS_COUNT));
-    }
-    return breaks;
-}
+        breaks.push(quantile(values, i / MAP_CLASS_COUNT)); // This line iterates from 1 to "MAP_CLASS_COUNT" (inclusive) to calculate the quantile break values for the specified measure. For each iteration, it calls the "quantile" function, passing in the sorted array of values and the quantile proportion (calculated as "i / MAP_CLASS_COUNT"). The resulting quantile value is then pushed into the "breaks" array. This process calculates the break points that will be used to classify the values for styling on the map, allowing for a consistent color scheme based on the distribution of values for the selected CDC measure.
+    } // End of the loop that calculates quantile break values for the specified measure based on the sorted array of values and the defined number of classes for styling on the map.
+    return breaks; // This line returns the array of quantile break values that were calculated for the specified measure. These breaks are used for classifying and styling the map based on the distribution of values for the selected CDC measure, allowing for a meaningful visualization of the data across different census tracts.
+} // This function takes a measure field as input and calculates the quantile breaks for that measure based on the values retrieved from the "getValuesForMeasure" function. It first retrieves the sorted array of values for the specified measure. If there are no valid values, it returns an empty array. Otherwise, it calculates the quantile breaks by iterating from 1 to "MAP_CLASS_COUNT" (which represents the number of classes for styling) and pushing the corresponding quantile value into the "breaks" array using the "quantile" function. Finally, it returns the array of quantile breaks, which is used for classifying and styling the map based on the distribution of values for the selected CDC measure.
 
 function quantile(sortedValues, p) {
-    if (sortedValues.length === 0) return null;
-    const index = (sortedValues.length - 1) * p;
-    const lower = Math.floor(index);
-    const upper = Math.ceil(index);
-    if (lower === upper) return sortedValues[lower];
-    return sortedValues[lower] + (sortedValues[upper] - sortedValues[lower]) * (index - lower);
-}
+    if (sortedValues.length === 0) return null; // This line checks if the length of the "sortedValues" array is 0, which means that there are no values available to calculate the quantile. If this condition is true, it returns null, indicating that the quantile cannot be calculated due to the absence of data. This prevents any further processing or attempts to calculate a quantile value when there is no data available, ensuring that the application can handle this case gracefully without errors.
+    const index = (sortedValues.length - 1) * p; // This line calculates the index corresponding to the quantile proportion "p" by multiplying the length of the "sortedValues" array minus one by "p". The resulting index may be a non-integer value, which indicates that the quantile value lies between two values in the sorted array. This index will be used to determine the lower and upper bounds for interpolation when calculating the quantile value based on the distribution of values in the sorted array.
+    const lower = Math.floor(index); // This line calculates the lower index by taking the floor of the calculated "index". The lower index represents the position in the sorted array that is at or just below the quantile proportion "p". This index will be used to retrieve the value from the sorted array that serves as the lower bound for interpolation when calculating the quantile value.
+    const upper = Math.ceil(index); // This line calculates the upper index by taking the ceiling of the calculated "index". The upper index represents the position in the sorted array that is at or just above the quantile proportion "p". This index will be used to retrieve the value from the sorted array that serves as the upper bound for interpolation when calculating the quantile value. If the "index" is an integer, then the lower and upper indices will be the same, and the quantile value will correspond directly to that index in the sorted array. If the "index" is not an integer, then linear interpolation will be performed between the values at the lower and upper indices to calculate the quantile value.
+    if (lower === upper) return sortedValues[lower]; // This line checks if the lower and upper indices are the same, which means that the quantile proportion "p" corresponds exactly to a value in the sorted array. If this condition is true, it returns the value at that index in the sorted array as the quantile value. This is a direct case where no interpolation is needed because the quantile falls exactly on a value in the dataset.
+    return sortedValues[lower] + (sortedValues[upper] - sortedValues[lower]) * (index - lower); // This line performs linear interpolation to calculate the quantile value when the "index" is not an integer, meaning that the quantile proportion "p" falls between two values in the sorted array. It calculates the quantile value by taking the value at the lower index and adding the difference between the values at the upper and lower indices multiplied by the fractional part of the "index" (calculated as "index - lower"). This allows for a more accurate estimation of the quantile value based on the distribution of values in the sorted array, providing a smooth transition between values when classifying data for styling on the map based on the selected CDC measure.
+} // This function calculates the quantile value for a given sorted array of values and a quantile proportion "p". It first checks if the input array is empty and returns null if it is. Then, it calculates the index corresponding to the quantile by multiplying the length of the sorted array minus one by "p". It determines the lower and upper indices by taking the floor and ceiling of the calculated index, respectively. If the lower and upper indices are the same, it returns the value at that index. Otherwise, it performs linear interpolation between the values at the lower and upper indices to calculate and return the quantile value corresponding to "p". This function is used to calculate quantile breaks for classifying values on the map based on their distribution for a selected CDC measure.
 
 function getColorForValue(value, breaks) {
     if (value === null || !Number.isFinite(value) || breaks.length === 0) return NO_DATA_COLOR;
     for (let i = 0; i < breaks.length; i++) {
-        if (value <= breaks[i]) return CDC_COLOR_SCHEME[i];
-    }
-    return CDC_COLOR_SCHEME[CDC_COLOR_SCHEME.length - 1];
-}
+        if (value <= breaks[i]) return CDC_COLOR_SCHEME[i]; // This line checks if the input "value" is null, not a finite number, or if the "breaks" array is empty. If any of these conditions are true, it returns a predefined color (NO_DATA_COLOR) to indicate that there is no valid data for this value. This ensures that features with missing or invalid data are styled consistently on the map, providing a clear visual indication of where data is not available for the selected CDC measure.
+    } // This line iterates through the "breaks" array, which contains the quantile break values for the selected CDC measure. For each break value, it checks if the input "value" is less than or equal to that break. If this condition is true, it returns the corresponding color from the "CDC_COLOR_SCHEME" array based on the index of the break. This allows for classifying the value into a specific range defined by the breaks and assigning an appropriate color for styling on the map, providing a visual representation of how the value compares to the distribution of values for the selected CDC measure.
+    return CDC_COLOR_SCHEME[CDC_COLOR_SCHEME.length - 1]; // If the input "value" is greater than all the break values in the "breaks" array, this line returns the last color in the "CDC_COLOR_SCHEME" array. This means that values that exceed the highest break will be styled with the color representing the highest range, ensuring that all values are classified and styled appropriately on the map based on their position relative to the calculated quantile breaks for the selected CDC measure.
+} // This function takes a value and an array of break values as input and returns the appropriate color for styling based on where the value falls in relation to the breaks. It first checks if the value is null, not a finite number, or if there are no breaks available, in which case it returns a predefined color to indicate no data. Then, it iterates through the breaks to determine which range the value falls into and returns the corresponding color from the color scheme. If the value exceeds all break values, it returns the color representing the highest range. This function is used to determine the fill color for features on the map based on their values for the selected CDC measure and the calculated quantile breaks.
 
 function renderLegend(container, measureField) {
-    const label = getMeasureLabel(measureField);
-    const breaks = getBreaksForMeasure(measureField);
+    const label = getMeasureLabel(measureField); // This line calls the "getMeasureLabel" function, passing in the "measureField" variable that represents the currently selected variable (measure) from the dropdown. The "getMeasureLabel" function returns a human-readable label for the selected measure, which is assigned to the variable "label". This label will be used in the legend to provide a clear and descriptive title for the information being represented by the colors on the map, enhancing the user's understanding of what the legend represents based on their selection of the CDC measure for this category.
+    const breaks = getBreaksForMeasure(measureField); // This line calls the "getBreaksForMeasure" function, passing in the "measureField" variable that represents the currently selected variable (measure) from the dropdown. The "getBreaksForMeasure" function calculates and returns the quantile breaks for the values of the selected measure across all census tracts. These breaks are used to determine how to classify the values for styling purposes on the map, and they will also be used to generate the legend that explains the color coding based on the distribution of values for the selected CDC measure.
     if (breaks.length === 0) {
-        container.innerHTML = `<b>No data available for ${label}.</b>`;
-        return;
-    }
+        container.innerHTML = `<b>No data available for ${label}.</b>`; // This line checks if the length of the "breaks" array is 0, which means that there are no valid values available for the specified measure across all census tracts. If this condition is true, it updates the inner HTML of the legend container to display a message indicating that there is no data available for the selected measure. This provides feedback to users when they select a measure that has no valid data, ensuring that they understand why the legend cannot be displayed and preventing confusion about the absence of color classifications on the map for that measure.
+        return; // This line exits the function early if there are no breaks available for the specified measure, which means that there is no valid data to classify and style on the map. By returning at this point, it prevents any further processing or attempts to generate a legend when there is no data available, ensuring that the application can handle this case gracefully without errors and providing clear feedback to users about the lack of data for the selected CDC measure.
+    } // At this point, we know that there are valid breaks available for the specified measure, so we can proceed with generating the legend based on those breaks and the corresponding colors.
 
-    let previous = null;
-    let html = `<div class="cdc-legend-title">${label}: crude prevalence (%)</div>`;
+    let previous = null; // This line initializes a variable called "previous" and sets it to null. This variable will be used to keep track of the previous break value as the function iterates through the "breaks" array to generate the legend items. By starting with null, it allows the function to handle the first break value appropriately when generating the legend, ensuring that the range for the first class is displayed correctly (e.g., "lowest – breakValue") and that subsequent classes are displayed with their respective ranges based on the current and previous break values.
+    let html = `<div class="cdc-legend-title">${label}: crude prevalence (%)</div>`; // This line initializes a variable called "html" with a string that contains the HTML for the legend title. It uses a div with the class "cdc-legend-title" to style the title, and it includes the label for the selected measure followed by a description of what the values represent (in this case, "crude prevalence (%)"). This title will be displayed at the top of the legend to provide context for the color classifications that will be generated based on the breaks for the selected CDC measure.
 
     breaks.forEach(function (breakValue, index) {
-        const color = CDC_COLOR_SCHEME[index];
-        const fromText = previous === null ? "lowest" : previous.toFixed(1);
-        const toText = breakValue.toFixed(1);
+        const color = CDC_COLOR_SCHEME[index]; // This line iterates through the "breaks" array using the "forEach" method, which provides both the break value and its index in the array. For each break value, it retrieves the corresponding color from the "CDC_COLOR_SCHEME" array using the index. This color will be used to create a legend item that represents the range of values up to that break, allowing users to understand how the colors on the map correspond to different ranges of values for the selected CDC measure.
+        const fromText = previous === null ? "lowest" : previous.toFixed(1); // This line determines the text to display for the lower bound of the range in the legend item. If "previous" is null (which means this is the first break), it sets "fromText" to "lowest" to indicate that the range starts from the lowest values. Otherwise, it formats the previous break value to one decimal place using "toFixed(1)" and assigns it to "fromText". This allows the legend to display a clear and descriptive range for each class based on the current and previous break values, enhancing users' understanding of how the colors correspond to different ranges of values for the selected CDC measure.
+        const toText = breakValue.toFixed(1); // This line formats the current break value to one decimal place using "toFixed(1)" and assigns it to the variable "toText". This formatted value will be used in the legend item to indicate the upper bound of the range for the current class. By formatting it to one decimal place, it provides a clear and concise representation of the break value in the legend, making it easier for users to understand the ranges of values that correspond to each color classification on the map for the selected CDC measure.
         html += `
             <div class="cdc-legend-item">
                 <span class="cdc-swatch" style="background:${color}"></span>
                 <span>${fromText} – ${toText}</span>
-            </div>`;
-        previous = breakValue;
-    });
+            </div>`; // This block of code appends a new legend item to the "html" variable for each break value. It creates a div with the class "cdc-legend
+        previous = breakValue; // This line appends a new legend item to the "html" variable for each break value. It creates a div with the class "cdc-legend
+    }); // This block of code iterates through the "breaks" array to generate legend items for each break value. For each break, it retrieves the corresponding color from the color scheme, determines the text for the lower and upper bounds of the range, and appends a new legend item to the "html" variable. Each legend item consists of a colored swatch and a label indicating the range of values that correspond to that color on the map. After processing all breaks, it updates the "previous" variable to keep track of the current break value for use in the next iteration.
 
     html += `
         <div class="cdc-legend-item">
             <span class="cdc-swatch" style="background:${NO_DATA_COLOR}"></span>
             <span>No data / no CSV match</span>
-        </div>`;
+        </div>`; // This block of code appends an additional legend item to the "html" variable to represent the case where there is no data available or no matching CSV row for a census tract. It creates a div with the class "cdc-legend
 
-    container.innerHTML = html;
-}
+    container.innerHTML = html; // This line sets the inner HTML of the legend container to the generated "html" string, which includes the legend title and all the legend items corresponding to the breaks for the selected CDC measure, as well as an item for cases with no data. This updates the legend displayed on the map to reflect the current selection of the CDC measure and provides users with a clear understanding of how the colors on the map correspond to different ranges of values for that measure, as well as indicating where data is not available.
+} // This function takes a container element and a measure field as input and generates the HTML for the legend based on the quantile breaks for the specified measure. It retrieves the label for the measure, calculates the breaks, and constructs the legend items with corresponding colors and value ranges. If there are no breaks (i.e., no valid data), it displays a message indicating that no data is available for that measure. Finally, it updates the inner HTML of the container to display the generated legend.
 
 function renderSummary(container, measureField) {
-    const label = getMeasureLabel(measureField);
-    const values = getValuesForMeasure(measureField);
+    const label = getMeasureLabel(measureField); // This line calls the "getMeasureLabel" function, passing in the "measureField" variable that represents the currently selected variable (measure) from the dropdown. The "getMeasureLabel" function returns a human-readable label for the selected measure, which is assigned to the variable "label". This label will be used in the summary to provide a clear and descriptive title for the information being summarized, enhancing the user's understanding of what the summary represents based on their selection of the CDC measure for this category.
+    const values = getValuesForMeasure(measureField); // This line calls the "getValuesForMeasure" function, passing in the "measureField" variable that represents the currently selected variable (measure) from the dropdown. The "getValuesForMeasure" function retrieves the corresponding values for that measure across all census tracts from the CDC dataset, filters out invalid values, and returns a sorted array of valid numeric values. The resulting array is assigned to the variable "values", which will be used to calculate summary statistics such as the minimum, median, and maximum values for the selected CDC measure across all census tracts, providing users with a quick overview of the distribution of values for that measure.
     if (values.length === 0) {
-        container.innerHTML = `No valid values are available for <b>${label}</b>.`;
-        return;
+        container.innerHTML = `No valid values are available for <b>${label}</b>.`; // This line checks if the length of the "values" array is 0, which means that there are no valid values available for the specified measure across all census tracts. If this condition is true, it updates the inner HTML of the summary container to display a message indicating that there are no valid values available for the selected measure. This provides feedback to users when they select a measure that has no valid data, ensuring that they understand why the summary cannot be displayed and preventing confusion about the absence of summary statistics for that measure.
+        return; // This line exits the function early if there are no valid values available for the specified measure, which means that there is no data to calculate summary statistics from. By returning at this point, it prevents any further processing or attempts to calculate and display summary statistics when there is no data available, ensuring that the application can handle this case gracefully without errors and providing clear feedback to users about the lack of valid data for the selected CDC measure.
     }
 
-    const min = values[0];
-    const median = quantile(values, 0.5);
-    const max = values[values.length - 1];
+    const min = values[0]; // This line retrieves the minimum value from the sorted "values" array, which is the first element (index 0) since the array is sorted in ascending order. The minimum value represents the lowest value for the selected CDC measure across all census tracts, providing users with insight into the lower end of the distribution of values for that measure.
+    const median = quantile(values, 0.5); // This line calculates the median value for the selected CDC measure by calling the "quantile" function with the sorted "values" array and a quantile proportion of 0.5. The median represents the middle value in the distribution of values for that measure across all census tracts, providing users with insight into the central tendency of the data for that measure.
+    const max = values[values.length - 1]; // This line retrieves the maximum value from the sorted "values" array, which is the last element (index "values.length - 1") since the array is sorted in ascending order. The maximum value represents the highest value for the selected CDC measure across all census tracts, providing users with insight into the upper end of the distribution of values for that measure.
 
     container.innerHTML = `
         <b>${label}</b> across ${values.length} New Mexico census tracts:
         min ${min.toFixed(1)}%, median ${median.toFixed(1)}%, max ${max.toFixed(1)}%.
-    `;
-}
+    `; // This block of code updates the inner HTML of the summary container to display a summary of the values for the selected CDC measure across all census tracts. It includes the label for the measure, the number of valid values available, and the calculated minimum, median, and maximum values formatted to one decimal place. This summary provides users with a quick overview of the distribution of values for the selected CDC measure, allowing them to understand the range and central tendency of the data for that measure across New Mexico census tracts.
+} // This function takes a container element and a measure field as input and generates a summary of the values for the specified measure across all census tracts. It retrieves the label for the measure, gets the valid values, and calculates the minimum, median, and maximum values. If there are no valid values, it displays a message indicating that no valid data is available. Otherwise, it updates the inner HTML of the container to display a summary of the distribution of values for the selected CDC measure, providing users with insight into the range and central tendency of the data for that measure.
 
 function getMeasureLabel(measureField) {
     for (const category of CDC_CATEGORIES) {
         for (const measure of category.variables) {
-            if (measure.field === measureField) return measure.label;
+            if (measure.field === measureField) return measure.label; // This block of code defines the "getMeasureLabel" function, which takes a measure field as input and searches through the "CDC_CATEGORIES" array to find the corresponding label for that measure. It iterates through each category and its variables, checking if the "field" property of each measure matches the input "measureField". If a match is found, it returns the "label" property of that measure, which is a human-readable description of the measure. This function allows the application to display meaningful labels for the selected CDC measures in the legend, summary, and popup content based on the internal field names used in the dataset.
         }
-    }
-    return measureField;
-}
+    } // This block of code defines the "getMeasureLabel" function, which takes a measure field as input and searches through the "CDC_CATEGORIES" array to find the corresponding label for that measure. It iterates through each category and its variables, checking if the "field" property of each measure matches the input "measureField". If a match is found, it returns the "label" property of that measure, which is a human-readable description of the measure. This function allows the application to display meaningful labels for the selected CDC measures in the legend, summary, and popup content based on the internal field names used in the dataset.
+    return measureField; // If no matching measure is found in the "CDC_CATEGORIES" array, this line returns the input "measureField" as a fallback. This means that if the function cannot find a corresponding label for the given measure field, it will simply return the field name itself. This ensures that the application can still display something meaningful in cases where the measure field does not have a defined label in the categories, preventing errors and providing a default display value based on the internal field name.
+} // This function takes a measure field as input and searches through the "CDC_CATEGORIES" array to find and return the corresponding label for that measure. If a matching measure is found, it returns the human-readable label; otherwise, it returns the input measure field as a fallback.
 
 function getMeasureCiField(measureField) {
     return measureField && measureField.endsWith("_CrudePrev")
         ? measureField.replace("_CrudePrev", "_Crude95CI")
-        : null;
-}
+        : null; // This function takes a measure field as input and checks if it is defined and ends with the suffix "_CrudePrev". If both conditions are true, it returns a new string where the "_CrudePrev" suffix is replaced with "_Crude95CI", which corresponds to the field name for the 95% confidence interval associated with that measure in the dataset. If the input measure field does not meet these conditions, it returns null. This function is used to determine the appropriate field name for retrieving confidence interval values when displaying information in the popup content for each census tract on the map, allowing users to see both the crude prevalence and its associated confidence interval for the selected CDC measure.
+} // This function takes a measure field as input and checks if it is defined and ends with the suffix "_CrudePrev". If both conditions are true, it returns a new string where the "_CrudePrev" suffix is replaced with "_Crude95CI", which corresponds to the field name for the 95% confidence interval associated with that measure in the dataset. If the input measure field does not meet these conditions, it returns null. This function is used to determine the appropriate field name for retrieving confidence interval values when displaying information in the popup content for each census tract on the map, allowing users to see both the crude prevalence and its associated confidence interval for the selected CDC measure.
 
 /* ------------------------------------------------------------
    9. Popup content
    ------------------------------------------------------------
 */
 function buildPopupContent(feature, measureField) {
-    const row = getRowForFeature(feature);
-    const label = getMeasureLabel(measureField);
+    const row = getRowForFeature(feature); // This line calls the "getRowForFeature" function, passing in the "feature" object that represents a census tract on the map. The "getRowForFeature" function retrieves the corresponding data row from the CDC dataset based on the GEOID property of the feature. The resulting row contains all the relevant data for that census tract, including values for the selected measure and its confidence interval. This row will be used to populate the content of the popup when a user clicks on a census tract, allowing them to see detailed information about that tract based on the selected CDC measure.
+    const label = getMeasureLabel(measureField); // This line calls the "getMeasureLabel" function, passing in the "measureField" variable that represents the currently selected variable (measure) from the dropdown. The "getMeasureLabel" function returns a human-readable label for the selected measure, which is assigned to the variable "label". This label will be used in the popup content to provide a clear and descriptive title for the information being displayed about the census tract, enhancing the user's understanding of what the values represent based on their selection of the CDC measure for this category.
 
     if (!row) {
         return `
@@ -834,12 +834,12 @@ function buildPopupContent(feature, measureField) {
             County: ${feature.properties.NAMELSADCO || "Unknown"}<br>
             GEOID: ${feature.properties.GEOID || "Unknown"}<br>
             <i>No matching CDC CSV row for this tract.</i>
-        `;
-    }
+        `; // This block of code checks if the "row" variable is falsy (which means that there is no corresponding data row for the given feature). If this condition is true, it returns a string of HTML content for the popup that includes the name of the census tract (or a default label if not available), the county name (or "Unknown" if not available), the GEOID (or "Unknown" if not available), and a message indicating that there is no matching CDC CSV row for this tract. This provides feedback to users when they click on a census tract that does not have corresponding data in the CDC dataset, ensuring that they understand why no specific measure values are displayed in the popup for that tract.
+    } // This block of code checks if the "row" variable is falsy (which means that there is no corresponding data row for the given feature). If this condition is true, it returns a string of HTML content for the popup that includes the name of the census tract (or a default label if not available), the county name (or "Unknown" if not available), the GEOID (or "Unknown" if not available), and a message indicating that there is no matching CDC CSV row for this tract. This provides feedback to users when they click on a census tract that does not have corresponding data in the CDC dataset, ensuring that they understand why no specific measure values are displayed in the popup for that tract.
 
-    const value = row[measureField + "_number"];
-    const ciField = getMeasureCiField(measureField);
-    const ci = ciField ? row[ciField] : "";
+    const value = row[measureField + "_number"]; // This line retrieves the value for the selected measure from the data row corresponding to the clicked census tract. It constructs the field name by concatenating the "measureField" (which represents the selected variable) with the suffix "_number", which is how the numeric values for each measure are stored in the dataset. The resulting value will be used in the popup content to display the crude prevalence percentage for that measure in the selected census tract, allowing users to see specific information about that tract based on their selection of the CDC measure for this category.
+    const ciField = getMeasureCiField(measureField); // This line calls the "getMeasureCiField" function, passing in the "measureField" variable that represents the currently selected variable (measure) from the dropdown. The "getMeasureCiField" function checks if the measure field is defined and ends with the suffix "_CrudePrev". If both conditions are true, it returns a new string where the "_CrudePrev" suffix is replaced with "_Crude95CI", which corresponds to the field name for the 95% confidence interval associated with that measure in the dataset. If the input measure field does not meet these conditions, it returns null. The resulting "ciField" variable will be used to retrieve the confidence interval value for the selected measure when displaying information in the popup content for each census tract on the map.
+    const ci = ciField ? row[ciField] : ""; // This line retrieves the confidence interval value for the selected measure from the data row corresponding to the clicked census tract. It first checks if "ciField" is defined (which means that there is a valid field name for the confidence interval), and if so, it retrieves the value from the row using that field name. If "ciField" is not defined, it assigns an empty string to "ci". The resulting "ci" variable will be used in the popup content to display the 95% confidence interval for the selected measure in the census tract, allowing users to see both the crude prevalence and its associated confidence interval for that tract based on their selection of the CDC measure for this category.
 
     return `
         <b>${row.CountyName} County</b><br>
@@ -849,20 +849,20 @@ function buildPopupContent(feature, measureField) {
         <b>${label}</b><br>
         Crude prevalence: ${formatPercent(value)}<br>
         95% CI: ${ci || "not available"}
-    `;
-}
+    `; // This block of code constructs and returns a string of HTML content for the popup when a user clicks on a census tract that has corresponding data in the CDC dataset. It includes the county name, tract FIPS code, total population, adult population, and the selected measure's label along with its crude prevalence percentage and 95% confidence interval. The values are formatted using the "formatInteger" and "formatPercent" functions to ensure they are displayed in a user-friendly manner. This content provides users with detailed information about the selected census tract based on their selection of the CDC measure for this category, allowing them to understand the specific values for that tract in the context of the selected measure.
+} // This function takes a map feature (representing a census tract) and a measure field as input and builds the HTML content for the popup that appears when a user clicks on that tract. It retrieves the corresponding data row for the tract, gets the label for the selected measure, and constructs the content to display information about the county, tract FIPS code, population, and the selected measure's crude prevalence and confidence interval. If there is no matching data row for the tract, it returns a message indicating that no data is available for that tract.
 
 function formatInteger(value) {
     return value === null || !Number.isFinite(value)
         ? "not available"
-        : value.toLocaleString();
-}
+        : value.toLocaleString(); // This function takes a value as input and checks if it is null or not a finite number. If either condition is true, it returns the string "not available" to indicate that there is no valid data for that value. Otherwise, it formats the number using the "toLocaleString" method, which adds commas as thousands separators (or other locale-specific formatting) to make the number easier to read. This function is used to format population values and other integer values in the popup content and data table, ensuring that they are displayed in a user-friendly manner while also handling cases where data may be missing or invalid.
+} // This function takes a value as input and checks if it is null or not a finite number. If either condition is true, it returns the string "not available" to indicate that there is no valid data for that value. Otherwise, it formats the number using the "toLocaleString" method, which adds commas as thousands separators (or other locale-specific formatting) to make the number easier to read. This function is used to format population values and other integer values in the popup content and data table, ensuring that they are displayed in a user-friendly manner while also handling cases where data may be missing or invalid.
 
 function formatPercent(value) {
     return value === null || !Number.isFinite(value)
         ? "not available"
-        : value.toFixed(1) + "%";
-}
+        : value.toFixed(1) + "%"; // This function takes a value as input and checks if it is null or not a finite number. If either condition is true, it returns the string "not available" to indicate that there is no valid data for that value. Otherwise, it formats the number to one decimal place using the "toFixed(1)" method and appends a percentage sign ("%") to indicate that the value represents a percentage. This function is used to format the crude prevalence values for the selected CDC measure in the popup content and data table, ensuring that they are displayed in a user-friendly manner while also handling cases where data may be missing or invalid.
+} // This function takes a value as input and checks if it is null or not a finite number. If either condition is true, it returns the string "not available" to indicate that there is no valid data for that value. Otherwise, it formats the number to one decimal place using the "toFixed(1)" method and appends a percentage sign ("%") to indicate that the value represents a percentage. This function is used to format the crude prevalence values for the selected CDC measure in the popup content and data table, ensuring that they are displayed in a user-friendly manner while also handling cases where data may be missing or invalid.
 
 /* ------------------------------------------------------------
    10. Status panel and data table
@@ -922,9 +922,9 @@ function renderDataTable() {
         });
 
         return "<tr>" + cells.map(function (cell) {
-            return `<td>${cell}</td>`;
-        }).join("") + "</tr>";
-    }).join("");
+            return `<td>${cell}</td>`; // This line constructs a table row by wrapping each cell value in a <td> element and joining them together. The "cells" array contains the values for the county name, tract FIPS code, total population, and the formatted percentage values for each active measure based on the current selections in the dropdowns. By mapping over the "cells" array and wrapping each cell value in a <td> element, it creates the HTML for a single table row. The resulting string is then returned for each row in the "cdcRows" array, and all rows are joined together to form the complete body of the data table.
+        }).join("") + "</tr>"; // This block of code populates the body of the data table with rows of data from the "cdcRows" array. For each row in the "cdcRows" array, it creates an array of cell values that includes the county name, tract FIPS code, total population, and the formatted percentage values for each active measure based on the current selections in the dropdowns. It then constructs a table row by wrapping each cell value in a <td> element and joining them together. Finally, it sets the inner HTML of the table body to the generated rows, effectively rendering the data table with the current CDC measures for each census tract based on user selections.
+    }).join(""); 
 
     if (typeof jQuery !== "undefined" && jQuery.fn.DataTable) {
         dataTable = jQuery("#cdc-data-table").DataTable({
@@ -932,9 +932,9 @@ function renderDataTable() {
             lengthMenu: [10, 25, 50, 100],
             scrollX: true,
             order: [[0, "asc"], [1, "asc"]]
-        });
-    }
-}
+        }); // This block of code initializes a new DataTable instance on the table with the ID "cdc-data-table" using jQuery. It sets various options for the DataTable, including the default page length (10 rows per page), the available length menu options (10, 25, 50, 100), enabling horizontal scrolling (scrollX: true), and setting the default sorting order to be ascending by the first column (County) and then by the second column (Tract FIPS). This enhances the usability of the data table by providing features like pagination, sorting, and horizontal scrolling, allowing users to easily navigate and analyze the CDC measures for each census tract based on their selections.
+    } // This block of code defines the "renderDataTable" function, which is responsible for rendering the data table that displays the CDC measures for each census tract. It first checks if there is an existing DataTable instance and destroys it to allow for rebuilding the table with updated headers and rows based on the current selections. It then constructs the table headers based on the active categories and their selected measures, and populates the table body with rows of data from the "cdcRows" array, formatting values as needed. Finally, it initializes a new DataTable instance to provide features like pagination, sorting, and horizontal scrolling for better usability when viewing the data table.
+} 
 
 /* ------------------------------------------------------------
    ORIGINAL LAB JAVASCRIPT COMMENTED OUT BELOW
