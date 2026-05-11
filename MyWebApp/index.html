@@ -1,54 +1,54 @@
 <!DOCTYPE html> <!--This tells the browser that the file is written in modern HTML5.-->
 <html lang="en"> <!--The "lang" attribute specifies the language of the document, which helps with accessibility and search engines.-->
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>CDC Health Stats Visualizer - New Mexico</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head> <!--The head section contains metadata and links to stylesheets and scripts.-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <!--This meta tag specifies the character encoding for the document, ensuring that text is displayed correctly.-->
+    <title>CDC Health Stats Visualizer - New Mexico</title> <!--The title of the webpage, which appears in the browser tab and search engine results.-->
+    <meta charset="UTF-8"> <!--This is a shorter way to specify the character encoding, and it is commonly used in modern HTML.-->
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!--This meta tag makes the webpage responsive by setting the viewport to match the device's width and initial zoom level.-->
 
     <!-- original lab-code library structure retained -->
     <!-- <link rel="icon" href="images/Final_small_Square.png" type="image/x-icon"> -->
-    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/leaflet/leaflet.css">
-    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/bootstrap/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/jQuery/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/leaflet/leaflet.css"> <!-- Leaflet CSS for map styling -->
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/bootstrap/bootstrap.css"> <!-- Bootstrap CSS for page layout and styling -->
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/jQuery/jquery.dataTables.css"> <!-- DataTables CSS for table styling -->
 
     <!-- original lab style sheet retained; CDC-specific styles are added after it -->
-    <link rel="stylesheet" type="text/css" href="myCSS_styleFiles/main.css">
-    <link rel="stylesheet" type="text/css" href="myCSS_styleFiles/cdc_nm.css">
-</head>
+    <link rel="stylesheet" type="text/css" href="myCSS_styleFiles/main.css"> <!-- Main CSS for general page styling -->
+    <link rel="stylesheet" type="text/css" href="myCSS_styleFiles/cdc_nm.css"> <!-- Additional CSS for CDC-specific styling -->
+</head> <!--The head section ends here, and the body of the webpage begins.-->
 
-<body data-spy="scroll" data-target=".navbar" data-offset="100">
+<body data-spy="scroll" data-target=".navbar" data-offset="100"> <!--The body contains the visible content of the webpage. The "data-spy" attribute enables scrollspy functionality, which updates the navigation bar based on scroll position. The "data-target" attribute specifies which element to update, and "data-offset" sets the offset for triggering the active state.-->
     <!--
         CDC/NM ADAPTATION COMMENT:
         The original lab navigation linked to CEJST, SVI, Food Justice, small multiples,
         regression charts, and a data table. For this CDC version, the navbar is updated
         to match the seven CDC PLACES category rows used in the map interface below.
     -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#top">CDC Health Stats Visualizer - NM</a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
+    <nav class="navbar navbar-inverse navbar-fixed-top"> <!--This creates a navigation bar using Bootstrap classes. "navbar-inverse" gives it a dark theme, and "navbar-fixed-top" makes it stick to the top of the page when scrolling.-->
+        <div class="container-fluid"> <!--This container class from Bootstrap provides a responsive fixed-width container for the navbar content.-->
+            <div class="navbar-header"> <!--This section contains the brand name and the toggle button for collapsing the navbar on smaller screens.-->
+                <a class="navbar-brand" href="#top">CDC Health Stats Visualizer - NM</a> <!--This is the brand name of the website, which also serves as a link to the top of the page.-->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <!--This button appears on smaller screens and allows users to toggle the visibility of the navigation links. The "data-toggle" attribute specifies that it will collapse the navbar, and "data-target" specifies which element to collapse.-->
+                    <span class="icon-bar"></span> <!--These span elements create the three bars of the hamburger icon for the toggle button.-->
+                    <span class="icon-bar"></span> <!--Each "icon-bar" class creates a horizontal line in the toggle button.-->
+                    <span class="icon-bar"></span> <!--This is the third line of the toggle button.-->
+                </button> <!--The toggle button ends here.-->
+            </div> <!--The navbar-header section ends here.-->
 
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#health-outcomes">Health Outcomes</a></li>
-                    <li><a href="#prevention">Prevention</a></li>
-                    <li><a href="#health-risk-behaviors">Risk Behaviors</a></li>
-                    <li><a href="#disabilities">Disabilities</a></li>
-                    <li><a href="#health-status">Health Status</a></li>
-                    <li><a href="#health-related-social-needs">Social Needs</a></li>
+            <div class="collapse navbar-collapse" id="myNavbar"> <!--This section contains the navigation links. The "collapse navbar-collapse" classes make it collapsible on smaller screens, and the "id" attribute allows it to be targeted by the toggle button.-->
+                <ul class="nav navbar-nav"> <!--This unordered list contains the navigation links. The "nav navbar-nav" classes style it as a navigation menu using Bootstrap.-->
+                    <li class="active"><a href="#health-outcomes">Health Outcomes</a></li> <!--This list item is marked as active, indicating that it is the current page or section. The link points to the "health-outcomes" section of the page.-->
+                    <li><a href="#prevention">Prevention</a></li> <!--This list item links to the "prevention" section of the page.-->
+                    <li><a href="#health-risk-behaviors">Risk Behaviors</a></li> <!--This list item links to the "health-risk-behaviors" section of the page.-->
+                    <li><a href="#disabilities">Disabilities</a></li> <!--This list item links to the "disabilities" section of the page.-->
+                    <li><a href="#health-status">Health Status</a></li> <!--This list item links to the "health-status" section of the page.-->
+                    <li><a href="#health-related-social-needs">Social Needs</a></li> <!--This list item links to the "health-related-social-needs" section of the page.-->
                     <!-- <li><a href="#non-medical-factors">Non-Medical Factors</a></li> -->
-                    <li><a href="#cdc-data-table-section">Data Table</a></li>
+                    <li><a href="#cdc-data-table-section">Data Table</a></li> <!--This list item links to the "cdc-data-table-section" section of the page, which contains the data table.-->
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">About the Project,
-                            License, and Data Explanation <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                            License, and Data Explanation <span class="caret"></span></a> <!--This list item creates a dropdown menu. The "dropdown-toggle" class and "data-toggle" attribute enable the dropdown functionality. The link text indicates that the dropdown contains information about the project, license, and data explanation. The "caret" span adds a small downward arrow to indicate that it is a dropdown.-->
+                        <ul class="dropdown-menu"> <!--This unordered list contains the items in the dropdown menu. The "dropdown-menu" class styles it as a dropdown using Bootstrap.-->
                             <!--
                                 CDC/NM NAV UPDATE COMMENT:
                                 The four original lab information buttons below are intentionally kept visible
@@ -56,71 +56,71 @@
                                 "Original..." submenu links are preserved below as commented-out code.
                             -->
                             <li><button type="button" class="btn btn-default info" data-toggle="modal"
-                                    data-target="#myModal_originalAbout">About the Project</button></li>
+                                    data-target="#myModal_originalAbout">About the Project</button></li> <!--This list item contains a button that triggers a modal dialog when clicked. The "data-toggle" attribute specifies that it will open a modal, and "data-target" specifies which modal to open. The button text indicates that it will show information about the project.-->
                             <li><button type="button" class="btn btn-default info" data-toggle="modal"
-                                    data-target="#myModal_dataExplanation">Data Explanation</button></li>
+                                    data-target="#myModal_dataExplanation">Data Explanation</button></li> <!--This list item contains a button that triggers a modal dialog with an explanation of the data used in the project.-->
                             <li><button type="button" class="btn btn-default info" data-toggle="modal"
-                                    data-target="#myModal_copyRight">License & Copyright</button></li>
+                                    data-target="#myModal_copyRight">License & Copyright</button></li> <!--This list item contains a button that triggers a modal dialog with information about the license and copyright of the project.-->
                             <li><button type="button" class="btn btn-default info" data-toggle="modal"
-                                    data-target="#myModal_landAcknowledgement">Land Acknowledgement</button></li>
+                                    data-target="#myModal_landAcknowledgement">Land Acknowledgement</button></li> <!--This list item contains a button that triggers a modal dialog with a land acknowledgment statement.-->
 
 
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+                        </ul> <!--The dropdown menu ends here.-->
+                    </li> <!--The dropdown list item ends here.-->
+                </ul> <!--The navigation menu ends here.-->
+            </div> <!--The collapsible navbar section ends here.-->
+        </div> <!--The container for the navbar ends here.-->
+    </nav> <!--The navigation bar ends here.-->
 
-    <main id="top" class="container-fluid cdc-page">
-        <section class="cdc-hero">
-            <div class="row">
-                <div class="col-md-8 col-sm-12">
-                    <h1>CDC Health Stats Visualizer - New Mexico</h1>
-                    <p>
+    <main id="top" class="container-fluid cdc-page"> <!--The main content of the page is wrapped in a <main> element, which is semantically appropriate for the primary content. The "container-fluid" class from Bootstrap allows the content to take up the full width of the viewport, and "cdc-page" is a custom class for additional styling specific to this project. The "id" attribute allows it to be targeted by links, such as the brand link in the navbar.-->
+        <section class="cdc-hero"> <!--The hero section for the page.-->
+            <div class="row"> <!--This row contains the main heading and introductory text for the project. The "row" class from Bootstrap creates a horizontal group of columns.-->
+                <div class="col-md-8 col-sm-12"> <!--This column takes up 8 out of 12 columns on medium and larger screens, and the full width (12 columns) on smaller screens.-->
+                    <h1>CDC Health Stats Visualizer - New Mexico</h1> <!--The main heading of the page, which introduces the project.-->
+                    <p> <!--This is the introductory text for the project.-->
                         This interactive web map presents selected CDC PLACES health measures across New Mexico census
                         tracts. Users can explore spatial patterns in health outcomes, preventive care, risk behaviors,
                         disability, health status, and health-related social needs across communities.
-                    </p>
-                    <p class="text-muted">
+                    </p> <!--The paragraph ends here.-->
+                    <p class="text-muted"> <!--This paragraph is styled with the "text-muted" class from Bootstrap, which gives it a lighter color to indicate that it is supplementary information.-->
                         The maps use crude prevalence estimates from CDC PLACES data and link them to New Mexico
                         census-tract boundaries. Popups provide tract-level values, population information, and 95%
                         confidence
                         intervals where available.
-                    </p>
-                </div>
-                <div class="col-md-4 col-sm-12 cdc-data-note">
-                    <h4>Map Overview</h4>
-                    <p><b>Geography:</b> New Mexico census tracts</p>
-                    <p><b>Data source:</b> CDC PLACES</p>
+                    </p> <!--The paragraph ends here.-->
+                </div> <!--The first column ends here.-->
+                <div class="col-md-4 col-sm-12 cdc-data-note"> <!--This column takes up 4 out of 12 columns on medium and larger screens, and the full width (12 columns) on smaller screens. It also has a custom class "cdc-data-note" for additional styling.-->
+                    <h4>Map Overview</h4> <!--A subheading for the map overview section.-->
+                    <p><b>Geography:</b> New Mexico census tracts</p> <!--This paragraph provides information about the geographic level of the data used in the maps.-->
+                    <p><b>Data source:</b> CDC PLACES</p> <!--This paragraph provides information about the source of the data used in the maps.-->
                     <p><b>Measures:</b> Health outcomes, prevention, risk behaviors, disability, health status, and
-                        social needs</p>
-                </div>
-            </div>
-        </section>
+                        social needs</p> <!--This paragraph provides information about the categories of health measures included in the maps.-->
+                </div> <!--The second column ends here.-->
+            </div> <!--The row for the hero section ends here.-->
+        </section> <!--The hero section ends here.-->
 
-        <section id="cdc-status-panel" class="cdc-status-panel">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="cdc-stat-card">
-                        <span class="cdc-stat-label">CDC rows loaded</span>
-                        <span class="cdc-stat-value" id="cdc-row-count">Loading...</span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="cdc-stat-card">
+        <section id="cdc-status-panel" class="cdc-status-panel"> <!--This section displays status information about the CDC data.-->
+            <div class="row"> <!--This row contains three columns, each displaying a different statistic about the CDC data.-->
+                <div class="col-md-4"> <!--This column takes up 4 out of 12 columns on medium and larger screens.-->
+                    <div class="cdc-stat-card"> <!--This div is styled as a card to display a statistic.-->
+                        <span class="cdc-stat-label">CDC rows loaded</span> <!--This span displays the label for the statistic, indicating that it shows the number of rows loaded from the CDC dataset.-->
+                        <span class="cdc-stat-value" id="cdc-row-count">Loading...</span> <!--This span displays the value of the statistic, which will be updated dynamically with the number of rows loaded from the CDC dataset. Initially, it shows "Loading..." until the data is loaded and the value is updated.-->
+                    </div> <!--The statistic card ends here.-->
+                </div> <!--The first column ends here.-->
+                <div class="col-md-4"> <!--This column takes up 4 out of 12 columns on medium and larger screens.-->
+                    <div class="cdc-stat-card"> <!--This div is styled as a card to display a statistic.-->
                         <span class="cdc-stat-label">Tract polygons loaded</span>
                         <span class="cdc-stat-value" id="tract-count">Loading...</span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="cdc-stat-card">
+                    </div> <!--The statistic card ends here.-->
+                </div> <!--The second column ends here.-->
+                <div class="col-md-4"> <!--This column takes up 4 out of 12 columns on medium and larger screens.-->
+                    <div class="cdc-stat-card"> <!--This div is styled as a card to display a statistic.-->
                         <span class="cdc-stat-label">Active measure columns</span>
                         <span class="cdc-stat-value" id="measure-count">Loading...</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    </div> <!--The statistic card ends here.-->
+                </div> <!--The third column ends here.-->
+            </div> <!--The row for the status panel ends here.-->
+        </section> <!--The status panel section ends here.-->
 
         <!--
             CDC/NM ADAPTATION COMMENT:
@@ -131,30 +131,30 @@
             3. A Leaflet map.
             4. A legend and quick summary.
         -->
-        <section id="cdc-map-rows"></section>
+        <section id="cdc-map-rows"></section> <!--This section will be dynamically populated with the six CDC category rows using JavaScript. Each row will include a category title, a dropdown for selecting measures, a Leaflet map to display the data, and a legend with a quick summary.-->
 
-        <section id="cdc-data-table-section" class="cdc-section">
-            <div class="row">
-                <div class="col-xs-12">
-                    <h2>Data Table</h2>
-                    <p class="text_guideInfo">
+        <section id="cdc-data-table-section" class="cdc-section"> <!--This section contains the data table that shows the currently selected measures from each CDC category.-->
+            <div class="row"> <!--This row contains the heading, description, and the data table itself.-->
+                <div class="col-xs-12"> <!--This column takes up the full width (12 columns) on extra small screens and above.-->
+                    <h2>Data Table</h2> <!--The heading for the data table section.-->
+                    <p class="text_guideInfo"> <!--This paragraph provides guidance on how to use the data table. It is styled with the "text_guideInfo" class for additional styling.-->
                         The table updates to show the currently selected measure from each CDC category. Use the
                         dropdowns above
                         to change which variables appear in the category columns.
-                    </p>
-                    <div class="table-responsive">
+                    </p> <!--The paragraph ends here.-->
+                    <div class="table-responsive"> <!--This div makes the table responsive, allowing it to scroll horizontally on smaller screens.-->
                         <table id="cdc-data-table" class="display compact table table-striped table-bordered"
-                            style="width:100%">
-                            <thead></thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
+                            style="width:100%"> <!--This is the HTML table element that will be populated with data using the DataTables library. The "display compact" classes are from DataTables for styling, and "table table-striped table-bordered" are Bootstrap classes for additional styling. The "style" attribute sets the width of the table to 100% of its container.-->
+                            <thead></thead> <!--The table header will be dynamically populated with the selected measure names from each CDC category.-->
+                            <tbody></tbody> <!--The table body will be dynamically populated with the data values for each census tract based on the selected measures.-->
+                        </table> <!--The table element ends here.-->    
+                    </div> <!--The responsive table div ends here.-->
+                </div> <!--The column for the data table ends here.-->
+            </div> <!--The row for the data table section ends here.-->
+        </section> <!--The data table section ends here.-->
 
 
-    </main>
+    </main> <!--The main content of the page ends here.-->
 
 
     <!--
@@ -162,165 +162,165 @@
         The following three modal dialogs keep from the original lab information buttons
         
     -->
-    <div class="modal fade" id="myModal_originalAbout" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">About the project</a></h4>
+    <div class="modal fade" id="myModal_originalAbout" role="dialog"> <!--This div defines a modal dialog that will be triggered by the "About the Project" button in the dropdown menu. The "modal fade" classes from Bootstrap create a modal that fades in when opened. The "id" attribute allows it to be targeted by the button's "data-target" attribute.-->
+        <div class="modal-dialog"> <!--This div defines the dialog box within the modal. The "modal-dialog" class from Bootstrap styles it as a dialog.-->
+            <div class="modal-content"> <!--This div contains the content of the modal dialog. The "modal-content" class from Bootstrap styles it as the content area of the modal.-->
+                <div class="modal-header"> <!--This div defines the header of the modal dialog. The "modal-header" class from Bootstrap styles it as the header section.-->
+                    <button type="button" class="close" data-dismiss="modal">&times;</button> <!--This button allows users to close the modal dialog. The "close" class styles it as a close button, and the "data-dismiss" attribute specifies that it will close the modal when clicked. The "&times;" is an HTML entity that displays a multiplication sign (×), commonly used as a close icon.-->
+                    <h4 class="modal-title">About the project</a></h4> <!--This is the title of the modal dialog, which indicates that it contains information about the project. The "modal-title" class from Bootstrap styles it as the title of the modal.-->
                     <!-- <a href="https://geoair.lipingyang.org/" target="_blank"><img src="images/Final_small_Square.png"
                             alt="GeoAIR_icon" style="width:22%;height:14%;" class="geoairIcon"></a> -->
-                </div>
-                <div class="modal-body">
-                    <p>
+                </div> <!--The modal header ends here.-->
+                <div class="modal-body"> <!--This div defines the body of the modal dialog, which contains the main content. The "modal-body" class from Bootstrap styles it as the body section of the modal.-->
+                    <p> <!--This paragraph provides an overview of the project.-->
                         <b>CDC Health Stats Visualizer - New Mexico</b> is an interactive web mapping project that
                         presents
                         selected CDC PLACES health measures at the census-tract level across New Mexico. The map is
                         designed to help users explore how health-related conditions and needs vary across different
                         communities within the state.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <p>
+                    <p> <!--This paragraph describes the major categories of health indicators included in the project.-->
                         The project focuses on several major categories of health indicators, including health outcomes,
                         preventive care, health risk behaviors, disability, health status, and health-related social
                         needs.
                         By organizing the data into these categories, the web map allows users to examine both medical
                         and
                         social dimensions of health in a spatial format.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <p>
+                    <p> <!--This paragraph explains how users can interact with the maps and what they can learn from them.-->
                         Users can select different indicators from the dropdown menus to update each map. Each census
                         tract
                         is shaded according to the selected measure, allowing users to identify geographic patterns,
                         compare areas, and observe where certain health conditions or needs appear more concentrated.
                         Clicking on a census tract opens a popup with additional information, including the selected
                         prevalence estimate, population information, and confidence intervals where available.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <p>
+                    <p> <!--This paragraph describes the data sources used in the project and the geographic level of analysis.-->
                         This project uses CDC PLACES data linked to New Mexico census-tract boundary data. CDC PLACES
                         provides local-level estimates for chronic disease, prevention, health behaviors, disability,
                         and related health measures. The census-tract geography makes it possible to examine variation
                         within counties and across smaller communities rather than only at the state or county level.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <p>
+                    <p> <!--This paragraph emphasizes the educational and exploratory purpose of the project.-->
                         The purpose of this project is educational and exploratory. It is intended to support visual
                         analysis, public health learning, and community-level comparison. The map can help students,
                         researchers, public health professionals, and community members better understand spatial
                         differences in health measures across New Mexico.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <p>
+                    <p> <!--This paragraph acknowledges the original framework and design of the web map, which was developed by the GeoAIR Lab. It also explains how the original framework was adapted for this specific project.-->
                         This web map was adapted from the GeoAIR Lab web-mapping framework developed by Dr. Liping Yang.
                         The original framework was modified for a CDC PLACES-focused analysis of New Mexico health
                         measures while preserving the interactive mapping structure of the original lab project.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
 
-                    <h4><strong>Data Sources:</strong></h4>
-                    <ul>
+                    <h4><strong>Data Sources:</strong></h4> <!--This heading introduces the data sources used in the project. The "strong" tag emphasizes the text, and the "h4" tag indicates that it is a subheading.-->
+                    <ul> <!
                         <li>CDC PLACES health measure data: <a
                                 href="https://data.cdc.gov/500-Cities-Places/PLACES-Census-Tract-Data-GIS-Friendly-Format-2025-/yjkw-uj5s/data_preview"
-                                target="_blank">CDC Data</a></li>
+                                target="_blank">CDC Data</a></li> <!--This list item provides a link to the CDC PLACES health measure data used in the project. The "target" attribute specifies that the link will open in a new tab.-->
                         <li>Census-tract boundary data: <a
                                 href="https://www.census.gov/cgi-bin/geo/shapefiles/index.php?year=2025&layergroup=Census+Tracts"
-                                target="_blank">Census-tract</a></li>
+                                target="_blank">Census-tract</a></li> <!--This list item provides a link to the census-tract boundary data used in the project.-->
                     </ul>
-                    <h4><strong>Map Features:</strong></h4>
-                    <ul>
-                        <li>Interactive census-tract maps for multiple health measure categories</li>
-                        <li>Dropdown menus for selecting different CDC PLACES indicators</li>
-                        <li>Color-shaded maps showing tract-level variation in selected measures</li>
-                        <li>Popups with tract-level values, population information, and confidence intervals</li>
-                        <li>Two-location comparison tool for selected census tracts</li>
-                        <li>Summary statistics for each selected measure</li>
-                        <li>Searchable data table for reviewing selected indicators across tracts</li>
-                    </ul>
+                    <h4><strong>Map Features:</strong></h4> <!--This heading introduces the map features of the project. The "strong" tag emphasizes the text, and the "h4" tag indicates that it is a subheading.-->
+                    <ul> <!--This unordered list describes the key features of the interactive web map.-->
+                        <li>Interactive census-tract maps for multiple health measure categories</li> <!--This list item describes the interactive maps that allow users to explore different health measure categories at the census-tract level.-->
+                        <li>Dropdown menus for selecting different CDC PLACES indicators</li> <!--This list item describes the dropdown menus that enable users to select different CDC PLACES indicators to display on the maps.-->
+                        <li>Color-shaded maps showing tract-level variation in selected measures</li> <!--This list item describes the color-shaded maps that visually represent the variation in selected health measures across census tracts.-->
+                        <li>Popups with tract-level values, population information, and confidence intervals</li> <!--This list item describes the popups that display tract-level values, population information, and confidence intervals.-->
+                        <li>Two-location comparison tool for selected census tracts</li> <!--This list item describes the two-location comparison tool that allows users to compare health measures across different census tracts.-->
+                        <li>Summary statistics for each selected measure</li> <!--This list item describes the summary statistics that provide an overview of the selected health measures.-->
+                        <li>Searchable data table for reviewing selected indicators across tracts</li> <!--This list item describes the searchable data table that enables users to review selected indicators across different census tracts.-->
+                    </ul> <!--The unordered list of map features ends here.-->
 
-                    <h4><strong>Important Note:</strong></h4>
-                    <p>
+                    <h4><strong>Important Note:</strong></h4> <!--This heading introduces an important note about the interpretation of the data. The "strong" tag emphasizes the text, and the "h4" tag indicates that it is a subheading.-->
+                    <p> <!--This paragraph provides an important note about the interpretation of the health measure values shown in the project.-->
                         The values shown in this project are estimates and should be interpreted as tools for
                         exploration,
                         comparison, and learning. They should not be treated as direct clinical diagnoses or
                         individual-level
                         health records. The map shows population-level patterns across geographic areas.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <h4><strong>Acknowledgements:</strong></h4>
-                    <ul>
-                        <li>
+                    <h4><strong>Acknowledgements:</strong></h4> <!--This heading introduces the acknowledgements section, which gives credit to the original framework and libraries used in the project. The "strong" tag emphasizes the text, and the "h4" tag indicates that it is a subheading.-->
+                    <ul> <!--This unordered list provides acknowledgements for the original framework and libraries used in the project.-->
+                        <li> <!--This list item gives credit to the original framework and libraries used in the project.-->
                             This final project heavily reuses and adapts the GeoAIR Lab New Mexico Social Justice Map
                             example developed by Dr. Liping Yang:
-                            <a href="https://geoair-lab.github.io/iNMsocialJusticeMap/index.html" target="_blank">
+                            <a href="https://geoair-lab.github.io/iNMsocialJusticeMap/index.html" target="_blank"> <!--This link takes the user to the original GeoAIR Lab example.-->
                                 GeoAIR Lab iNM Social Justice Map
-                            </a>.
-                        </li>
-                        <li><a href="https://dc-js.github.io/dc.js/" target="_blank">DC.js</a></li>
-                        <li><a href="https://d3js.org/" target="_blank">D3.js</a></li>
+                            </a>. <!--The list item continues to explain that the original framework was adapted for a CDC PLACES-based health mapping project.-->
+                        </li> <!--The first list item ends here.-->
+                        <li><a href="https://dc-js.github.io/dc.js/" target="_blank">DC.js</a></li> <!--This list item provides a link to the DC.js library, which is used for data visualization in the project.-->
+                        <li><a href="https://d3js.org/" target="_blank">D3.js</a></li> <!--This list item provides a link to the D3.js library, which is used for data manipulation and visualization in the project.-->
                         <li><a href="https://leafletjs.com/" target="_blank">Leaflet.js</a></li>
                         <li><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/tgis.13277"
-                                target="_blank"><i>dciWebMapper</i></a></li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="myModal_dataExplanation" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content cdc-modal">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><b>Data Explanation</b></h4>
-                </div>
+                                target="_blank"><i>dciWebMapper</i></a></li> <!--This list item provides a link to the dciWebMapper tool, which is used for web mapping in the project. The "i" tag italicizes the name of the tool.-->
+                    </ul> <!--The unordered list of acknowledgements ends here.-->
+                </div> <!--The modal body ends here.-->
+                <div class="modal-footer"> <!--This div defines the footer of the modal dialog, which typically contains action buttons. The "modal-footer" class from Bootstrap styles it as the footer section of the modal.-->
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <!--This button allows users to close the modal dialog. The "btn btn-default" classes from Bootstrap style it as a default button, and the "data-dismiss" attribute specifies that it will close the modal when clicked. The button text is "Close".-->
+                </div> <!--The modal footer ends here.-->
+            </div> <!--The modal content ends here.-->
+        </div> <!--The modal dialog ends here.-->
+    </div> <!--The modal for "About the Project" ends here.-->
+    <div class="modal fade" id="myModal_dataExplanation" role="dialog"> <!--This div defines a modal dialog that will be triggered by the "Data Explanation" button in the dropdown menu. The "modal fade" classes from Bootstrap create a modal that fades in when opened. The "id" attribute allows it to be targeted by the button's "data-target" attribute.-->
+        <div class="modal-dialog"> <!--This div defines the dialog box within the modal. The "modal-dialog" class from Bootstrap styles it as a dialog.-->
+            <div class="modal-content cdc-modal"> <!--This div contains the content of the modal dialog. The "modal-content" class from Bootstrap styles it as the content area of the modal, and "cdc-modal" is a custom class for additional styling specific to this project.-->
+                <div class="modal-header"> <!--This div defines the header of the modal dialog. The "modal-header" class from Bootstrap styles it as the header section.-->
+                    <button type="button" class="close" data-dismiss="modal">&times;</button> <!--This button allows users to close the modal dialog. The "close" class styles it as a close button, and the "data-dismiss" attribute specifies that it will close the modal when clicked. The "&times;" is an HTML entity that displays a multiplication sign (×), commonly used as a close icon.-->
+                    <h4 class="modal-title"><b>Data Explanation</b></h4> <!--This is the title of the modal dialog, which indicates that it contains an explanation of the data used in the project. The "modal-title" class from Bootstrap styles it as the title of the modal, and the "b" tag makes the text bold.-->
+                </div> <!--The modal header ends here.-->
 
-                <div class="modal-body">
-                    <p>
+                <div class="modal-body"> <!--This div defines the body of the modal dialog, which contains the main content. The "modal-body" class from Bootstrap styles it as the body section of the modal.-->
+                    <p> <!--This paragraph provides an overview of the data used in the project.-->
                         This project uses CDC PLACES health measure data for New Mexico census tracts.
                         Each row in the dataset represents one census tract, and each health measure
                         represents an estimated population-level percentage for that tract.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <p>
+                    <p> <!--This paragraph explains the meaning of the measure names in the dataset and how they are displayed on the maps.-->
                         Measures ending in <code>_CrudePrev</code> show crude prevalence estimates.
                         These values are displayed on the maps as percentages. Measures ending in
                         <code>_Crude95CI</code> provide the 95% confidence interval for the corresponding
                         estimate and are shown in the map popups when available.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <p>
+                    <p> <!--This paragraph explains how the data are linked to the census-tract boundaries on the maps.-->
                         The data are joined to census-tract boundaries using tract FIPS codes. The CSV
                         field <code>TractFIPS</code> is matched with the GeoJSON field <code>GEOID</code>.
                         This allows each census tract polygon on the map to display the corresponding
                         CDC PLACES health measure values.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <p>
+                    <p> <!--This paragraph emphasizes that the values shown in the project are estimates and should be interpreted as tools for exploration and learning, rather than clinical diagnoses or individual-level health records.-->
                         The maps are intended for exploratory and educational use. They show geographic
                         patterns in population-level health estimates and should not be interpreted as
                         individual-level health records or clinical diagnoses.
-                    </p>
-                </div>
+                    </p> <!--The paragraph ends here.-->
+                </div> <!--The modal body ends here.-->
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                <div class="modal-footer"> <!--This div defines the footer of the modal dialog, which typically contains action buttons. The "modal-footer" class from Bootstrap styles it as the footer section of the modal.-->
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <!--This button allows users to close the modal dialog. The "btn btn-default" classes from Bootstrap style it as a default button, and the "data-dismiss" attribute specifies that it will close the modal when clicked. The button text is "Close".-->
+                </div> <!--The modal footer ends here.-->
+            </div> <!--The modal content ends here.-->
+        </div> <!--The modal dialog ends here.-->
+    </div> <!--The modal for "Data Explanation" ends here.-->
 
-    <div class="modal fade" id="myModal_landAcknowledgement" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><b> Land Acknowledgement</b></h4>
-                </div>
-                <div class="modal-body">
+    <div class="modal fade" id="myModal_landAcknowledgement" role="dialog"> <!--This div defines a modal dialog that will be triggered by the "Land Acknowledgement" button in the dropdown menu. The "modal fade" classes from Bootstrap create a modal that fades in when opened. The "id" attribute allows it to be targeted by the button's "data-target" attribute.-->
+        <div class="modal-dialog"> <!--This div defines the dialog box within the modal. The "modal-dialog" class from Bootstrap styles it as a dialog.-->
+            <div class="modal-content"> <!--This div contains the content of the modal dialog. The "modal-content" class from Bootstrap styles it as the content area of the modal.-->
+                <div class="modal-header"> <!--This div defines the header of the modal dialog. The "modal-header" class from Bootstrap styles it as the header section.-->
+                    <button type="button" class="close" data-dismiss="modal">&times;</button> <!--This button allows users to close the modal dialog. The "close" class styles it as a close button, and the "data-dismiss" attribute specifies that it will close the modal when clicked. The "&times;" is an HTML entity that displays a multiplication sign (×), commonly used as a close icon.-->
+                    <h4 class="modal-title"><b> Land Acknowledgement</b></h4> <!--This is the title of the modal dialog, which indicates that it contains a land acknowledgment statement. The "modal-title" class from Bootstrap styles it as the title of the modal, and the "b" tag makes the text bold.-->
+                </div> <!--The modal header ends here.-->
+                <div class="modal-body"> <!--This div defines the body of the modal dialog, which contains the main content. The "modal-body" class from Bootstrap styles it as the body section of the modal.-->
                     <p>As we engage in work across the diverse landscapes of New Mexico, we recognize and honor the
                         deep-rooted connection that Indigenous peoples have maintained with this land since time
                         immemorial. New Mexico is home to 23 federally recognized Native Nations, including the
@@ -339,146 +339,156 @@
                         perspectives on land boundaries may differ from the administrative lines used in our tools and
                         maps, and we invite any Tribes or Pueblos to collaborate with us to ensure their lands are
                         represented in a way that reflects their sovereignty and cultural values.
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                    </p> <!--The paragraph ends here.-->
+                </div> <!--The modal body ends here.-->
+                <div class="modal-footer"> <!--This div defines the footer of the modal dialog, which typically contains action buttons. The "modal-footer" class from Bootstrap styles it as the footer section of the modal.-->
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <!--This button allows users to close the modal dialog. The "btn btn-default" classes from Bootstrap style it as a default button, and the "data-dismiss" attribute specifies that it will close the modal when clicked. The button text is "Close".-->
+                </div> <!--The modal footer ends here.-->
+            </div> <!--The modal content ends here.-->
+        </div> <!--The modal dialog ends here.-->
+    </div> <!--The modal for "Land Acknowledgement" ends here.-->
 
-    <div class="modal fade" id="myModal_copyRight" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><b> License & copyright</b></h4>
-                </div>
-                <div class="modal-body">
-                    <h4><strong>License</strong></h4>
-                    <p>
+    <div class="modal fade" id="myModal_copyRight" role="dialog"> <!--This div defines a modal dialog that will be triggered by the "License & Copyright" button in the dropdown menu. The "modal fade" classes from Bootstrap create a modal that fades in when opened. The "id" attribute allows it to be targeted by the button's "data-target" attribute.-->
+        <div class="modal-dialog"> <!--This div defines the dialog box within the modal. The "modal-dialog" class from Bootstrap styles it as a dialog.-->
+            <div class="modal-content"> <!--This div contains the content of the modal dialog. The "modal-content" class from Bootstrap styles it as the content area of the modal.-->
+                <div class="modal-header"> <!--This div defines the header of the modal dialog. The "modal-header" class from Bootstrap styles it as the header section.-->
+                    <button type="button" class="close" data-dismiss="modal">&times;</button> <!--This button allows users to close the modal dialog. The "close" class styles it as a close button, and the "data-dismiss" attribute specifies that it will close the modal when clicked. The "&times;" is an HTML entity that displays a multiplication sign (×), commonly used as a close icon.-->
+                    <h4 class="modal-title"><b> License & copyright</b></h4> <!--This is the title of the modal dialog, which indicates that it contains information about the license and copyright of the project. The "modal-title" class from Bootstrap styles it as the title of the modal, and the "b" tag makes the text bold.-->
+                </div> <!--The modal header ends here.-->
+                <div class="modal-body"> <!--This div defines the body of the modal dialog, which contains the main content. The "modal-body" class from Bootstrap styles it as the body section of the modal.-->
+                    <h4><strong>License</strong></h4> <!--This heading introduces the license information for the project. The "strong" tag emphasizes the text, and the "h4" tag indicates that it is a subheading.-->
+                    <p> <!--This paragraph provides information about the license under which the project is released.-->
                         This project is licensed under the GNU General Public License v3.0 (GPL v3).
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <p>
+                    <p> <!--This paragraph explains that the project heavily reuses and adapts code from the GeoAIR Lab New Mexico Social Justice Map example, which is also licensed under GPL v3. It emphasizes that this adapted project follows the same license terms.-->
                         This final project heavily reuses and adapts code from the GeoAIR Lab New Mexico Social Justice
                         Map
                         example developed by Dr. Liping Yang. Because the original GeoAIR Lab work uses the GPL v3
                         license,
                         this adapted project also follows the GPL v3 license.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <p>
+                    <p> <!--This paragraph explains the permissions granted by the GPL v3 license, which allows users to use, study, share, and modify the project, as long as derivative versions are also distributed under the same license terms.-->
                         Under GPL v3, users may use, study, share, and modify this project, provided that derivative
                         versions
                         are also distributed under the same license terms.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <p>
+                    <p> <!--This paragraph provides a link to the full text of the GPL v3 license for users who want to read the complete license terms.-->
                         GPL v3 license information:
-                        <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank">
+                        <a href="https://www.gnu.org/licenses/gpl-3.0.en.html" target="_blank"> <!--This link takes the user to the full text of the GPL v3 license. The "target" attribute specifies that the link will open in a new tab.-->
                             https://www.gnu.org/licenses/gpl-3.0.en.html
-                        </a>
-                    </p>
-                    <p>
+                        </a> <!--The paragraph ends here.-->
+                    </p> <!--The paragraph ends here.-->
+                    <p> <!--This paragraph provides an overview of the copyright notice for the project, which gives credit to the original framework and design structure developed by the GeoAIR Lab, as well as the data sources and libraries used in the project. It also emphasizes that the project is intended for educational and exploratory use.-->
                         This project, <b>CDC Health Stats Visualizer - New Mexico</b>, was created for educational and
                         academic purposes. The web map adapts an existing GeoAIR Lab web-mapping framework
                         and modifies it to visualize CDC PLACES health measures for New Mexico census tracts.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <p>
+                    <p> <!--This paragraph gives credit to the original framework and design structure developed by the GeoAIR Lab, and explains that this version was adapted and customized for a CDC PLACES-based health mapping project.-->
                         The original web-mapping framework and design structure were developed by the
                         GeoAIR Lab under the direction of Dr. Liping Yang. This version was adapted and
                         customized for a CDC PLACES-based health mapping project.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <h4><strong>Data Attribution</strong></h4>
-                    <ul>
-                        <li>
+                    <h4><strong>Data Attribution</strong></h4> <!--This heading introduces the data attribution section, which gives credit to the data sources used in the project. The "strong" tag emphasizes the text, and the "h4" tag indicates that it is a subheading.-->
+                    <ul> <!--This unordered list provides attribution for the data sources used in the project.-->
+                        <li> <!--This list item gives credit to the CDC PLACES data used in the project, and explains that the health measure estimates are based on this data.-->
                             <b>CDC PLACES:</b> Health measure estimates used in this project are based on
                             CDC PLACES data.
                         </li>
-                        <li>
+                        <li> <!--This list item gives credit to the census-tract boundary data used in the project, and explains that the data are used to display tract-level geographic patterns.-->
                             <b>Census-tract boundaries:</b> New Mexico census-tract boundary data are used
                             to display tract-level geographic patterns.
                         </li>
-                        <li>
+                        <li> <!--This list item gives credit to the county boundary data used in the project, and explains that the data are used as reference layers on the maps.-->
                             <b>County boundaries:</b> New Mexico county boundary data are used as reference
                             layers on the maps.
-                        </li>
-                    </ul>
+                        </li> <!--The unordered list of data attribution ends here.-->
+                    </ul> <!--The unordered list of data attribution ends here.-->
 
                     <h4><strong>Software and Libraries</strong></h4>
                     <ul>
-                        <li>Leaflet.js is used for interactive web mapping.</li>
-                        <li>D3.js is used for loading and processing data.</li>
-                        <li>Bootstrap is used for page layout and interface styling.</li>
-                        <li>DataTables is used for the searchable data table.</li>
-                        <li>OpenStreetMap map tiles are used as the basemap.</li>
-                    </ul>
+                        <li> <!--This list item gives credit to Leaflet.js, a JavaScript library for interactive web mapping.-->
+                            <b>Leaflet.js:</b> is used for interactive web mapping.
+                        </li>
+                        <li> <!--This list item gives credit to D3.js, a JavaScript library for loading and processing data.-->
+                            <b>D3.js:</b> is used for loading and processing data.
+                        </li>
+                        <li> <!--This list item gives credit to Bootstrap, a CSS framework for page layout and interface styling.-->
+                            <b>Bootstrap:</b> is used for page layout and interface styling.
+                        </li>
+                        <li> <!--This list item gives credit to DataTables, a JavaScript library for creating searchable data tables.-->
+                            <b>DataTables:</b> is used for the searchable data table.
+                        </li>
+                        <li> <!--This list item gives credit to OpenStreetMap, a service that provides map tiles as the basemap.-->
+                            <b>OpenStreetMap:</b> map tiles are used as the basemap.
+                        </li> <!--The unordered list of software and libraries ends here.-->
+                    </ul> <!--The unordered list of software and libraries ends here.-->
 
-                    <h4><strong>Copyright Notice</strong></h4>
-                    <p>
+                    <h4><strong>Copyright Notice</strong></h4> <!--This heading introduces the copyright notice for the project. The "strong" tag emphasizes the text, and the "h4" tag indicates that it is a subheading.-->
+                    <p> <!--This paragraph provides a copyright notice for the project, which gives credit to the original framework and design structure developed by the GeoAIR Lab, as well as the data sources and libraries used in the project. It also emphasizes that the project is intended for educational and exploratory use.-->
                         Map design, code modifications, text, and project-specific organization are part of
                         this adapted student project. Original framework elements remain credited to the
                         GeoAIR Lab and its contributors. Data and third-party libraries remain subject to
                         their original terms of use and licenses.
-                    </p>
+                    </p> <!--The paragraph ends here.-->
 
-                    <h4><strong>Use Statement</strong></h4>
-                    <p>
+                    <h4><strong>Use Statement</strong></h4> <!--This heading introduces the use statement for the project. The "strong" tag emphasizes the text, and the "h4" tag indicates that it is a subheading.-->
+                    <p> <!--This paragraph provides a use statement for the project, which emphasizes that the project is intended for educational, exploratory, and non-commercial use. It also clarifies that the health values shown in the project are population-level estimates and should not be interpreted as individual-level health records or clinical diagnoses.-->
                         This project is intended for educational, exploratory, and non-commercial use.
                         The health values shown are population-level estimates and should not be interpreted
                         as individual-level health records, clinical diagnoses, or official public health
                         determinations.
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                    </p> <!--The paragraph ends here.-->
+                </div> <!--The modal body ends here.-->
+                <div class="modal-footer"> <!--This div defines the footer of the modal dialog, which typically contains action buttons. The "modal-footer" class from Bootstrap styles it as the footer section of the modal.-->
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <!--This button allows users to close the modal dialog. The "btn btn-default" classes from Bootstrap style it as a default button, and the "data-dismiss" attribute specifies that it will close the modal when clicked. The button text is "Close".-->
+                </div> <!--The modal footer ends here.-->
+            </div> <!--The modal content ends here.--> 
+        </div> <!--The modal dialog ends here.-->
+    </div> <!--The modal for "License & Copyright" ends here.-->
 
-    <div class="modal fade" id="myModal_about" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content cdc-modal">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title"><b>About this CDC PLACES NM lab version</b></h4>
-                </div>
-                <div class="modal-body">
-                    <p>
+    <div class="modal fade" id="myModal_about" role="dialog"> <!--This div defines a modal dialog that will be triggered by the "About this CDC PLACES NM lab version" button in the dropdown menu. The "modal fade" classes from Bootstrap create a modal that fades in when opened. The "id" attribute allows it to be targeted by the button's "data-target" attribute.-->
+        <div class="modal-dialog"> <!--This div defines the dialog box within the modal. The "modal-dialog" class from Bootstrap styles it as a dialog.-->
+            <div class="modal-content cdc-modal"> <!--This div contains the content of the modal dialog. The "modal-content" class from Bootstrap styles it as the content area of the modal, and "cdc-modal" is a custom class for additional styling specific to this project.-->
+                <div class="modal-header"> <!--This div defines the header of the modal dialog. The "modal-header" class from Bootstrap styles it as the header section.-->
+                    <button type="button" class="close" data-dismiss="modal">&times;</button> <!--This button allows users to close the modal dialog. The "close" class styles it as a close button, and the "data-dismiss" attribute specifies that it will close the modal when clicked. The "&times;" is an HTML entity that displays a multiplication sign (×), commonly used as a close icon.-->
+                    <h4 class="modal-title"><b>About this CDC PLACES NM lab version</b></h4> <!--This is the title of the modal dialog, which indicates that it contains information about the specific version of the lab that focuses on CDC PLACES data for New Mexico. The "modal-title" class from Bootstrap styles it as the title of the modal, and the "b" tag makes the text bold.-->
+                </div> <!--The modal header ends here.-->
+                <div class="modal-body"> <!--This div defines the body of the modal dialog, which contains the main content. The "modal-body" class from Bootstrap styles it as the body section of the modal.-->
+                    <p> <!--This paragraph provides an overview of the specific version of the lab, which focuses on adapting the original GeoAIR Lab web-mapping example to visualize CDC PLACES health measures for New Mexico census tracts. It explains that the original folder structure and local library links were retained, while the active map logic was replaced with seven CDC category rows.-->
                         This version adapts the original GeoAIR Lab web-mapping example to the CDC PLACES New Mexico
                         dataset. The code keeps the original folder structure and local library links, while replacing
                         the
                         active map logic with seven CDC category rows.
-                    </p>
-                    <p>
+                    </p> <!--The paragraph ends here.-->
+                    <!-- <p>
                         Note: the CDC NM CSV includes the PLACES health-measure fields, but it does not include the
                         ACS-derived
                         Non-Medical Factors fields. The seventh row is therefore kept as a placeholder for future data
                         expansion.
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+                    </p> -->
+                </div> <!--The modal body ends here.-->
+                <div class="modal-footer"> <!--This div defines the footer of the modal dialog, which typically contains action buttons. The "modal-footer" class from Bootstrap styles it as the footer section of the modal.-->
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> <!--This button allows users to close the modal dialog. The "btn btn-default" classes from Bootstrap style it as a default button, and the "data-dismiss" attribute specifies that it will close the modal when clicked. The button text is "Close".-->
+                </div> <!--The modal footer ends here.-->
+            </div> <!--The modal content ends here.-->
+        </div> <!--The modal dialog ends here.-->
+    </div> <!--The modal for "About this CDC PLACES NM lab version" ends here.-->
 
     <!-- original lab-code library order retained where useful -->
-    <script src="JS_CSS_downloaded_libraries/d3/d3v5.16.0.js"></script>
-    <script src="JS_CSS_downloaded_libraries/leaflet/Leafletv1.6.0.js"></script>
-    <script src="JS_CSS_downloaded_libraries/jQuery/jQuery.js"></script>
-    <script src="JS_CSS_downloaded_libraries/bootstrap/Bootstrap.js"></script>
-    <script src="JS_CSS_downloaded_libraries/jQuery/jquery.dataTables.js"></script>
-    <script src="JS_CSS_downloaded_libraries/other/colorbrewer.js"></script>
+    <script src="JS_CSS_downloaded_libraries/d3/d3v5.16.0.js"></script> <!--This script tag includes the D3.js library, version 5.16.0, which is used for data manipulation and visualization in the project. The "src" attribute specifies the path to the JavaScript file for D3.js.-->
+    <script src="JS_CSS_downloaded_libraries/leaflet/Leafletv1.6.0.js"></script> <!--This script tag includes the Leaflet.js library, version 1.6.0, which is used for interactive web mapping in the project. The "src" attribute specifies the path to the JavaScript file for Leaflet.js.-->
+    <script src="JS_CSS_downloaded_libraries/jQuery/jQuery.js"></script> <!--This script tag includes the jQuery library, which is used for DOM manipulation and event handling in the project. The "src" attribute specifies the path to the JavaScript file for jQuery.-->
+    <script src="JS_CSS_downloaded_libraries/bootstrap/Bootstrap.js"></script> <!--This script tag includes the Bootstrap JavaScript library, which is used for page layout and interface styling in the project. The "src" attribute specifies the path to the JavaScript file for Bootstrap.-->
+    <script src="JS_CSS_downloaded_libraries/jQuery/jquery.dataTables.js"></script> <!--This script tag includes the jQuery DataTables library, which is used for creating searchable data tables in the project. The "src" attribute specifies the path to the JavaScript file for jQuery DataTables.-->
+    <script src="JS_CSS_downloaded_libraries/other/colorbrewer.js"></script> <!--This script tag includes the ColorBrewer library, which is used for color schemes in the project. The "src" attribute specifies the path to the JavaScript file for ColorBrewer.-->
 
     <!-- active CDC/NM adaptation script; old lab JS is commented out at the bottom of this file -->
-    <script src="myJS_scripts/main.js"></script>
-</body>
+    <script src="myJS_scripts/main.js"></script> <!--This script tag includes the main JavaScript file for the project, which contains the active code for the CDC PLACES New Mexico adaptation. The "src" attribute specifies the path to the JavaScript file named "main.js".-->
+</body> <!--The body of the HTML document ends here.-->
 
-</html>
+</html> <!--The HTML document ends here.-->
