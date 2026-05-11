@@ -44,3 +44,55 @@ section {
 html {
     scroll-behavior: smooth;
 }
+
+h1 {
+    font-weight: 700;
+}
+
+.lead {
+    font-size: 1.25rem;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+}
+
+.card-title {
+    font-weight: 700;
+}
+
+.badge {
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+#home h1 {
+    color: #1f2937;
+}
+
+#about ul {
+    columns: 2;
+}
+
+#contact a {
+    color: #0d6efd;
+    text-decoration: none;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+
+.profile-photo {
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}

@@ -36,7 +36,7 @@
     <!-- Navbar -->
     <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">My Site</a>
+            <a class="navbar-brand" href="#">Refat Ahmed Mishuk</a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                 <span class="navbar-toggler-icon"></span>
@@ -56,6 +56,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#mywebapp">My Web App</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="files/Resume_Refat.pdf" target="_blank">Resume</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -64,10 +70,22 @@
     <!-- Home Section -->
     <section id="home" class="bg-light">
         <div class="container">
-            <h1 class="mb-4">Welcome to My Personal Website</h1>
-            <p class="mb-4">
-                This website introduces my background, projects, and my future web application.
-            </p>
+            <div class="row align-items-center">
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    <img src="images/refat.jpg" alt="Photo of Refat Ahmed Mishuk" class="profile-photo">
+                </div>
+
+                <div class="col-md-8">
+                    <h1 class="mb-4">Hi, I’m Refat Ahmed Mishuk</h1>
+                    <p class="lead mb-4">
+                        I am a PhD student in Economics at the University of New Mexico with professional experience in
+                        central banking, data analysis, policy research, and econometric modeling.
+                    </p>
+
+                    <a href="#projects" class="btn btn-primary me-2">View My Projects</a>
+                    <a href="#mywebapp" class="btn btn-outline-dark">Open My Web App</a>
+                </div>
+            </div>
 
             <!-- Carousel -->
             <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -122,19 +140,79 @@
         <div class="container">
             <h1>About Me</h1>
             <p>
-                I am a student interested in research, data analysis, and web development.
-                This page gives an overview of my work and interests.
+                I am an Economics PhD student at the University of New Mexico. My academic and professional interests
+                include health economics, policy analysis, econometric modeling, data management, and applied research.
             </p>
+
+            <p>
+                Before beginning my PhD, I worked for the Central Bank of Bangladesh, where I gained experience in
+                financial regulation, legal analysis, banking operations, and risk management. I also have experience
+                working with survey data, cleaning and transforming datasets, and conducting benefit-cost analysis.
+            </p>
+
+            <h4>Technical Skills</h4>
+            <ul>
+                <li>STATA</li>
+                <li>R</li>
+                <li>Python</li>
+                <li>Data cleaning and management</li>
+                <li>Econometric modeling</li>
+                <li>Policy and benefit-cost analysis</li>
+            </ul>
         </div>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="bg-light">
         <div class="container">
-            <h1>Projects</h1>
-            <p>
-                Here I will present my projects, coursework, and research activities.
+            <h1 class="mb-4">Projects & Research</h1>
+            <p class="mb-4">
+                My work focuses on applied economics, health economics, policy analysis, and data-driven research.
             </p>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Doctor Visit Duration & MACRA</h5>
+                            <p class="card-text">
+                                Research examining the impact of the Medicare Access and CHIP Reauthorization Act on the
+                                duration of doctor visits.
+                            </p>
+                            <span class="badge bg-primary">Health Economics</span>
+                            <span class="badge bg-secondary">Policy Analysis</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">PTSD and Depression Among Refugees</h5>
+                            <p class="card-text">
+                                Research on the prevalence of post-traumatic stress disorder and depression among
+                                Palestinian refugees.
+                            </p>
+                            <span class="badge bg-primary">Applied Research</span>
+                            <span class="badge bg-secondary">Public Health</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">Benefit-Cost and Policy Analysis</h5>
+                            <p class="card-text">
+                                Project and policy work involving benefit-cost analysis, financial records, and applied
+                                economic evaluation.
+                            </p>
+                            <span class="badge bg-primary">Economics</span>
+                            <span class="badge bg-secondary">Data Analysis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -143,15 +221,51 @@
         <div class="container">
             <h1>My Web Application</h1>
             <p>
-                This web application will focus on analyzing health data and presenting results in an interactive way.
-                It will help users better understand the topic through visualizations and simple tools.
+                My web application focuses on analyzing health-related data and presenting results in an interactive and
+                user-friendly way. The goal is to help users better understand patterns in health, policy, and economic
+                data through visualizations and simple tools.
             </p>
 
+            <h4>Purpose</h4>
+            <ul>
+                <li>Analyze health-related data</li>
+                <li>Present results through clear visualizations</li>
+                <li>Help users explore data interactively</li>
+                <li>Connect data analysis with applied economics and policy research</li>
+            </ul>
+
+            <h4>Tools Used</h4>
+            <p>HTML, CSS, JavaScript, Bootstrap, and data analysis tools such as R, Python, or STATA.</p>
+
             <h4>Project Link</h4>
-            <p>(Link will be added after completion)</p>
+            <p>
+                <a href="https://refat108.github.io/MyWebApp/" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-primary">
+                    Open My Web App
+                </a>
+            </p>
 
             <h4>Demo Video</h4>
-            <p>(Video link will be added after completion)</p>
+            <p>
+                <a href="https://your-demo-video-link.com" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-outline-light">
+                    Watch Demo Video
+                </a>
+            </p>
+        </div>
+    </section>
+
+    <section id="contact" class="bg-light">
+        <div class="container">
+            <h1>Contact</h1>
+            <p>
+                I am interested in opportunities related to economics, health economics, data analysis, policy research,
+                and applied econometrics.
+            </p>
+
+            <p><strong>Email:</strong> <a href="mailto:rmishuk@unm.edu">rmishuk@unm.edu</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/refatmishuk/" target="_blank"
+                    rel="noopener noreferrer">www.linkedin.com/in/refatmishuk/</a></p>
         </div>
     </section>
 
