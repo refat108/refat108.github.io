@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lotka-Volterra Predator-Prey Model for Steller Sea Lions and Their Fish Prey</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Lotka-Volterra Predator-Prey Model for Steller Sea Lions and Their Fish Prey</h1>
+    <p>
+      This interactive Lotka-Volterra model explores how Steller sea lions interact with
+      walleye pollock and Pacific cod as fish prey.
+    </p>
+  </header>
+
+  <main>
+    <section class="panel controls">
+      <h2>Parameters</h2>
+      <p class="note">
+        Adjust the parameters to examine population changes, phase dynamics, equilibria,
+        and stability conditions.
+      </p>
+      <div id="sliderGrid"></div>
+      <button id="resetBtn">Reset defaults</button>
+    </section>
+
+    <section class="panel equations">
+      <h2>Model</h2>
+      <p class="variable-key">
+        Variable key: x = walleye pollock, y = Pacific cod, z = Steller sea lion.
+      </p>
+      <div class="equation">
+        <span class="frac"><span>dx</span><span>dt</span></span>
+        = r<sub>x</sub>x(1 &minus;
+        <span class="frac"><span>x</span><span>k<sub>x</sub></span></span>
+        &minus;
+        <span class="frac"><span>&alpha;y</span><span>k<sub>x</sub></span></span>)
+        &minus; &gamma;xz &minus; h<sub>x</sub>x
+      </div>
+      <div class="equation">
+        <span class="frac"><span>dy</span><span>dt</span></span>
+        = r<sub>y</sub>y(1 &minus;
+        <span class="frac"><span>y</span><span>k<sub>y</sub></span></span>
+        &minus;
+        <span class="frac"><span>&beta;x</span><span>k<sub>y</sub></span></span>)
+        &minus; &delta;yz &minus; h<sub>y</sub>y
+      </div>
+      <div class="equation">
+        <span class="frac"><span>dz</span><span>dt</span></span>
+        = &minus;&gamma;z + &zeta;&gamma;xz + &eta;&delta;yz &minus; h<sub>z</sub>z
+      </div>
+    </section>
+
+    <section class="panel interpretation">
+      <h2>Ecological Interpretation</h2>
+      <p>
+        Let <strong>x(t)</strong> represent the population density or biomass of walleye pollock,
+        <strong>y(t)</strong> represent the population density or biomass of Pacific cod, and
+        <strong>z(t)</strong> represent the population density of Steller sea lions. In this model,
+        Steller sea lions are the predator, while walleye pollock and Pacific cod are prey species
+        that may also compete with one another for food and resources.
+      </p>
+
+      <h3>State Variables</h3>
+      <div class="table-wrap compact-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Ecological Meaning</th>
+              <th>Recommended Unit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>x</td><td>Population or biomass of walleye pollock</td><td>Pollock biomass (metric tons)</td></tr>
+            <tr><td>y</td><td>Population or biomass of Pacific cod</td><td>Cod biomass (metric tons)</td></tr>
+            <tr><td>z</td><td>Population or biomass of Steller sea lions</td><td>Sea lion biomass (metric tons)</td></tr>
+            <tr><td>t</td><td>Time</td><td>Years</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Units of Parameters Under Biomass Interpretation</h3>
+      <p>If x, y, and z are in metric tons and time is measured in years:</p>
+      <div class="table-wrap compact-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Unit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>r<sub>x</sub>, r<sub>y</sub></td><td>year<sup>-1</sup></td></tr>
+            <tr><td>k<sub>x</sub>, k<sub>y</sub></td><td>metric tons</td></tr>
+            <tr><td>&alpha;, &beta;</td><td>dimensionless</td></tr>
+            <tr><td>&gamma;, &delta;</td><td>tonne<sup>-1</sup> year<sup>-1</sup></td></tr>
+            <tr><td>&zeta;, &eta;</td><td>dimensionless</td></tr>
+            <tr><td>h<sub>x</sub>, h<sub>y</sub>, h<sub>z</sub></td><td>year<sup>-1</sup></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Parameters in the Pollock Equation</h3>
+      <div class="equation">
+        <span class="frac"><span>dx</span><span>dt</span></span>
+        = r<sub>x</sub>x(1 &minus;
+        <span class="frac"><span>x</span><span>k<sub>x</sub></span></span>
+        &minus;
+        <span class="frac"><span>&alpha;y</span><span>k<sub>x</sub></span></span>)
+        &minus; &gamma;xz &minus; h<sub>x</sub>x
+      </div>
+      <div class="table-wrap compact-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>r<sub>x</sub></td><td>Intrinsic growth rate of walleye pollock</td></tr>
+            <tr><td>k<sub>x</sub></td><td>Carrying capacity of walleye pollock</td></tr>
+            <tr><td>&alpha;</td><td>Competition coefficient measuring the effect of Pacific cod on pollock</td></tr>
+            <tr><td>&gamma;</td><td>Predation rate of Steller sea lions on pollock</td></tr>
+            <tr><td>h<sub>x</sub></td><td>Harvesting rate of walleye pollock</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The logistic term describes natural population growth limited by environmental carrying
+        capacity. The competition term represents resource competition between pollock and cod.
+        The predation term models pollock consumption by sea lions, and the harvesting term
+        represents harvesting pressure on pollock.
+      </p>
+
+      <h3>Parameters in the Pacific Cod Equation</h3>
+      <div class="equation">
+        <span class="frac"><span>dy</span><span>dt</span></span>
+        = r<sub>y</sub>y(1 &minus;
+        <span class="frac"><span>y</span><span>k<sub>y</sub></span></span>
+        &minus;
+        <span class="frac"><span>&beta;x</span><span>k<sub>y</sub></span></span>)
+        &minus; &delta;yz &minus; h<sub>y</sub>y
+      </div>
+      <div class="table-wrap compact-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>r<sub>y</sub></td><td>Intrinsic growth rate of Pacific cod</td></tr>
+            <tr><td>k<sub>y</sub></td><td>Carrying capacity of Pacific cod</td></tr>
+            <tr><td>&beta;</td><td>Competition coefficient measuring the effect of pollock on cod</td></tr>
+            <tr><td>&delta;</td><td>Predation rate of sea lions on cod</td></tr>
+            <tr><td>h<sub>y</sub></td><td>Harvesting rate of Pacific cod</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        Pacific cod grows logistically under environmental limitation. Pollock competes with cod
+        for prey or resources, sea lions consume cod at rate &delta;yz, and harvesting affects cod at rate h<sub>y</sub>y.
+      </p>
+
+      <h3>Parameters in the Steller Sea Lion Equation</h3>
+      <div class="equation">
+        <span class="frac"><span>dz</span><span>dt</span></span>
+        = &minus;&gamma;z + &zeta;&gamma;xz + &eta;&delta;yz &minus; h<sub>z</sub>z
+      </div>
+      <div class="table-wrap compact-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>&zeta;</td><td>Biomass conversion efficiency from pollock consumption into sea lion population growth</td></tr>
+            <tr><td>&eta;</td><td>Biomass conversion efficiency from cod consumption into sea lion population growth</td></tr>
+            <tr><td>h<sub>z</sub></td><td>Harvesting rate of Steller sea lions</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The term &minus;&gamma;z represents natural mortality or energetic loss in sea lions. The terms &zeta;&gamma;xz
+        and &eta;&delta;yz represent predator growth supported by pollock and cod consumption. The term &minus;h<sub>z</sub>z
+        represents harvesting pressure on Steller sea lions.
+      </p>
+
+      <h3>Ecological Structure of the Model</h3>
+      <div class="table-wrap compact-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Ecological Process</th>
+              <th>Represented By</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Logistic growth</td>
+              <td>
+                r<sub>x</sub>x(1 &minus; <span class="frac"><span>x</span><span>k<sub>x</sub></span></span>) for pollock;
+                r<sub>y</sub>y(1 &minus; <span class="frac"><span>y</span><span>k<sub>y</sub></span></span>) for Pacific cod
+              </td>
+            </tr>
+            <tr><td>Interspecific competition</td><td>&alpha;, &beta;</td></tr>
+            <tr><td>Predator-prey interaction</td><td>&gamma;xz, &delta;yz</td></tr>
+            <tr><td>Energy conversion</td><td>&zeta;, &eta;</td></tr>
+            <tr><td>Harvesting pressure</td><td>h<sub>x</sub>, h<sub>y</sub>, h<sub>z</sub></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Interpretation of Interaction Types</h3>
+      <p>
+        If &alpha; and &beta; are positive, the two fish species compete for food or resources, with larger
+        values implying stronger competition. Sea lions benefit from consuming both pollock and cod,
+        while both fish populations decrease due to predation. The harvesting parameters h<sub>x</sub>, h<sub>y</sub>,
+        and h<sub>z</sub> model harvesting pressure, and large harvesting values may destabilize coexistence equilibria.
+      </p>
+
+      <h3>Typical Stability Interpretation</h3>
+      <div class="table-wrap compact-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Equilibrium Type</th>
+              <th>Ecological Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>(0, 0, 0)</td><td>Total ecosystem collapse</td></tr>
+            <tr><td>(x*, 0, 0)</td><td>Pollock-only persistence</td></tr>
+            <tr><td>(0, y*, 0)</td><td>Cod-only persistence</td></tr>
+            <tr><td>(x*, y*, 0)</td><td>Fish coexistence without sea lions</td></tr>
+            <tr><td>(x*, y*, z*)</td><td>Full coexistence equilibrium</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        The Routh-Hurwitz conditions determine whether these ecological states are stable under
+        small perturbations.
+      </p>
+    </section>
+
+    <section class="plot-grid">
+      <div class="panel">
+        <h2>Time Series</h2>
+        <div id="timePlot" class="plot"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Rotatable 3D Phase Diagram and Isoclines</h2>
+        <div class="color-key">
+          <span><i class="swatch pollock"></i>Pollock isocline</span>
+          <span><i class="swatch cod"></i>Pacific cod isocline</span>
+          <span><i class="swatch sea-lion"></i>Sea lion isocline</span>
+        </div>
+        <div id="phasePlot" class="plot big-plot"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>2D Phase Plane Projections</h2>
+      <p class="note">
+        These projections show the current trajectory from the 3D phase diagram on the x-y,
+        y-z, and z-x planes.
+      </p>
+      <div class="projection-grid">
+        <div>
+          <h3>x-y Plane</h3>
+          <div id="xyPlot" class="plot projection-plot"></div>
+        </div>
+        <div>
+          <h3>y-z Plane</h3>
+          <div id="yzPlot" class="plot projection-plot"></div>
+        </div>
+        <div>
+          <h3>z-x Plane</h3>
+          <div id="zxPlot" class="plot projection-plot"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Equilibria and Routh-Hurwitz Stability</h2>
+      <p class="note">
+        For each equilibrium, the Jacobian characteristic polynomial is written as
+        &lambda;<sup>3</sup> + a<sub>1</sub>&lambda;<sup>2</sup> + a<sub>2</sub>&lambda; + a<sub>3</sub>.
+        Local asymptotic stability requires:
+        a<sub>1</sub> &gt; 0, a<sub>2</sub> &gt; 0, a<sub>3</sub> &gt; 0,
+        and a<sub>1</sub>a<sub>2</sub> &gt; a<sub>3</sub>.
+      </p>
+      <div class="calculation-details">
+        <h3>Equilibrium Calculation</h3>
+        <p>
+          An equilibrium point <strong>(x*, y*, z*)</strong> occurs when all population rates are zero:
+        </p>
+        <div class="equation">
+          <span class="frac"><span>dx</span><span>dt</span></span> = 0,
+          <span class="frac"><span>dy</span><span>dt</span></span> = 0,
+          <span class="frac"><span>dz</span><span>dt</span></span> = 0
+        </div>
+        <p>
+          The app tests feasible combinations where one or more species may be absent, solves the
+          remaining linear equilibrium conditions, rejects negative or invalid populations, and keeps
+          only biologically feasible equilibria.
+        </p>
+
+        <h3>Jacobian Matrix</h3>
+        <p>
+          Stability is evaluated by linearizing the system around each equilibrium. If
+          <strong>F(x, y, z)</strong>, <strong>G(x, y, z)</strong>, and <strong>H(x, y, z)</strong>
+          are the right-hand sides of the three equations, the Jacobian is:
+        </p>
+        <div class="equation matrix-equation">
+          J =
+          <span class="matrix">
+            <span class="frac"><span>&part;F</span><span>&part;x</span></span>
+            <span class="frac"><span>&part;F</span><span>&part;y</span></span>
+            <span class="frac"><span>&part;F</span><span>&part;z</span></span>
+            <span class="frac"><span>&part;G</span><span>&part;x</span></span>
+            <span class="frac"><span>&part;G</span><span>&part;y</span></span>
+            <span class="frac"><span>&part;G</span><span>&part;z</span></span>
+            <span class="frac"><span>&part;H</span><span>&part;x</span></span>
+            <span class="frac"><span>&part;H</span><span>&part;y</span></span>
+            <span class="frac"><span>&part;H</span><span>&part;z</span></span>
+          </span>
+        </div>
+        <p>
+          This matrix measures how small changes in pollock, cod, and sea lion biomass affect the
+          short-term change rates near the equilibrium.
+        </p>
+
+        <h3>Routh-Hurwitz Calculation</h3>
+        <p>
+          For each Jacobian matrix, the characteristic polynomial is written as:
+        </p>
+        <div class="equation">
+          &lambda;<sup>3</sup> + a<sub>1</sub>&lambda;<sup>2</sup> + a<sub>2</sub>&lambda; + a<sub>3</sub> = 0
+        </div>
+        <div class="table-wrap compact-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Coefficient</th>
+                <th>Calculation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>a<sub>1</sub></td><td>&minus;tr(J)</td></tr>
+              <tr><td>a<sub>2</sub></td><td><span class="frac"><span>1</span><span>2</span></span>[(tr(J))<sup>2</sup> &minus; tr(J<sup>2</sup>)]</td></tr>
+              <tr><td>a<sub>3</sub></td><td>&minus;det(J)</td></tr>
+              <tr><td>a<sub>1</sub>a<sub>2</sub> &minus; a<sub>3</sub></td><td>Routh-Hurwitz stability margin</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          If all four conditions are positive, the equilibrium is locally stable. If any condition
+          fails, the equilibrium is classified as unstable for the current parameter values.
+        </p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>x*<br><span>Walleye pollock</span></th>
+              <th>y*<br><span>Pacific cod</span></th>
+              <th>z*<br><span>Steller sea lion</span></th>
+              <th>a<sub>1</sub></th>
+              <th>a<sub>2</sub></th>
+              <th>a<sub>3</sub></th>
+              <th>a<sub>1</sub>a<sub>2</sub> &minus; a<sub>3</sub></th>
+              <th>Stability</th>
+            </tr>
+          </thead>
+          <tbody id="equilibriaBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Built with Plotly.js and plain JavaScript. Drag the 3D plot to rotate it.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
