@@ -12,7 +12,7 @@
     <h1>Lotka-Volterra Predator-Prey Model for Steller Sea Lions and Their Fish Prey</h1>
     <p>
       This interactive Lotka-Volterra model explores how Steller sea lions interact with
-      walleye pollock and Pacific cod as fish prey.
+      walleye pollock and Atka mackerel as fish prey.
     </p>
   </header>
 
@@ -30,7 +30,7 @@
     <section class="panel equations">
       <h2>Model</h2>
       <p class="variable-key">
-        Variable key: x = walleye pollock, y = Pacific cod, z = Steller sea lion.
+        Variable key: x = walleye pollock, y = Atka mackerel, z = Steller sea lion.
       </p>
       <div class="equation">
         <span class="frac"><span>dx</span><span>dt</span></span>
@@ -58,9 +58,9 @@
       <h2>Ecological Interpretation</h2>
       <p>
         Let <strong>x(t)</strong> represent the population density or biomass of walleye pollock,
-        <strong>y(t)</strong> represent the population density or biomass of Pacific cod, and
+        <strong>y(t)</strong> represent the population density or biomass of Atka mackerel, and
         <strong>z(t)</strong> represent the population density of Steller sea lions. In this model,
-        Steller sea lions are the predator, while walleye pollock and Pacific cod are prey species
+        Steller sea lions are the predator, while walleye pollock and Atka mackerel are prey species
         that may also compete with one another for food and resources.
       </p>
 
@@ -76,7 +76,7 @@
           </thead>
           <tbody>
             <tr><td>x</td><td>Population or biomass of walleye pollock</td><td>Pollock biomass (metric tons)</td></tr>
-            <tr><td>y</td><td>Population or biomass of Pacific cod</td><td>Cod biomass (metric tons)</td></tr>
+            <tr><td>y</td><td>Population or biomass of Atka mackerel</td><td>Atka mackerel biomass (metric tons)</td></tr>
             <tr><td>z</td><td>Population or biomass of Steller sea lions</td><td>Sea lion biomass (metric tons)</td></tr>
             <tr><td>t</td><td>Time</td><td>Years</td></tr>
           </tbody>
@@ -124,7 +124,7 @@
           <tbody>
             <tr><td>r<sub>x</sub></td><td>Intrinsic growth rate of walleye pollock</td></tr>
             <tr><td>k<sub>x</sub></td><td>Carrying capacity of walleye pollock</td></tr>
-            <tr><td>&alpha;</td><td>Competition coefficient measuring the effect of Pacific cod on pollock</td></tr>
+            <tr><td>&alpha;</td><td>Competition coefficient measuring the effect of Atka mackerel on pollock</td></tr>
             <tr><td>&gamma;</td><td>Predation rate of Steller sea lions on pollock</td></tr>
             <tr><td>h<sub>x</sub></td><td>Harvesting rate of walleye pollock</td></tr>
           </tbody>
@@ -132,12 +132,12 @@
       </div>
       <p>
         The logistic term describes natural population growth limited by environmental carrying
-        capacity. The competition term represents resource competition between pollock and cod.
+        capacity. The competition term represents resource competition between pollock and Atka mackerel.
         The predation term models pollock consumption by sea lions, and the harvesting term
         represents harvesting pressure on pollock.
       </p>
 
-      <h3>Parameters in the Pacific Cod Equation</h3>
+      <h3>Parameters in the Atka mackerel Equation</h3>
       <div class="equation">
         <span class="frac"><span>dy</span><span>dt</span></span>
         = r<sub>y</sub>y(1 &minus;
@@ -155,17 +155,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>r<sub>y</sub></td><td>Intrinsic growth rate of Pacific cod</td></tr>
-            <tr><td>k<sub>y</sub></td><td>Carrying capacity of Pacific cod</td></tr>
-            <tr><td>&beta;</td><td>Competition coefficient measuring the effect of pollock on cod</td></tr>
-            <tr><td>&delta;</td><td>Predation rate of sea lions on cod</td></tr>
-            <tr><td>h<sub>y</sub></td><td>Harvesting rate of Pacific cod</td></tr>
+            <tr><td>r<sub>y</sub></td><td>Intrinsic growth rate of Atka mackerel</td></tr>
+            <tr><td>k<sub>y</sub></td><td>Carrying capacity of Atka mackerel</td></tr>
+            <tr><td>&beta;</td><td>Competition coefficient measuring the effect of pollock on Atka mackerel</td></tr>
+            <tr><td>&delta;</td><td>Predation rate of sea lions on Atka mackerel</td></tr>
+            <tr><td>h<sub>y</sub></td><td>Harvesting rate of Atka mackerel</td></tr>
           </tbody>
         </table>
       </div>
       <p>
-        Pacific cod grows logistically under environmental limitation. Pollock competes with cod
-        for prey or resources, sea lions consume cod at rate &delta;yz, and harvesting affects cod at rate h<sub>y</sub>y.
+        Atka mackerel grows logistically under environmental limitation. Pollock competes with Atka mackerel
+        for prey or resources, sea lions consume Atka mackerel at rate &delta;yz, and harvesting affects Atka mackerel at rate h<sub>y</sub>y.
       </p>
 
       <h3>Parameters in the Steller Sea Lion Equation</h3>
@@ -183,14 +183,14 @@
           </thead>
           <tbody>
             <tr><td>&zeta;</td><td>Biomass conversion efficiency from pollock consumption into sea lion population growth</td></tr>
-            <tr><td>&eta;</td><td>Biomass conversion efficiency from cod consumption into sea lion population growth</td></tr>
+            <tr><td>&eta;</td><td>Biomass conversion efficiency from Atka mackerel consumption into sea lion population growth</td></tr>
             <tr><td>h<sub>z</sub></td><td>Harvesting rate of Steller sea lions</td></tr>
           </tbody>
         </table>
       </div>
       <p>
         The term &minus;&gamma;z represents natural mortality or energetic loss in sea lions. The terms &zeta;&gamma;xz
-        and &eta;&delta;yz represent predator growth supported by pollock and cod consumption. The term &minus;h<sub>z</sub>z
+        and &eta;&delta;yz represent predator growth supported by pollock and Atka mackerel consumption. The term &minus;h<sub>z</sub>z
         represents harvesting pressure on Steller sea lions.
       </p>
 
@@ -208,7 +208,7 @@
               <td>Logistic growth</td>
               <td>
                 r<sub>x</sub>x(1 &minus; <span class="frac"><span>x</span><span>k<sub>x</sub></span></span>) for pollock;
-                r<sub>y</sub>y(1 &minus; <span class="frac"><span>y</span><span>k<sub>y</sub></span></span>) for Pacific cod
+                r<sub>y</sub>y(1 &minus; <span class="frac"><span>y</span><span>k<sub>y</sub></span></span>) for Atka mackerel
               </td>
             </tr>
             <tr><td>Interspecific competition</td><td>&alpha;, &beta;</td></tr>
@@ -222,7 +222,7 @@
       <h3>Interpretation of Interaction Types</h3>
       <p>
         If &alpha; and &beta; are positive, the two fish species compete for food or resources, with larger
-        values implying stronger competition. Sea lions benefit from consuming both pollock and cod,
+        values implying stronger competition. Sea lions benefit from consuming both pollock and Atka mackerel,
         while both fish populations decrease due to predation. The harvesting parameters h<sub>x</sub>, h<sub>y</sub>,
         and h<sub>z</sub> model harvesting pressure, and large harvesting values may destabilize coexistence equilibria.
       </p>
@@ -239,7 +239,7 @@
           <tbody>
             <tr><td>(0, 0, 0)</td><td>Total ecosystem collapse</td></tr>
             <tr><td>(x*, 0, 0)</td><td>Pollock-only persistence</td></tr>
-            <tr><td>(0, y*, 0)</td><td>Cod-only persistence</td></tr>
+            <tr><td>(0, y*, 0)</td><td>Atka mackerel-only persistence</td></tr>
             <tr><td>(x*, y*, 0)</td><td>Fish coexistence without sea lions</td></tr>
             <tr><td>(x*, y*, z*)</td><td>Full coexistence equilibrium</td></tr>
           </tbody>
@@ -261,7 +261,7 @@
         <h2>Rotatable 3D Phase Diagram and Isoclines</h2>
         <div class="color-key">
           <span><i class="swatch pollock"></i>Pollock isocline</span>
-          <span><i class="swatch cod"></i>Pacific cod isocline</span>
+          <span><i class="swatch mackerel"></i>Atka mackerel isocline</span>
           <span><i class="swatch sea-lion"></i>Sea lion isocline</span>
         </div>
         <div id="phasePlot" class="plot big-plot"></div>
@@ -336,7 +336,7 @@
           </span>
         </div>
         <p>
-          This matrix measures how small changes in pollock, cod, and sea lion biomass affect the
+          This matrix measures how small changes in pollock, Atka mackerel, and sea lion biomass affect the
           short-term change rates near the equilibrium.
         </p>
 
@@ -374,7 +374,7 @@
             <tr>
               <th>#</th>
               <th>x*<br><span>Walleye pollock</span></th>
-              <th>y*<br><span>Pacific cod</span></th>
+              <th>y*<br><span>Atka mackerel</span></th>
               <th>z*<br><span>Steller sea lion</span></th>
               <th>a<sub>1</sub></th>
               <th>a<sub>2</sub></th>

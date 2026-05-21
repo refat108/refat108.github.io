@@ -29,12 +29,12 @@ const parameterGroups = [
     ]
   },
   {
-    title: "Pacific Cod Parameters",
+    title: "Atka mackerel Parameters",
     sliders: [
-      ["ry", "r<sub>y</sub>", "Intrinsic growth rate of Pacific cod", "year<sup>-1</sup>", 0.05, 3.0, 0.01],
-      ["ky", "k<sub>y</sub>", "Carrying capacity of Pacific cod", "metric tons", 10, 300, 1],
-      ["hy", "h<sub>y</sub>", "Harvesting rate of Pacific cod", "year<sup>-1</sup>", 0, 0.5, 0.001],
-      ["y0", "initial y", "Initial biomass of Pacific cod", "metric tons", 0.1, 150, 0.1]
+      ["ry", "r<sub>y</sub>", "Intrinsic growth rate of Atka mackerel", "year<sup>-1</sup>", 0.05, 3.0, 0.01],
+      ["ky", "k<sub>y</sub>", "Carrying capacity of Atka mackerel", "metric tons", 10, 300, 1],
+      ["hy", "h<sub>y</sub>", "Harvesting rate of Atka mackerel", "year<sup>-1</sup>", 0, 0.5, 0.001],
+      ["y0", "initial y", "Initial biomass of Atka mackerel", "metric tons", 0.1, 150, 0.1]
     ]
   },
   {
@@ -47,12 +47,12 @@ const parameterGroups = [
   {
     title: "Interaction and Conversion Parameters",
     sliders: [
-      ["alpha", "&alpha;", "Effect of Pacific cod competition on pollock", "dimensionless", 0, 3, 0.01],
-      ["beta", "&beta;", "Effect of pollock competition on Pacific cod", "dimensionless", 0, 3, 0.01],
+      ["alpha", "&alpha;", "Effect of Atka mackerel competition on pollock", "dimensionless", 0, 3, 0.01],
+      ["beta", "&beta;", "Effect of pollock competition on Atka mackerel", "dimensionless", 0, 3, 0.01],
       ["gamma", "&gamma;", "Predation rate of sea lions on pollock", "tonne<sup>-1</sup> year<sup>-1</sup>", 0.001, 0.1, 0.001],
-      ["delta", "&delta;", "Predation rate of sea lions on Pacific cod", "tonne<sup>-1</sup> year<sup>-1</sup>", 0.001, 0.1, 0.001],
+      ["delta", "&delta;", "Predation rate of sea lions on Atka mackerel", "tonne<sup>-1</sup> year<sup>-1</sup>", 0.001, 0.1, 0.001],
       ["zeta", "&zeta;", "Conversion efficiency from pollock consumption to sea lion growth", "dimensionless", 0, 2, 0.01],
-      ["eta", "&eta;", "Conversion efficiency from cod consumption to sea lion growth", "dimensionless", 0, 2, 0.01]
+      ["eta", "&eta;", "Conversion efficiency from Atka mackerel consumption to sea lion growth", "dimensionless", 0, 2, 0.01]
     ]
   },
   {
@@ -265,7 +265,7 @@ function buildIsoclines(p) {
 function plotTimeSeries(sol) {
   const traces = [
     { x: sol.t, y: sol.x, mode: "lines", name: "x(t) - walleye pollock" },
-    { x: sol.t, y: sol.y, mode: "lines", name: "y(t) - Pacific cod" },
+    { x: sol.t, y: sol.y, mode: "lines", name: "y(t) - Atka mackerel" },
     { x: sol.t, y: sol.z, mode: "lines", name: "z(t) - Steller sea lion" }
   ];
 
@@ -306,9 +306,9 @@ function plotPhase(sol, iso, equilibria) {
       z: iso.Zy,
       opacity: 0.42,
       showscale: false,
-      name: "Pacific cod isocline (dy/dt = 0)",
+      name: "Atka mackerel isocline (dy/dt = 0)",
       colorscale: [[0, "#047857"], [1, "#6ee7b7"]],
-      hovertemplate: "Pacific cod isocline<br>dy/dt = 0<br>x=%{x:.2f}<br>y=%{y:.2f}<br>z=%{z:.2f}<extra></extra>"
+      hovertemplate: "Atka mackerel isocline<br>dy/dt = 0<br>x=%{x:.2f}<br>y=%{y:.2f}<br>z=%{z:.2f}<extra></extra>"
     },
     {
       type: "surface",
@@ -378,7 +378,7 @@ function plotPhase(sol, iso, equilibria) {
     margin: { l: 0, r: 0, t: 10, b: 0 },
     scene: {
       xaxis: { title: "x - Walleye pollock", range: [0, iso.xMax] },
-      yaxis: { title: "y - Pacific cod", range: [0, iso.yMax] },
+      yaxis: { title: "y - Atka mackerel", range: [0, iso.yMax] },
       zaxis: { title: "z - Steller sea lion", range: [0, iso.zMax] },
       camera: { eye: { x: 1.7, y: 1.7, z: 1.1 } }
     },
@@ -446,11 +446,11 @@ function plotProjection(elementId, title, xData, yData, xLabel, yLabel, equilibr
 function plot2DProjections(sol, equilibria) {
   plotProjection(
     "xyPlot",
-    "Pollock vs Pacific cod",
+    "Pollock vs Atka mackerel",
     sol.x,
     sol.y,
     "x - Walleye pollock",
-    "y - Pacific cod",
+    "y - Atka mackerel",
     equilibria,
     "x",
     "y"
@@ -458,10 +458,10 @@ function plot2DProjections(sol, equilibria) {
 
   plotProjection(
     "yzPlot",
-    "Pacific cod vs Steller sea lion",
+    "Atka mackerel vs Steller sea lion",
     sol.y,
     sol.z,
-    "y - Pacific cod",
+    "y - Atka mackerel",
     "z - Steller sea lion",
     equilibria,
     "y",
