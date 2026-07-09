@@ -1,0 +1,575 @@
+{
+  "model": "LASSO linear regression",
+  "dependent_variable": "SLEEP_CrudePrev",
+  "dependent_variable_label": "Short sleep duration prevalence",
+  "data_file": "data/Clean_NM.csv",
+  "method_note": "Started with all 40 CDC PLACES crude prevalence variables, used SLEEP_CrudePrev as the dependent variable, and used the remaining variables as candidate predictors. Predictors were standardized before LASSO selection. The alpha penalty was selected by scanning a warm-started LASSO path and choosing the model with the lowest BIC. P-values are approximate post-LASSO OLS p-values from refitting ordinary least squares on the selected variables.",
+  "row_count_total": 603,
+  "row_count_used": 602,
+  "candidate_crude_prev_columns": 40,
+  "candidate_predictor_count": 39,
+  "selected_variable_count": 30,
+  "removed_variable_count": 9,
+  "alpha": 0.003833,
+  "intercept": 17.87179,
+  "metrics": {
+    "r_squared": 0.948,
+    "rmse": 1.0235,
+    "mae": 0.7729
+  },
+  "selected_variables": [
+    {
+      "variable": "GHLTH_CrudePrev",
+      "coefficient": -1.877312,
+      "standardized_coefficient": -14.992461,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -1.862579,
+      "standard_error": 0.163064,
+      "test_statistic": -11.422384,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "COGNITION_CrudePrev",
+      "coefficient": 1.419646,
+      "standardized_coefficient": 6.80972,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 2.634665,
+      "standard_error": 0.267657,
+      "test_statistic": 9.843444,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "DIABETES_CrudePrev",
+      "coefficient": 1.746518,
+      "standardized_coefficient": 6.698212,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 1.895331,
+      "standard_error": 0.212631,
+      "test_statistic": 8.913713,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "LPA_CrudePrev",
+      "coefficient": 0.58989,
+      "standardized_coefficient": 4.312649,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 0.649473,
+      "standard_error": 0.081197,
+      "test_statistic": 7.998712,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "CSMOKING_CrudePrev",
+      "coefficient": 0.460258,
+      "standardized_coefficient": 2.754593,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 0.572426,
+      "standard_error": 0.100797,
+      "test_statistic": 5.678997,
+      "p_value": 1e-08,
+      "significance": "***"
+    },
+    {
+      "variable": "EMOTIONSPT_CrudePrev",
+      "coefficient": 0.691325,
+      "standardized_coefficient": 2.718859,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 0.517375,
+      "standard_error": 0.097965,
+      "test_statistic": 5.281229,
+      "p_value": 1.3e-07,
+      "significance": "***"
+    },
+    {
+      "variable": "ARTHRITIS_CrudePrev",
+      "coefficient": -0.554932,
+      "standardized_coefficient": -2.589402,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -0.695746,
+      "standard_error": 0.105609,
+      "test_statistic": -6.587953,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "CANCER_CrudePrev",
+      "coefficient": 1.029812,
+      "standardized_coefficient": 2.427388,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 1.203123,
+      "standard_error": 0.179934,
+      "test_statistic": 6.686483,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "DENTAL_CrudePrev",
+      "coefficient": -0.211979,
+      "standardized_coefficient": -2.236637,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -0.225997,
+      "standard_error": 0.021202,
+      "test_statistic": -10.659044,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "OBESITY_CrudePrev",
+      "coefficient": 0.39083,
+      "standardized_coefficient": 2.217632,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 0.453274,
+      "standard_error": 0.031864,
+      "test_statistic": 14.225129,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "MOBILITY_CrudePrev",
+      "coefficient": -0.390348,
+      "standardized_coefficient": -1.996976,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -1.025937,
+      "standard_error": 0.18517,
+      "test_statistic": -5.540502,
+      "p_value": 3e-08,
+      "significance": "***"
+    },
+    {
+      "variable": "HOUSINSECU_CrudePrev",
+      "coefficient": -0.25434,
+      "standardized_coefficient": -1.957936,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -0.959637,
+      "standard_error": 0.129207,
+      "test_statistic": -7.427103,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "HIGHCHOL_CrudePrev",
+      "coefficient": -0.472131,
+      "standardized_coefficient": -1.775601,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -0.54845,
+      "standard_error": 0.065728,
+      "test_statistic": -8.344188,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "CHOLSCREEN_CrudePrev",
+      "coefficient": 0.318858,
+      "standardized_coefficient": 1.769212,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 0.967979,
+      "standard_error": 0.126633,
+      "test_statistic": 7.643993,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "DEPRESSION_CrudePrev",
+      "coefficient": 0.596129,
+      "standardized_coefficient": 1.342554,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 0.744641,
+      "standard_error": 0.061273,
+      "test_statistic": 12.152925,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "BINGE_CrudePrev",
+      "coefficient": -0.688765,
+      "standardized_coefficient": -1.274382,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -0.724963,
+      "standard_error": 0.081547,
+      "test_statistic": -8.890123,
+      "p_value": 0.0,
+      "significance": "***"
+    },
+    {
+      "variable": "INDEPLIVE_CrudePrev",
+      "coefficient": -0.329215,
+      "standardized_coefficient": -1.235977,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -1.869493,
+      "standard_error": 0.429817,
+      "test_statistic": -4.349511,
+      "p_value": 1.364e-05,
+      "significance": "***"
+    },
+    {
+      "variable": "CASTHMA_CrudePrev",
+      "coefficient": -0.729704,
+      "standardized_coefficient": -1.092932,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -1.147751,
+      "standard_error": 0.283138,
+      "test_statistic": -4.05368,
+      "p_value": 5.042e-05,
+      "significance": "***"
+    },
+    {
+      "variable": "LONELINESS_CrudePrev",
+      "coefficient": -0.301167,
+      "standardized_coefficient": -1.00817,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -0.060361,
+      "standard_error": 0.115324,
+      "test_statistic": -0.523407,
+      "p_value": 0.60069107,
+      "significance": "not significant"
+    },
+    {
+      "variable": "ACCESS2_CrudePrev",
+      "coefficient": 0.140694,
+      "standardized_coefficient": 0.954925,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 0.248119,
+      "standard_error": 0.100474,
+      "test_statistic": 2.469487,
+      "p_value": 0.0135307,
+      "significance": "*"
+    },
+    {
+      "variable": "SELFCARE_CrudePrev",
+      "coefficient": 0.401881,
+      "standardized_coefficient": 0.875204,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 1.107067,
+      "standard_error": 0.286855,
+      "test_statistic": 3.859323,
+      "p_value": 0.0001137,
+      "significance": "***"
+    },
+    {
+      "variable": "CHECKUP_CrudePrev",
+      "coefficient": -0.113063,
+      "standardized_coefficient": -0.46048,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -0.218256,
+      "standard_error": 0.070262,
+      "test_statistic": -3.106298,
+      "p_value": 0.00189445,
+      "significance": "**"
+    },
+    {
+      "variable": "BPMED_CrudePrev",
+      "coefficient": 0.072642,
+      "standardized_coefficient": 0.445474,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 0.138568,
+      "standard_error": 0.033449,
+      "test_statistic": 4.14261,
+      "p_value": 3.434e-05,
+      "significance": "***"
+    },
+    {
+      "variable": "MAMMOUSE_CrudePrev",
+      "coefficient": -0.064408,
+      "standardized_coefficient": -0.381596,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -0.032257,
+      "standard_error": 0.023151,
+      "test_statistic": -1.393337,
+      "p_value": 0.16351793,
+      "significance": "not significant"
+    },
+    {
+      "variable": "COLON_SCREEN_CrudePrev",
+      "coefficient": 0.042683,
+      "standardized_coefficient": 0.355067,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": -0.002988,
+      "standard_error": 0.023967,
+      "test_statistic": -0.124661,
+      "p_value": 0.90079211,
+      "significance": "not significant"
+    },
+    {
+      "variable": "COPD_CrudePrev",
+      "coefficient": -0.098748,
+      "standardized_coefficient": -0.261647,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": -0.210597,
+      "standard_error": 0.219662,
+      "test_statistic": -0.95873,
+      "p_value": 0.33769501,
+      "significance": "not significant"
+    },
+    {
+      "variable": "TEETHLOST_CrudePrev",
+      "coefficient": 0.018328,
+      "standardized_coefficient": 0.160371,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": -0.012337,
+      "standard_error": 0.017725,
+      "test_statistic": -0.696025,
+      "p_value": 0.48641333,
+      "significance": "not significant"
+    },
+    {
+      "variable": "HEARING_CrudePrev",
+      "coefficient": 0.066245,
+      "standardized_coefficient": 0.146832,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 0.726127,
+      "standard_error": 0.277703,
+      "test_statistic": 2.614764,
+      "p_value": 0.00892893,
+      "significance": "**"
+    },
+    {
+      "variable": "STROKE_CrudePrev",
+      "coefficient": -0.111958,
+      "standardized_coefficient": -0.136413,
+      "direction": "negative",
+      "post_lasso_ols_coefficient": 0.437849,
+      "standard_error": 0.794031,
+      "test_statistic": 0.551426,
+      "p_value": 0.58134178,
+      "significance": "not significant"
+    },
+    {
+      "variable": "LACKTRPT_CrudePrev",
+      "coefficient": 0.011438,
+      "standardized_coefficient": 0.069962,
+      "direction": "positive",
+      "post_lasso_ols_coefficient": 1.042045,
+      "standard_error": 0.192847,
+      "test_statistic": 5.403493,
+      "p_value": 7e-08,
+      "significance": "***"
+    }
+  ],
+  "removed_variables": [
+    "BPHIGH_CrudePrev",
+    "CHD_CrudePrev",
+    "MHLTH_CrudePrev",
+    "PHLTH_CrudePrev",
+    "VISION_CrudePrev",
+    "DISABILITY_CrudePrev",
+    "FOODSTAMP_CrudePrev",
+    "FOODINSECU_CrudePrev",
+    "SHUTUTILITY_CrudePrev"
+  ],
+  "lasso_path": [
+    {
+      "alpha": 3.8331687786957924,
+      "mse": 20.159139854968483,
+      "bic": 1808.201981373999,
+      "selected_count": 0
+    },
+    {
+      "alpha": 3.1284026711115986,
+      "mse": 15.215309042413633,
+      "bic": 1651.6263759818653,
+      "selected_count": 2
+    },
+    {
+      "alpha": 2.553214804162134,
+      "mse": 11.73161024871901,
+      "bic": 1495.0972463590222,
+      "selected_count": 2
+    },
+    {
+      "alpha": 2.0837809328031156,
+      "mse": 9.330301664416615,
+      "bic": 1376.4282301635633,
+      "selected_count": 5
+    },
+    {
+      "alpha": 1.7006571357942382,
+      "mse": 7.603220433593685,
+      "bic": 1253.2015703051297,
+      "selected_count": 5
+    },
+    {
+      "alpha": 1.3879744497120479,
+      "mse": 6.4528426063844515,
+      "bic": 1154.4427774562323,
+      "selected_count": 5
+    },
+    {
+      "alpha": 1.132781577489318,
+      "mse": 5.686595161407022,
+      "bic": 1078.3445180571755,
+      "selected_count": 5
+    },
+    {
+      "alpha": 0.9245084465102377,
+      "mse": 5.176210094194647,
+      "bic": 1021.7333213854483,
+      "selected_count": 5
+    },
+    {
+      "alpha": 0.754528396871667,
+      "mse": 4.836253162075055,
+      "bic": 980.8377363044121,
+      "selected_count": 5
+    },
+    {
+      "alpha": 0.6158008656759453,
+      "mse": 4.585015058333986,
+      "bic": 955.1231654298475,
+      "selected_count": 6
+    },
+    {
+      "alpha": 0.5025797673612823,
+      "mse": 4.41555438951413,
+      "bic": 932.4518488902378,
+      "selected_count": 6
+    },
+    {
+      "alpha": 0.41017549120146884,
+      "mse": 4.284783623144442,
+      "bic": 920.7539748814559,
+      "selected_count": 7
+    },
+    {
+      "alpha": 0.3347606579264127,
+      "mse": 4.097738818910339,
+      "bic": 887.4836036945386,
+      "selected_count": 6
+    },
+    {
+      "alpha": 0.27321158991501276,
+      "mse": 4.006460740370234,
+      "bic": 873.9223070805921,
+      "selected_count": 6
+    },
+    {
+      "alpha": 0.2229789286657979,
+      "mse": 3.9456596035726,
+      "bic": 864.7164610801715,
+      "selected_count": 6
+    },
+    {
+      "alpha": 0.18198204052914857,
+      "mse": 3.875857632058444,
+      "bic": 860.3715136739138,
+      "selected_count": 7
+    },
+    {
+      "alpha": 0.14852283699321797,
+      "mse": 3.652027143031432,
+      "bic": 824.5618039550423,
+      "selected_count": 7
+    },
+    {
+      "alpha": 0.12121543996524616,
+      "mse": 3.3775611098147125,
+      "bic": 783.9286976690221,
+      "selected_count": 8
+    },
+    {
+      "alpha": 0.09892877878867289,
+      "mse": 3.169388833671069,
+      "bic": 745.6324005185425,
+      "selected_count": 8
+    },
+    {
+      "alpha": 0.08073974136813102,
+      "mse": 3.0497594381946485,
+      "bic": 722.4698138634243,
+      "selected_count": 8
+    },
+    {
+      "alpha": 0.06589493892488119,
+      "mse": 2.93716628654787,
+      "bic": 706.2243686070578,
+      "selected_count": 9
+    },
+    {
+      "alpha": 0.05377950068128059,
+      "mse": 2.833292884422782,
+      "bic": 697.3494702797854,
+      "selected_count": 11
+    },
+    {
+      "alpha": 0.043891605952089054,
+      "mse": 2.7030779225647463,
+      "bic": 694.6273009037316,
+      "selected_count": 15
+    },
+    {
+      "alpha": 0.035821698763447624,
+      "mse": 2.4603674990114004,
+      "bic": 644.3911777594503,
+      "selected_count": 16
+    },
+    {
+      "alpha": 0.029235524070362968,
+      "mse": 2.2159103080205877,
+      "bic": 600.594194055137,
+      "selected_count": 19
+    },
+    {
+      "alpha": 0.02386028293389932,
+      "mse": 1.991421348306005,
+      "bic": 529.8915087725657,
+      "selected_count": 18
+    },
+    {
+      "alpha": 0.01947333320639389,
+      "mse": 1.8469330689276044,
+      "bic": 497.34807953499904,
+      "selected_count": 20
+    },
+    {
+      "alpha": 0.01589296770779204,
+      "mse": 1.666902699245559,
+      "bic": 448.40793823510126,
+      "selected_count": 22
+    },
+    {
+      "alpha": 0.012970887925749961,
+      "mse": 1.5198411102245428,
+      "bic": 392.80635337843574,
+      "selected_count": 22
+    },
+    {
+      "alpha": 0.010586061500639628,
+      "mse": 1.3883228386803788,
+      "bic": 344.7199707465968,
+      "selected_count": 23
+    },
+    {
+      "alpha": 0.008639709072873288,
+      "mse": 1.2814139048107789,
+      "bic": 315.6810705981427,
+      "selected_count": 26
+    },
+    {
+      "alpha": 0.007051212848081312,
+      "mse": 1.2000803905030208,
+      "bic": 282.60485609817147,
+      "selected_count": 27
+    },
+    {
+      "alpha": 0.005754777413171829,
+      "mse": 1.134657899256079,
+      "bic": 242.45807306017792,
+      "selected_count": 26
+    },
+    {
+      "alpha": 0.004696704494484826,
+      "mse": 1.0879127552545558,
+      "bic": 229.93230460272702,
+      "selected_count": 28
+    },
+    {
+      "alpha": 0.0038331687786957924,
+      "mse": 1.0476008228712304,
+      "bic": 220.0023000775626,
+      "selected_count": 30
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+[
+  {
+    "id": "health-outcomes",
+    "title": "Health Outcomes",
+    "shortTitle": "Outcomes",
+    "default": "ARTHRITIS_CrudePrev",
+    "description": "Estimated prevalence of chronic disease and oral health outcomes.",
+    "variables": [
+      {
+        "field": "ARTHRITIS_CrudePrev",
+        "label": "Arthritis",
+        "ciField": "ARTHRITIS_Crude95CI"
+      },
+      {
+        "field": "BPHIGH_CrudePrev",
+        "label": "High blood pressure",
+        "ciField": "BPHIGH_Crude95CI"
+      },
+      {
+        "field": "CANCER_CrudePrev",
+        "label": "Cancer excluding skin cancer",
+        "ciField": "CANCER_Crude95CI"
+      },
+      {
+        "field": "CASTHMA_CrudePrev",
+        "label": "Current asthma",
+        "ciField": "CASTHMA_Crude95CI"
+      },
+      {
+        "field": "CHD_CrudePrev",
+        "label": "Coronary heart disease",
+        "ciField": "CHD_Crude95CI"
+      },
+      {
+        "field": "COPD_CrudePrev",
+        "label": "COPD",
+        "ciField": "COPD_Crude95CI"
+      },
+      {
+        "field": "DEPRESSION_CrudePrev",
+        "label": "Depression",
+        "ciField": "DEPRESSION_Crude95CI"
+      },
+      {
+        "field": "DIABETES_CrudePrev",
+        "label": "Diabetes",
+        "ciField": "DIABETES_Crude95CI"
+      },
+      {
+        "field": "HIGHCHOL_CrudePrev",
+        "label": "High cholesterol",
+        "ciField": "HIGHCHOL_Crude95CI"
+      },
+      {
+        "field": "KIDNEY_CrudePrev",
+        "label": "Chronic kidney disease",
+        "ciField": "KIDNEY_Crude95CI"
+      },
+      {
+        "field": "OBESITY_CrudePrev",
+        "label": "Obesity",
+        "ciField": "OBESITY_Crude95CI"
+      },
+      {
+        "field": "STROKE_CrudePrev",
+        "label": "Stroke",
+        "ciField": "STROKE_Crude95CI"
+      },
+      {
+        "field": "TEETHLOST_CrudePrev",
+        "label": "All teeth lost",
+        "ciField": "TEETHLOST_Crude95CI"
+      }
+    ]
+  },
+  {
+    "id": "prevention",
+    "title": "Prevention",
+    "shortTitle": "Prevention",
+    "default": "ACCESS2_CrudePrev",
+    "description": "Health care access and preventive service use measures.",
+    "variables": [
+      {
+        "field": "ACCESS2_CrudePrev",
+        "label": "Lack of health insurance",
+        "ciField": "ACCESS2_Crude95CI"
+      },
+      {
+        "field": "BPMED_CrudePrev",
+        "label": "Taking medicine for high blood pressure",
+        "ciField": "BPMED_Crude95CI"
+      },
+      {
+        "field": "CHECKUP_CrudePrev",
+        "label": "Annual checkup",
+        "ciField": "CHECKUP_Crude95CI"
+      },
+      {
+        "field": "CERVICAL_CrudePrev",
+        "label": "Cervical cancer screening",
+        "ciField": "CERVICAL_Crude95CI"
+      },
+      {
+        "field": "CHOLSCREEN_CrudePrev",
+        "label": "Cholesterol screening",
+        "ciField": "CHOLSCREEN_Crude95CI"
+      },
+      {
+        "field": "COLON_SCREEN_CrudePrev",
+        "label": "Colorectal cancer screening",
+        "ciField": "COLON_SCREEN_Crude95CI"
+      },
+      {
+        "field": "COREM_CrudePrev",
+        "label": "Core preventive services for older men",
+        "ciField": "COREM_Crude95CI"
+      },
+      {
+        "field": "COREW_CrudePrev",
+        "label": "Core preventive services for older women",
+        "ciField": "COREW_Crude95CI"
+      },
+      {
+        "field": "DENTAL_CrudePrev",
+        "label": "Dental visit",
+        "ciField": "DENTAL_Crude95CI"
+      },
+      {
+        "field": "MAMMOUSE_CrudePrev",
+        "label": "Mammography use",
+        "ciField": "MAMMOUSE_Crude95CI"
+      }
+    ]
+  },
+  {
+    "id": "health-risk-behaviors",
+    "title": "Health Risk Behaviors",
+    "shortTitle": "Risk Behaviors",
+    "default": "CSMOKING_CrudePrev",
+    "description": "Behaviors that may increase chronic disease risk.",
+    "variables": [
+      {
+        "field": "BINGE_CrudePrev",
+        "label": "Binge drinking",
+        "ciField": "BINGE_Crude95CI"
+      },
+      {
+        "field": "CSMOKING_CrudePrev",
+        "label": "Current smoking",
+        "ciField": "CSMOKING_Crude95CI"
+      },
+      {
+        "field": "LPA_CrudePrev",
+        "label": "No leisure-time physical activity",
+        "ciField": "LPA_Crude95CI"
+      },
+      {
+        "field": "SLEEP_CrudePrev",
+        "label": "Short sleep duration",
+        "ciField": "SLEEP_Crude95CI"
+      }
+    ]
+  },
+  {
+    "id": "health-status",
+    "title": "Health Status",
+    "shortTitle": "Health Status",
+    "default": "GHLTH_CrudePrev",
+    "description": "Self-reported general, mental, and physical health status.",
+    "variables": [
+      {
+        "field": "GHLTH_CrudePrev",
+        "label": "Fair or poor general health",
+        "ciField": "GHLTH_Crude95CI"
+      },
+      {
+        "field": "MHLTH_CrudePrev",
+        "label": "Frequent mental distress",
+        "ciField": "MHLTH_Crude95CI"
+      },
+      {
+        "field": "PHLTH_CrudePrev",
+        "label": "Frequent physical distress",
+        "ciField": "PHLTH_Crude95CI"
+      }
+    ]
+  }
+]

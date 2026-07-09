@@ -1,0 +1,2983 @@
+{
+  "model": "LASSO linear regression",
+  "data_file": "data/Clean_NM.csv",
+  "predictor_data_file": "data/EJI_NM.csv",
+  "predictor_dictionary_file": "data/EJI_DATADICTIONARY_2022.csv",
+  "predictor_source": "CDC/ATSDR Environmental Justice Index environmental burden raw estimate variables",
+  "predictor_labels": {
+    "E_OZONE": "Annual mean days above O3 regulatory standard - 3-year average",
+    "E_PM": "Annual mean days above PM2.5 regulatory standard - 3-year average",
+    "E_DSLPM": "Ambient concentrations of diesel PM/m3",
+    "E_TOTCR": "The probability of contracting cancer over the course of a lifetime, assuming continuous exposure",
+    "E_NPL": "Proportion of tract's area within 1-mi buffer of EPA National Priority List site",
+    "E_TRI": "Proportion of tract's area within 1-mi buffer of EPA Toxic Release Inventory site",
+    "E_TSD": "Proportion of tract's area within 1-mi buffer of EPA Treatment, Storage, and Disposal site",
+    "E_RMP": "Proportion of tract's area within 1-mi buffer of EPA risk management plan site",
+    "E_COAL": "Proportion of tract's area within 1-mi buffer of coal mines",
+    "E_LEAD": "Proportion of tract's area within 1-mi buffer of lead mines",
+    "E_PARK": "Proportion of tract's area within 1-mi buffer of green space",
+    "E_HOUAGE": "Percentage of houses built pre-1980 (lead exposure)",
+    "E_WLKIND": "A nationwide geographic data resource that ranks block groups according to their relative walkability",
+    "E_RAIL": "Proportion of tract's area within 1-mi buffer of railroad",
+    "E_ROAD": "Proportion of tract's area within 1-mi buffer of high-volume road or highway",
+    "E_AIRPRT": "Proportion of tract's area within 1-mi buffer of airport",
+    "E_IMPWTR": "Percent of tract that intersects an impaired/impacted watershed at the HUC12 level"
+  },
+  "candidate_predictor_fields": [
+    "E_OZONE",
+    "E_PM",
+    "E_DSLPM",
+    "E_TOTCR",
+    "E_NPL",
+    "E_TRI",
+    "E_TSD",
+    "E_RMP",
+    "E_COAL",
+    "E_LEAD",
+    "E_PARK",
+    "E_HOUAGE",
+    "E_WLKIND",
+    "E_RAIL",
+    "E_ROAD",
+    "E_AIRPRT",
+    "E_IMPWTR"
+  ],
+  "default_dependent_variable": "SLEEP_CrudePrev",
+  "dependent_variable_options": [
+    {
+      "field": "DIABETES_CrudePrev",
+      "label": "Diabetes prevalence"
+    },
+    {
+      "field": "OBESITY_CrudePrev",
+      "label": "Obesity prevalence"
+    },
+    {
+      "field": "MHLTH_CrudePrev",
+      "label": "Frequent mental distress prevalence"
+    },
+    {
+      "field": "DEPRESSION_CrudePrev",
+      "label": "Poor mental health / depression prevalence"
+    },
+    {
+      "field": "SLEEP_CrudePrev",
+      "label": "Short sleep duration prevalence"
+    },
+    {
+      "field": "ACCESS2_CrudePrev",
+      "label": "Lack of health insurance prevalence"
+    },
+    {
+      "field": "CHECKUP_CrudePrev",
+      "label": "Recent checkup prevalence"
+    },
+    {
+      "field": "CASTHMA_CrudePrev",
+      "label": "Asthma prevalence"
+    },
+    {
+      "field": "COPD_CrudePrev",
+      "label": "COPD prevalence"
+    }
+  ],
+  "models": [
+    {
+      "model": "LASSO linear regression",
+      "dependent_variable": "DIABETES_CrudePrev",
+      "dependent_variable_label": "Diabetes prevalence",
+      "data_file": "data/Clean_NM.csv",
+      "predictor_data_file": "data/EJI_NM.csv",
+      "predictor_source": "CDC/ATSDR Environmental Justice Index environmental burden raw estimate variables",
+      "method_note": "Used DIABETES_CrudePrev as the dependent variable and used 17 Environmental Justice Index environmental burden raw estimate variables as candidate predictors. Predictors were standardized before LASSO selection. The alpha penalty was selected by scanning a warm-started LASSO path and choosing the model with the lowest BIC. P-values are approximate post-LASSO OLS p-values from refitting ordinary least squares on the selected variables.",
+      "row_count_total": 498,
+      "row_count_used": 497,
+      "candidate_crude_prev_columns": 30,
+      "candidate_environmental_predictor_count": 17,
+      "candidate_predictor_count": 17,
+      "selected_variable_count": 11,
+      "removed_variable_count": 6,
+      "alpha": 0.039666,
+      "intercept": 18.266248,
+      "metrics": {
+        "r_squared": 0.408,
+        "rmse": 2.5228,
+        "mae": 1.9216
+      },
+      "selected_variables": [
+        {
+          "variable": "E_HOUAGE",
+          "label": "Percentage of houses built pre-1980 (lead exposure)",
+          "coefficient": 0.04661,
+          "standardized_coefficient": 1.164917,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.048701,
+          "standard_error": 0.005041,
+          "test_statistic": 9.660852,
+          "p_value": 0.0,
+          "significance": "***"
+        },
+        {
+          "variable": "E_PARK",
+          "label": "Proportion of tract's area within 1-mi buffer of green space",
+          "coefficient": -0.021897,
+          "standardized_coefficient": -0.937233,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.023542,
+          "standard_error": 0.003698,
+          "test_statistic": -6.366148,
+          "p_value": 0.0,
+          "significance": "***"
+        },
+        {
+          "variable": "E_WLKIND",
+          "label": "A nationwide geographic data resource that ranks block groups according to their relative walkability",
+          "coefficient": -0.231036,
+          "standardized_coefficient": -0.924447,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.256282,
+          "standard_error": 0.044993,
+          "test_statistic": -5.696031,
+          "p_value": 1e-08,
+          "significance": "***"
+        },
+        {
+          "variable": "E_PM",
+          "label": "Annual mean days above PM2.5 regulatory standard - 3-year average",
+          "coefficient": -1.09111,
+          "standardized_coefficient": -0.836697,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -1.215017,
+          "standard_error": 0.189589,
+          "test_statistic": -6.408703,
+          "p_value": 0.0,
+          "significance": "***"
+        },
+        {
+          "variable": "E_OZONE",
+          "label": "Annual mean days above O3 regulatory standard - 3-year average",
+          "coefficient": 3.041912,
+          "standardized_coefficient": 0.553543,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 3.38389,
+          "standard_error": 0.66745,
+          "test_statistic": 5.069882,
+          "p_value": 4e-07,
+          "significance": "***"
+        },
+        {
+          "variable": "E_DSLPM",
+          "label": "Ambient concentrations of diesel PM/m3",
+          "coefficient": 2.155151,
+          "standardized_coefficient": 0.529106,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 2.88697,
+          "standard_error": 0.743259,
+          "test_statistic": 3.884204,
+          "p_value": 0.00010267,
+          "significance": "***"
+        },
+        {
+          "variable": "E_RAIL",
+          "label": "Proportion of tract's area within 1-mi buffer of railroad",
+          "coefficient": 0.012743,
+          "standardized_coefficient": 0.411609,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.0136,
+          "standard_error": 0.003883,
+          "test_statistic": 3.502131,
+          "p_value": 0.00046155,
+          "significance": "***"
+        },
+        {
+          "variable": "E_AIRPRT",
+          "label": "Proportion of tract's area within 1-mi buffer of airport",
+          "coefficient": -0.014271,
+          "standardized_coefficient": -0.190263,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.017145,
+          "standard_error": 0.008847,
+          "test_statistic": -1.938005,
+          "p_value": 0.05262261,
+          "significance": "not significant"
+        },
+        {
+          "variable": "E_LEAD",
+          "label": "Proportion of tract's area within 1-mi buffer of lead mines",
+          "coefficient": 1.797089,
+          "standardized_coefficient": 0.146989,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 2.207587,
+          "standard_error": 1.41517,
+          "test_statistic": 1.559945,
+          "p_value": 0.11877289,
+          "significance": "not significant"
+        },
+        {
+          "variable": "E_IMPWTR",
+          "label": "Percent of tract that intersects an impaired/impacted watershed at the HUC12 level",
+          "coefficient": 0.002779,
+          "standardized_coefficient": 0.081714,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.004471,
+          "standard_error": 0.0043,
+          "test_statistic": 1.039907,
+          "p_value": 0.29838325,
+          "significance": "not significant"
+        },
+        {
+          "variable": "E_TSD",
+          "label": "Proportion of tract's area within 1-mi buffer of EPA Treatment, Storage, and Disposal site",
+          "coefficient": -0.004997,
+          "standardized_coefficient": -0.059841,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.008095,
+          "standard_error": 0.009913,
+          "test_statistic": -0.81667,
+          "p_value": 0.41411695,
+          "significance": "not significant"
+        }
+      ],
+      "removed_variables": [
+        "E_TOTCR",
+        "E_NPL",
+        "E_TRI",
+        "E_RMP",
+        "E_COAL",
+        "E_ROAD"
+      ],
+      "lasso_path": [
+        {
+          "alpha": 1.2543557875363738,
+          "mse": 10.74984976255926,
+          "bic": 1180.3212141133645,
+          "selected_count": 0
+        },
+        {
+          "alpha": 1.0237300319419382,
+          "mse": 10.224464499133104,
+          "bic": 1161.6259044568408,
+          "selected_count": 1
+        },
+        {
+          "alpha": 0.8355071094766655,
+          "mse": 9.529631160254063,
+          "bic": 1139.0655589869712,
+          "selected_count": 3
+        },
+        {
+          "alpha": 0.6818908386050401,
+          "mse": 8.758501121307201,
+          "bic": 1103.3366784653747,
+          "selected_count": 4
+        },
+        {
+          "alpha": 0.5565184431102329,
+          "mse": 8.228003774566659,
+          "bic": 1072.2834450813555,
+          "selected_count": 4
+        },
+        {
+          "alpha": 0.45419700630591275,
+          "mse": 7.86370608508545,
+          "bic": 1055.9851798140494,
+          "selected_count": 5
+        },
+        {
+          "alpha": 0.37068838075576827,
+          "mse": 7.464766744586386,
+          "bic": 1036.3180495866745,
+          "selected_count": 6
+        },
+        {
+          "alpha": 0.30253364447493625,
+          "mse": 7.196853119055445,
+          "bic": 1018.152540406843,
+          "selected_count": 6
+        },
+        {
+          "alpha": 0.24690983260031116,
+          "mse": 7.018399945169617,
+          "bic": 1005.673566374351,
+          "selected_count": 6
+        },
+        {
+          "alpha": 0.20151301036458558,
+          "mse": 6.8876057475762895,
+          "bic": 1008.7413135806717,
+          "selected_count": 8
+        },
+        {
+          "alpha": 0.16446284426400926,
+          "mse": 6.781967059759273,
+          "bic": 1001.059511989634,
+          "selected_count": 8
+        },
+        {
+          "alpha": 0.1342247187636737,
+          "mse": 6.658163023418884,
+          "bic": 998.1115914607049,
+          "selected_count": 9
+        },
+        {
+          "alpha": 0.10954617261918505,
+          "mse": 6.558328503075653,
+          "bic": 990.6029874915836,
+          "selected_count": 9
+        },
+        {
+          "alpha": 0.08940502201119181,
+          "mse": 6.485351565483463,
+          "bic": 997.4588664025049,
+          "selected_count": 11
+        },
+        {
+          "alpha": 0.07296702175628382,
+          "mse": 6.4350841001792425,
+          "bic": 993.5916506284383,
+          "selected_count": 11
+        },
+        {
+          "alpha": 0.05955131092429581,
+          "mse": 6.4016007350145765,
+          "bic": 990.9988830343235,
+          "selected_count": 11
+        },
+        {
+          "alpha": 0.04860221162167342,
+          "mse": 6.379299053262531,
+          "bic": 989.2644281424632,
+          "selected_count": 11
+        },
+        {
+          "alpha": 0.03966621284829188,
+          "mse": 6.36444424592599,
+          "bic": 988.1057666068768,
+          "selected_count": 11
+        },
+        {
+          "alpha": 0.032373186100534516,
+          "mse": 6.354513988453872,
+          "bic": 993.5382963809474,
+          "selected_count": 12
+        },
+        {
+          "alpha": 0.02642105467209915,
+          "mse": 6.347444456024371,
+          "bic": 1005.4022455285334,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.02156328165594199,
+          "mse": 6.342442672437693,
+          "bic": 1005.0104553500789,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.01759865840119176,
+          "mse": 6.339111051450499,
+          "bic": 1004.7493176843353,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.014362970463565434,
+          "mse": 6.336891626282061,
+          "bic": 1004.5752794882212,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.011722195853479549,
+          "mse": 6.335413584796653,
+          "bic": 1004.4593437355159,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.009566953853724141,
+          "mse": 6.334429084212253,
+          "bic": 1004.382105713827,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.007807974477078782,
+          "mse": 6.333773158820267,
+          "bic": 1004.330639070991,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.006372400909092079,
+          "mse": 6.333336421670027,
+          "bic": 1004.2963678961225,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.00520077178343828,
+          "mse": 6.3330455177816365,
+          "bic": 1004.2735390830886,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.00424455829588749,
+          "mse": 6.332851669353626,
+          "bic": 1004.2583261586025,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.003464154144305978,
+          "mse": 6.332720259912297,
+          "bic": 1010.4566031103733,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.002827235038128541,
+          "mse": 6.3326280914201885,
+          "bic": 1010.4493695563789,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.0023074198282891653,
+          "mse": 6.3325667154764895,
+          "bic": 1010.4445526002272,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.0018831778016964189,
+          "mse": 6.3325258490622485,
+          "bic": 1010.4413452635616,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.0015369368804599383,
+          "mse": 6.332498628309137,
+          "bic": 1010.4392088738025,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.0012543557875363738,
+          "mse": 6.332480023358811,
+          "bic": 1016.6463387063108,
+          "selected_count": 16
+        }
+      ]
+    },
+    {
+      "model": "LASSO linear regression",
+      "dependent_variable": "OBESITY_CrudePrev",
+      "dependent_variable_label": "Obesity prevalence",
+      "data_file": "data/Clean_NM.csv",
+      "predictor_data_file": "data/EJI_NM.csv",
+      "predictor_source": "CDC/ATSDR Environmental Justice Index environmental burden raw estimate variables",
+      "method_note": "Used OBESITY_CrudePrev as the dependent variable and used 17 Environmental Justice Index environmental burden raw estimate variables as candidate predictors. Predictors were standardized before LASSO selection. The alpha penalty was selected by scanning a warm-started LASSO path and choosing the model with the lowest BIC. P-values are approximate post-LASSO OLS p-values from refitting ordinary least squares on the selected variables.",
+      "row_count_total": 498,
+      "row_count_used": 497,
+      "candidate_crude_prev_columns": 30,
+      "candidate_environmental_predictor_count": 17,
+      "candidate_predictor_count": 17,
+      "selected_variable_count": 5,
+      "removed_variable_count": 12,
+      "alpha": 0.412607,
+      "intercept": 31.269038,
+      "metrics": {
+        "r_squared": 0.2871,
+        "rmse": 4.8688,
+        "mae": 3.7675
+      },
+      "selected_variables": [
+        {
+          "variable": "E_PARK",
+          "label": "Proportion of tract's area within 1-mi buffer of green space",
+          "coefficient": -0.045286,
+          "standardized_coefficient": -1.938324,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.048048,
+          "standard_error": 0.006535,
+          "test_statistic": -7.352629,
+          "p_value": 0.0,
+          "significance": "***"
+        },
+        {
+          "variable": "E_HOUAGE",
+          "label": "Percentage of houses built pre-1980 (lead exposure)",
+          "coefficient": 0.042579,
+          "standardized_coefficient": 1.064167,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.0649,
+          "standard_error": 0.00934,
+          "test_statistic": 6.948556,
+          "p_value": 0.0,
+          "significance": "***"
+        },
+        {
+          "variable": "E_WLKIND",
+          "label": "A nationwide geographic data resource that ranks block groups according to their relative walkability",
+          "coefficient": -0.171528,
+          "standardized_coefficient": -0.686338,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.329039,
+          "standard_error": 0.073272,
+          "test_statistic": -4.490677,
+          "p_value": 7.1e-06,
+          "significance": "***"
+        },
+        {
+          "variable": "E_RAIL",
+          "label": "Proportion of tract's area within 1-mi buffer of railroad",
+          "coefficient": 0.010441,
+          "standardized_coefficient": 0.337245,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.023147,
+          "standard_error": 0.007107,
+          "test_statistic": 3.257012,
+          "p_value": 0.00112592,
+          "significance": "**"
+        },
+        {
+          "variable": "E_OZONE",
+          "label": "Annual mean days above O3 regulatory standard - 3-year average",
+          "coefficient": 1.656797,
+          "standardized_coefficient": 0.301491,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 3.815792,
+          "standard_error": 1.20413,
+          "test_statistic": 3.168921,
+          "p_value": 0.00153006,
+          "significance": "**"
+        }
+      ],
+      "removed_variables": [
+        "E_PM",
+        "E_DSLPM",
+        "E_TOTCR",
+        "E_NPL",
+        "E_TRI",
+        "E_TSD",
+        "E_RMP",
+        "E_COAL",
+        "E_LEAD",
+        "E_ROAD",
+        "E_AIRPRT",
+        "E_IMPWTR"
+      ],
+      "lasso_path": [
+        {
+          "alpha": 2.568351028532299,
+          "mse": 33.25236303130656,
+          "bic": 1741.5505390941044,
+          "selected_count": 0
+        },
+        {
+          "alpha": 2.0961342121612656,
+          "mse": 31.049714660936566,
+          "bic": 1713.6966305067683,
+          "selected_count": 1
+        },
+        {
+          "alpha": 1.710739142189525,
+          "mse": 29.582564438162986,
+          "bic": 1689.63960884401,
+          "selected_count": 1
+        },
+        {
+          "alpha": 1.3962027792112544,
+          "mse": 28.605318226220863,
+          "bic": 1672.9441383209064,
+          "selected_count": 1
+        },
+        {
+          "alpha": 1.1394970469795138,
+          "mse": 27.726546333066327,
+          "bic": 1663.6451619562845,
+          "selected_count": 2
+        },
+        {
+          "alpha": 0.929989210312672,
+          "mse": 26.631484693226206,
+          "bic": 1643.6179730632125,
+          "selected_count": 2
+        },
+        {
+          "alpha": 0.7590014678761484,
+          "mse": 25.728531314506363,
+          "bic": 1632.683240446361,
+          "selected_count": 3
+        },
+        {
+          "alpha": 0.6194515182003699,
+          "mse": 24.797092591827326,
+          "bic": 1626.7739769431691,
+          "selected_count": 5
+        },
+        {
+          "alpha": 0.5055592112021549,
+          "mse": 24.141976894708147,
+          "bic": 1613.4671464251094,
+          "selected_count": 5
+        },
+        {
+          "alpha": 0.41260713473410354,
+          "mse": 23.705614266939772,
+          "bic": 1604.401768897396,
+          "selected_count": 5
+        },
+        {
+          "alpha": 0.3367452196720277,
+          "mse": 23.35101221462259,
+          "bic": 1609.3283756031499,
+          "selected_count": 7
+        },
+        {
+          "alpha": 0.27483127029550475,
+          "mse": 23.05113055373127,
+          "bic": 1615.321573848532,
+          "selected_count": 9
+        },
+        {
+          "alpha": 0.2243008147400141,
+          "mse": 22.833476525686276,
+          "bic": 1610.606490940707,
+          "selected_count": 9
+        },
+        {
+          "alpha": 0.1830608847346182,
+          "mse": 22.68001011449523,
+          "bic": 1613.463410898917,
+          "selected_count": 10
+        },
+        {
+          "alpha": 0.14940332498864947,
+          "mse": 22.569333712147543,
+          "bic": 1617.2407488003369,
+          "selected_count": 11
+        },
+        {
+          "alpha": 0.12193404150768243,
+          "mse": 22.471763020532883,
+          "bic": 1621.2960737816695,
+          "selected_count": 12
+        },
+        {
+          "alpha": 0.09951525830852011,
+          "mse": 22.402555014489437,
+          "bic": 1625.9716530443156,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.08121839080998168,
+          "mse": 22.35490110298896,
+          "bic": 1624.9133264538543,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.06628558391832214,
+          "mse": 22.32188072998581,
+          "bic": 1630.3872562068732,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.05409832171721551,
+          "mse": 22.292568646110034,
+          "bic": 1648.3599594879195,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.044151808577647514,
+          "mse": 22.270446181445166,
+          "bic": 1647.8665069742515,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.03603406055491154,
+          "mse": 22.255709414542345,
+          "bic": 1647.537524005922,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.029408841039693937,
+          "mse": 22.245893481737756,
+          "bic": 1647.3182726367354,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.024001733858997495,
+          "mse": 22.239355276576568,
+          "bic": 1647.1721798046526,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.01958877697562416,
+          "mse": 22.23500024073416,
+          "bic": 1647.0748449340101,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.015987185994769212,
+          "mse": 22.232099358207495,
+          "bic": 1647.0099997504562,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.013047783245957394,
+          "mse": 22.230167185185458,
+          "bic": 1646.9668040221584,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.010648818853373468,
+          "mse": 22.228880121600106,
+          "bic": 1646.938028299742,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.008690927863711726,
+          "mse": 22.228022902161488,
+          "bic": 1646.9188619596657,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0070930145560991285,
+          "mse": 22.22745192142348,
+          "bic": 1646.9060951439728,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0057888934624694185,
+          "mse": 22.227071599920738,
+          "bic": 1646.8975911820858,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.004724547969664827,
+          "mse": 22.226818256212432,
+          "bic": 1646.8919263539487,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0038558929547378826,
+          "mse": 22.226649525885158,
+          "bic": 1646.88815346617,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0031469487819491882,
+          "mse": 22.2265371365851,
+          "bic": 1646.8856403737993,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.002568351028532299,
+          "mse": 22.226462275800984,
+          "bic": 1646.8839664345737,
+          "selected_count": 17
+        }
+      ]
+    },
+    {
+      "model": "LASSO linear regression",
+      "dependent_variable": "MHLTH_CrudePrev",
+      "dependent_variable_label": "Frequent mental distress prevalence",
+      "data_file": "data/Clean_NM.csv",
+      "predictor_data_file": "data/EJI_NM.csv",
+      "predictor_source": "CDC/ATSDR Environmental Justice Index environmental burden raw estimate variables",
+      "method_note": "Used MHLTH_CrudePrev as the dependent variable and used 17 Environmental Justice Index environmental burden raw estimate variables as candidate predictors. Predictors were standardized before LASSO selection. The alpha penalty was selected by scanning a warm-started LASSO path and choosing the model with the lowest BIC. P-values are approximate post-LASSO OLS p-values from refitting ordinary least squares on the selected variables.",
+      "row_count_total": 498,
+      "row_count_used": 497,
+      "candidate_crude_prev_columns": 30,
+      "candidate_environmental_predictor_count": 17,
+      "candidate_predictor_count": 17,
+      "selected_variable_count": 2,
+      "removed_variable_count": 15,
+      "alpha": 0.361982,
+      "intercept": 15.174943,
+      "metrics": {
+        "r_squared": 0.0753,
+        "rmse": 2.6468,
+        "mae": 1.9748
+      },
+      "selected_variables": [
+        {
+          "variable": "E_PARK",
+          "label": "Proportion of tract's area within 1-mi buffer of green space",
+          "coefficient": -0.010453,
+          "standardized_coefficient": -0.447406,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.017973,
+          "standard_error": 0.002757,
+          "test_statistic": -6.518809,
+          "p_value": 0.0,
+          "significance": "***"
+        },
+        {
+          "variable": "E_OZONE",
+          "label": "Annual mean days above O3 regulatory standard - 3-year average",
+          "coefficient": 0.28644,
+          "standardized_coefficient": 0.052124,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 2.055228,
+          "standard_error": 0.648498,
+          "test_statistic": 3.169211,
+          "p_value": 0.00152853,
+          "significance": "**"
+        }
+      ],
+      "removed_variables": [
+        "E_PM",
+        "E_DSLPM",
+        "E_TOTCR",
+        "E_NPL",
+        "E_TRI",
+        "E_TSD",
+        "E_RMP",
+        "E_COAL",
+        "E_LEAD",
+        "E_HOUAGE",
+        "E_WLKIND",
+        "E_RAIL",
+        "E_ROAD",
+        "E_AIRPRT",
+        "E_IMPWTR"
+      ],
+      "lasso_path": [
+        {
+          "alpha": 0.8158832376200985,
+          "mse": 7.575985733313361,
+          "bic": 1006.4167859515952,
+          "selected_count": 0
+        },
+        {
+          "alpha": 0.6658750102713542,
+          "mse": 7.3537098051877825,
+          "bic": 997.8254359064202,
+          "selected_count": 1
+        },
+        {
+          "alpha": 0.54344728370352,
+          "mse": 7.20565522604864,
+          "bic": 987.7170744194615,
+          "selected_count": 1
+        },
+        {
+          "alpha": 0.443529109230846,
+          "mse": 7.107038346619015,
+          "bic": 980.8681379191878,
+          "selected_count": 1
+        },
+        {
+          "alpha": 0.36198188239069035,
+          "mse": 7.005643145825204,
+          "bic": 979.9350260728943,
+          "selected_count": 2
+        },
+        {
+          "alpha": 0.29542792220861697,
+          "mse": 6.918808819299985,
+          "bic": 979.9448486582595,
+          "selected_count": 3
+        },
+        {
+          "alpha": 0.24111056786621468,
+          "mse": 6.761080332401605,
+          "bic": 987.1093369730959,
+          "selected_count": 6
+        },
+        {
+          "alpha": 0.19677999798447232,
+          "mse": 6.645185218797665,
+          "bic": 984.7247350796109,
+          "selected_count": 7
+        },
+        {
+          "alpha": 0.16060004316465656,
+          "mse": 6.553992786691225,
+          "bic": 984.0657216995451,
+          "selected_count": 8
+        },
+        {
+          "alpha": 0.1310721319680306,
+          "mse": 6.474246662458147,
+          "bic": 990.3985311205253,
+          "selected_count": 10
+        },
+        {
+          "alpha": 0.10697322018170934,
+          "mse": 6.391540354142632,
+          "bic": 990.2172125611862,
+          "selected_count": 11
+        },
+        {
+          "alpha": 0.0873051324047705,
+          "mse": 6.334246224353907,
+          "bic": 991.9505782500236,
+          "selected_count": 12
+        },
+        {
+          "alpha": 0.071253217686325,
+          "mse": 6.294387080352385,
+          "bic": 988.8132537473547,
+          "selected_count": 12
+        },
+        {
+          "alpha": 0.058152606734691796,
+          "mse": 6.263829242753279,
+          "bic": 992.6031443546362,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.04746067307341754,
+          "mse": 6.239862070130533,
+          "bic": 990.6978351009265,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.03873455748696555,
+          "mse": 6.223898965910284,
+          "bic": 989.4247575583579,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.03161282482003793,
+          "mse": 6.213265196191197,
+          "bic": 988.5748878019856,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.02580049335631887,
+          "mse": 6.206182655094849,
+          "bic": 988.0080311512511,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.02105681669445493,
+          "mse": 6.201464633640631,
+          "bic": 987.6300615457014,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.017185312047348286,
+          "mse": 6.198322084643487,
+          "bic": 987.3781464248202,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.014025621937550846,
+          "mse": 6.1961351448582835,
+          "bic": 993.4113501367925,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.011446872200697776,
+          "mse": 6.194253992461367,
+          "bic": 1005.6776176166543,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.009342251185902711,
+          "mse": 6.1929041255292185,
+          "bic": 1005.5692983618998,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.00762458562393842,
+          "mse": 6.192004944123367,
+          "bic": 1005.4971309915977,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.006222729915942755,
+          "mse": 6.191400607306332,
+          "bic": 1011.6572116804113,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.005078619287216707,
+          "mse": 6.190983732471187,
+          "bic": 1011.6237469150703,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.004144864747931447,
+          "mse": 6.190706075301329,
+          "bic": 1011.6014566436155,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0033827902441689274,
+          "mse": 6.190521048374137,
+          "bic": 1011.5866021575612,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.002760830698216482,
+          "mse": 6.190397888400287,
+          "bic": 1011.5767142797198,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.002253224585045799,
+          "mse": 6.19031585378459,
+          "bic": 1011.5701280352026,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0018389468915767304,
+          "mse": 6.190261211788088,
+          "bic": 1011.565740990541,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0015008382619662321,
+          "mse": 6.190224777848681,
+          "bic": 1011.5628157955365,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.00122489425817539,
+          "mse": 6.19020054743337,
+          "bic": 1011.5608703831466,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0009996852970322236,
+          "mse": 6.190184408000682,
+          "bic": 1011.5595745756132,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0008158832376200985,
+          "mse": 6.190173637624777,
+          "bic": 1011.5587098386153,
+          "selected_count": 17
+        }
+      ]
+    },
+    {
+      "model": "LASSO linear regression",
+      "dependent_variable": "DEPRESSION_CrudePrev",
+      "dependent_variable_label": "Poor mental health / depression prevalence",
+      "data_file": "data/Clean_NM.csv",
+      "predictor_data_file": "data/EJI_NM.csv",
+      "predictor_source": "CDC/ATSDR Environmental Justice Index environmental burden raw estimate variables",
+      "method_note": "Used DEPRESSION_CrudePrev as the dependent variable and used 17 Environmental Justice Index environmental burden raw estimate variables as candidate predictors. Predictors were standardized before LASSO selection. The alpha penalty was selected by scanning a warm-started LASSO path and choosing the model with the lowest BIC. P-values are approximate post-LASSO OLS p-values from refitting ordinary least squares on the selected variables.",
+      "row_count_total": 498,
+      "row_count_used": 497,
+      "candidate_crude_prev_columns": 30,
+      "candidate_environmental_predictor_count": 17,
+      "candidate_predictor_count": 17,
+      "selected_variable_count": 0,
+      "removed_variable_count": 17,
+      "alpha": 0.248602,
+      "intercept": 19.652716,
+      "metrics": {
+        "r_squared": 0.0,
+        "rmse": 1.7906,
+        "mae": 1.3197
+      },
+      "selected_variables": [],
+      "removed_variables": [
+        "E_OZONE",
+        "E_PM",
+        "E_DSLPM",
+        "E_TOTCR",
+        "E_NPL",
+        "E_TRI",
+        "E_TSD",
+        "E_RMP",
+        "E_COAL",
+        "E_LEAD",
+        "E_PARK",
+        "E_HOUAGE",
+        "E_WLKIND",
+        "E_RAIL",
+        "E_ROAD",
+        "E_AIRPRT",
+        "E_IMPWTR"
+      ],
+      "lasso_path": [
+        {
+          "alpha": 0.24860181065286663,
+          "mse": 3.206114352108628,
+          "bic": 579.0346816885882,
+          "selected_count": 0
+        },
+        {
+          "alpha": 0.20289390146661462,
+          "mse": 3.1854774271010884,
+          "bic": 582.0338717015273,
+          "selected_count": 1
+        },
+        {
+          "alpha": 0.1655898448375587,
+          "mse": 3.159559350190926,
+          "bic": 590.390758229686,
+          "selected_count": 3
+        },
+        {
+          "alpha": 0.13514450910116987,
+          "mse": 3.1194280561370142,
+          "bic": 602.6634259857403,
+          "selected_count": 6
+        },
+        {
+          "alpha": 0.1102968503781917,
+          "mse": 3.0699107122054436,
+          "bic": 619.5451934313496,
+          "selected_count": 10
+        },
+        {
+          "alpha": 0.09001768021697518,
+          "mse": 3.016534336745675,
+          "bic": 610.8278753602481,
+          "selected_count": 10
+        },
+        {
+          "alpha": 0.07346703667295108,
+          "mse": 2.9754548988094505,
+          "bic": 616.4303567454081,
+          "selected_count": 12
+        },
+        {
+          "alpha": 0.059959393138048434,
+          "mse": 2.9463778044944324,
+          "bic": 611.5496271676905,
+          "selected_count": 12
+        },
+        {
+          "alpha": 0.04893526387197666,
+          "mse": 2.9269907644735578,
+          "bic": 614.4771719906518,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.039938030138273774,
+          "mse": 2.9121233446647476,
+          "bic": 618.1548563091909,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.03259502708514231,
+          "mse": 2.9020950272212875,
+          "bic": 616.4404113423851,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.026602107990874535,
+          "mse": 2.8954153277510315,
+          "bic": 615.2951569478415,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.02171104652588942,
+          "mse": 2.890768642728147,
+          "bic": 620.7054996438803,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.01771925523387212,
+          "mse": 2.8866633869115885,
+          "bic": 626.2077853902377,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.014461394372155566,
+          "mse": 2.8838487709293688,
+          "bic": 625.722953466889,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.011802523550043792,
+          "mse": 2.8819736061554826,
+          "bic": 625.3996840823922,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.009632512506370077,
+          "mse": 2.8807245875294027,
+          "bic": 625.1842425492707,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.007861479521049698,
+          "mse": 2.879830561666226,
+          "bic": 631.2385658958344,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.006416068519922798,
+          "mse": 2.879184929715521,
+          "bic": 631.1271305015991,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0052364106708056,
+          "mse": 2.8787548840230404,
+          "bic": 631.0528912019627,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.004273644620250515,
+          "mse": 2.8784684554744326,
+          "bic": 631.0034385473127,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.003487892659378899,
+          "mse": 2.8782776514348916,
+          "bic": 630.9704929888582,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.002846608991703217,
+          "mse": 2.8781505599268224,
+          "bic": 630.9485472693246,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.002323231688296442,
+          "mse": 2.8780659062271914,
+          "bic": 630.9339290252169,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0018960824943770377,
+          "mse": 2.878009508154466,
+          "bic": 630.9241898053049,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0015474689173679659,
+          "mse": 2.877971953697152,
+          "bic": 630.9177045289332,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.001262951404973946,
+          "mse": 2.877946939362806,
+          "bic": 630.9133847584843,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0010307452598392883,
+          "mse": 2.8779302649125516,
+          "bic": 630.9105051967833,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0008412325181292928,
+          "mse": 2.87791915195303,
+          "bic": 630.9085860566245,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0006865635740769641,
+          "mse": 2.8779117464321144,
+          "bic": 630.907307164329,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0005603320498089544,
+          "mse": 2.8779068364236053,
+          "bic": 630.9064592313395,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0004573094435795227,
+          "mse": 2.877903551196713,
+          "bic": 630.9058918888957,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0003732285655591468,
+          "mse": 2.8779013777888838,
+          "bic": 630.905516551752,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0003046067911018662,
+          "mse": 2.8778999224741697,
+          "bic": 630.9052652256985,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.00024860181065286665,
+          "mse": 2.8778989575188967,
+          "bic": 630.9050985823598,
+          "selected_count": 17
+        }
+      ]
+    },
+    {
+      "model": "LASSO linear regression",
+      "dependent_variable": "SLEEP_CrudePrev",
+      "dependent_variable_label": "Short sleep duration prevalence",
+      "data_file": "data/Clean_NM.csv",
+      "predictor_data_file": "data/EJI_NM.csv",
+      "predictor_source": "CDC/ATSDR Environmental Justice Index environmental burden raw estimate variables",
+      "method_note": "Used SLEEP_CrudePrev as the dependent variable and used 17 Environmental Justice Index environmental burden raw estimate variables as candidate predictors. Predictors were standardized before LASSO selection. The alpha penalty was selected by scanning a warm-started LASSO path and choosing the model with the lowest BIC. P-values are approximate post-LASSO OLS p-values from refitting ordinary least squares on the selected variables.",
+      "row_count_total": 498,
+      "row_count_used": 497,
+      "candidate_crude_prev_columns": 30,
+      "candidate_environmental_predictor_count": 17,
+      "candidate_predictor_count": 17,
+      "selected_variable_count": 5,
+      "removed_variable_count": 12,
+      "alpha": 0.238142,
+      "intercept": 32.974168,
+      "metrics": {
+        "r_squared": 0.1765,
+        "rmse": 2.9573,
+        "mae": 2.2758
+      },
+      "selected_variables": [
+        {
+          "variable": "E_PARK",
+          "label": "Proportion of tract's area within 1-mi buffer of green space",
+          "coefficient": -0.02303,
+          "standardized_coefficient": -0.985715,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.030915,
+          "standard_error": 0.003223,
+          "test_statistic": -9.592671,
+          "p_value": 0.0,
+          "significance": "***"
+        },
+        {
+          "variable": "E_OZONE",
+          "label": "Annual mean days above O3 regulatory standard - 3-year average",
+          "coefficient": 1.787329,
+          "standardized_coefficient": 0.325244,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 2.685499,
+          "standard_error": 0.746016,
+          "test_statistic": 3.599786,
+          "p_value": 0.00031848,
+          "significance": "***"
+        },
+        {
+          "variable": "E_HOUAGE",
+          "label": "Percentage of houses built pre-1980 (lead exposure)",
+          "coefficient": 0.007113,
+          "standardized_coefficient": 0.177772,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.018034,
+          "standard_error": 0.005442,
+          "test_statistic": 3.313765,
+          "p_value": 0.00092049,
+          "significance": "***"
+        },
+        {
+          "variable": "E_NPL",
+          "label": "Proportion of tract's area within 1-mi buffer of EPA National Priority List site",
+          "coefficient": 0.008669,
+          "standardized_coefficient": 0.121418,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.023421,
+          "standard_error": 0.009615,
+          "test_statistic": 2.435855,
+          "p_value": 0.01485662,
+          "significance": "*"
+        },
+        {
+          "variable": "E_TOTCR",
+          "label": "The probability of contracting cancer over the course of a lifetime, assuming continuous exposure",
+          "coefficient": 0.001336,
+          "standardized_coefficient": 0.013911,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.023486,
+          "standard_error": 0.013164,
+          "test_statistic": 1.784047,
+          "p_value": 0.07441599,
+          "significance": "not significant"
+        }
+      ],
+      "removed_variables": [
+        "E_PM",
+        "E_DSLPM",
+        "E_TRI",
+        "E_TSD",
+        "E_RMP",
+        "E_COAL",
+        "E_LEAD",
+        "E_WLKIND",
+        "E_RAIL",
+        "E_ROAD",
+        "E_AIRPRT",
+        "E_IMPWTR"
+      ],
+      "lasso_path": [
+        {
+          "alpha": 1.20981368137011,
+          "mse": 10.620022914144828,
+          "bic": 1174.2823632057537,
+          "selected_count": 0
+        },
+        {
+          "alpha": 0.987377433882093,
+          "mse": 10.131287967454115,
+          "bic": 1157.0759316907013,
+          "selected_count": 1
+        },
+        {
+          "alpha": 0.805838297212427,
+          "mse": 9.805749131768753,
+          "bic": 1140.8441133297117,
+          "selected_count": 1
+        },
+        {
+          "alpha": 0.6576769318102205,
+          "mse": 9.588912717149835,
+          "bic": 1129.7305203772526,
+          "selected_count": 1
+        },
+        {
+          "alpha": 0.5367565032979362,
+          "mse": 9.383857755176063,
+          "bic": 1125.195683696656,
+          "selected_count": 2
+        },
+        {
+          "alpha": 0.4380684951798854,
+          "mse": 9.21277161209897,
+          "bic": 1116.0507778702922,
+          "selected_count": 2
+        },
+        {
+          "alpha": 0.3575252564059752,
+          "mse": 9.052268976620468,
+          "bic": 1119.7330347468712,
+          "selected_count": 4
+        },
+        {
+          "alpha": 0.2917906911239289,
+          "mse": 8.871906757965922,
+          "bic": 1109.7305610312899,
+          "selected_count": 4
+        },
+        {
+          "alpha": 0.23814207780023325,
+          "mse": 8.745708898633069,
+          "bic": 1108.8188448718224,
+          "selected_count": 5
+        },
+        {
+          "alpha": 0.19435729426654624,
+          "mse": 8.624868218923746,
+          "bic": 1114.3210230488385,
+          "selected_count": 7
+        },
+        {
+          "alpha": 0.15862277756012694,
+          "mse": 8.527135073431806,
+          "bic": 1114.8656800423414,
+          "selected_count": 8
+        },
+        {
+          "alpha": 0.12945840626070285,
+          "mse": 8.43366507995083,
+          "bic": 1115.5963378209842,
+          "selected_count": 9
+        },
+        {
+          "alpha": 0.10565619395492179,
+          "mse": 8.359458885314094,
+          "bic": 1111.203978322116,
+          "selected_count": 9
+        },
+        {
+          "alpha": 0.08623025451556678,
+          "mse": 8.308876221439252,
+          "bic": 1114.3961109808145,
+          "selected_count": 10
+        },
+        {
+          "alpha": 0.0703759667605654,
+          "mse": 8.273268351124115,
+          "bic": 1112.2616296812832,
+          "selected_count": 10
+        },
+        {
+          "alpha": 0.05743664709455426,
+          "mse": 8.249550779759518,
+          "bic": 1110.8347979801104,
+          "selected_count": 10
+        },
+        {
+          "alpha": 0.046876349715922055,
+          "mse": 8.231140315321436,
+          "bic": 1122.1415871416514,
+          "selected_count": 12
+        },
+        {
+          "alpha": 0.03825766777562765,
+          "mse": 8.215947913705579,
+          "bic": 1127.4320054348,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.031223616013197234,
+          "mse": 8.205423022055378,
+          "bic": 1133.0035144416722,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.025482844449829848,
+          "mse": 8.19753135654993,
+          "bic": 1138.7338786593814,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.02079757069071542,
+          "mse": 8.191713784990514,
+          "bic": 1138.3810456690278,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.016973730993291587,
+          "mse": 8.187838767191765,
+          "bic": 1138.1458885881768,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.013852942159309305,
+          "mse": 8.185197033350743,
+          "bic": 1150.4026901074728,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.011305941312785863,
+          "mse": 8.183412364989433,
+          "bic": 1150.2943143551408,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.009227231839862925,
+          "mse": 8.182223618977055,
+          "bic": 1150.2221134617848,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.007530713725737577,
+          "mse": 8.18143189962835,
+          "bic": 1150.1740209660504,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.006146117297498708,
+          "mse": 8.180904461477843,
+          "bic": 1150.1419794830852,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.005016092658722478,
+          "mse": 8.180553160001798,
+          "bic": 1150.1206370284385,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.00409383426039223,
+          "mse": 8.18031914636911,
+          "bic": 1150.1064195987958,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0033411422180206645,
+          "mse": 8.18016327359462,
+          "bic": 1150.0969493684036,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.002726840074852102,
+          "mse": 8.180059449135763,
+          "bic": 1150.0906412933941,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0022254834749968837,
+          "mse": 8.1799902834224,
+          "bic": 1150.086438939477,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0018163062598208397,
+          "mse": 8.179944222943696,
+          "bic": 1150.0836403881858,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.001482360334969006,
+          "mse": 8.179913526052088,
+          "bic": 1150.0817752918795,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.00120981368137011,
+          "mse": 8.179893096052924,
+          "bic": 1150.0805339924168,
+          "selected_count": 17
+        }
+      ]
+    },
+    {
+      "model": "LASSO linear regression",
+      "dependent_variable": "ACCESS2_CrudePrev",
+      "dependent_variable_label": "Lack of health insurance prevalence",
+      "data_file": "data/Clean_NM.csv",
+      "predictor_data_file": "data/EJI_NM.csv",
+      "predictor_source": "CDC/ATSDR Environmental Justice Index environmental burden raw estimate variables",
+      "method_note": "Used ACCESS2_CrudePrev as the dependent variable and used 17 Environmental Justice Index environmental burden raw estimate variables as candidate predictors. Predictors were standardized before LASSO selection. The alpha penalty was selected by scanning a warm-started LASSO path and choosing the model with the lowest BIC. P-values are approximate post-LASSO OLS p-values from refitting ordinary least squares on the selected variables.",
+      "row_count_total": 498,
+      "row_count_used": 497,
+      "candidate_crude_prev_columns": 30,
+      "candidate_environmental_predictor_count": 17,
+      "candidate_predictor_count": 17,
+      "selected_variable_count": 15,
+      "removed_variable_count": 2,
+      "alpha": 0.040201,
+      "intercept": 6.568274,
+      "metrics": {
+        "r_squared": 0.2678,
+        "rmse": 4.5856,
+        "mae": 3.5553
+      },
+      "selected_variables": [
+        {
+          "variable": "E_PARK",
+          "label": "Proportion of tract's area within 1-mi buffer of green space",
+          "coefficient": -0.032383,
+          "standardized_coefficient": -1.386039,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.033569,
+          "standard_error": 0.006749,
+          "test_statistic": -4.974071,
+          "p_value": 6.6e-07,
+          "significance": "***"
+        },
+        {
+          "variable": "E_RAIL",
+          "label": "Proportion of tract's area within 1-mi buffer of railroad",
+          "coefficient": 0.031769,
+          "standardized_coefficient": 1.026138,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.03229,
+          "standard_error": 0.007817,
+          "test_statistic": 4.130938,
+          "p_value": 3.613e-05,
+          "significance": "***"
+        },
+        {
+          "variable": "E_WLKIND",
+          "label": "A nationwide geographic data resource that ranks block groups according to their relative walkability",
+          "coefficient": -0.250109,
+          "standardized_coefficient": -1.000766,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.294494,
+          "standard_error": 0.08421,
+          "test_statistic": -3.497149,
+          "p_value": 0.00047026,
+          "significance": "***"
+        },
+        {
+          "variable": "E_OZONE",
+          "label": "Annual mean days above O3 regulatory standard - 3-year average",
+          "coefficient": 4.577538,
+          "standardized_coefficient": 0.832984,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 4.753212,
+          "standard_error": 1.246942,
+          "test_statistic": 3.811894,
+          "p_value": 0.00013791,
+          "significance": "***"
+        },
+        {
+          "variable": "E_PM",
+          "label": "Annual mean days above PM2.5 regulatory standard - 3-year average",
+          "coefficient": 1.084996,
+          "standardized_coefficient": 0.832008,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 1.125369,
+          "standard_error": 0.370678,
+          "test_statistic": 3.035973,
+          "p_value": 0.00239761,
+          "significance": "**"
+        },
+        {
+          "variable": "E_HOUAGE",
+          "label": "Percentage of houses built pre-1980 (lead exposure)",
+          "coefficient": 0.032832,
+          "standardized_coefficient": 0.820567,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.035355,
+          "standard_error": 0.009288,
+          "test_statistic": 3.806414,
+          "p_value": 0.000141,
+          "significance": "***"
+        },
+        {
+          "variable": "E_IMPWTR",
+          "label": "Percent of tract that intersects an impaired/impacted watershed at the HUC12 level",
+          "coefficient": 0.025735,
+          "standardized_coefficient": 0.756772,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.028221,
+          "standard_error": 0.008084,
+          "test_statistic": 3.491109,
+          "p_value": 0.00048102,
+          "significance": "***"
+        },
+        {
+          "variable": "E_TRI",
+          "label": "Proportion of tract's area within 1-mi buffer of EPA Toxic Release Inventory site",
+          "coefficient": 0.018995,
+          "standardized_coefficient": 0.538567,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.022882,
+          "standard_error": 0.010193,
+          "test_statistic": 2.244866,
+          "p_value": 0.02477672,
+          "significance": "*"
+        },
+        {
+          "variable": "E_RMP",
+          "label": "Proportion of tract's area within 1-mi buffer of EPA risk management plan site",
+          "coefficient": -0.03252,
+          "standardized_coefficient": -0.39364,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.042379,
+          "standard_error": 0.021053,
+          "test_statistic": -2.013016,
+          "p_value": 0.04411294,
+          "significance": "*"
+        },
+        {
+          "variable": "E_TSD",
+          "label": "Proportion of tract's area within 1-mi buffer of EPA Treatment, Storage, and Disposal site",
+          "coefficient": -0.032665,
+          "standardized_coefficient": -0.391147,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.036774,
+          "standard_error": 0.018908,
+          "test_statistic": -1.944894,
+          "p_value": 0.05178778,
+          "significance": "not significant"
+        },
+        {
+          "variable": "E_NPL",
+          "label": "Proportion of tract's area within 1-mi buffer of EPA National Priority List site",
+          "coefficient": 0.026176,
+          "standardized_coefficient": 0.366612,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.030713,
+          "standard_error": 0.017435,
+          "test_statistic": 1.761538,
+          "p_value": 0.07814744,
+          "significance": "not significant"
+        },
+        {
+          "variable": "E_DSLPM",
+          "label": "Ambient concentrations of diesel PM/m3",
+          "coefficient": 1.40346,
+          "standardized_coefficient": 0.34456,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 1.760188,
+          "standard_error": 1.430611,
+          "test_statistic": 1.230374,
+          "p_value": 0.21855691,
+          "significance": "not significant"
+        },
+        {
+          "variable": "E_ROAD",
+          "label": "Proportion of tract's area within 1-mi buffer of high-volume road or highway",
+          "coefficient": 0.008727,
+          "standardized_coefficient": 0.335702,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.009279,
+          "standard_error": 0.007001,
+          "test_statistic": 1.32536,
+          "p_value": 0.1850517,
+          "significance": "not significant"
+        },
+        {
+          "variable": "E_COAL",
+          "label": "Proportion of tract's area within 1-mi buffer of coal mines",
+          "coefficient": -1.768453,
+          "standardized_coefficient": -0.218863,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -2.149983,
+          "standard_error": 1.696362,
+          "test_statistic": -1.267408,
+          "p_value": 0.2050095,
+          "significance": "not significant"
+        },
+        {
+          "variable": "E_TOTCR",
+          "label": "The probability of contracting cancer over the course of a lifetime, assuming continuous exposure",
+          "coefficient": 0.020627,
+          "standardized_coefficient": 0.214721,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.021404,
+          "standard_error": 0.023865,
+          "test_statistic": 0.896884,
+          "p_value": 0.3697808,
+          "significance": "not significant"
+        }
+      ],
+      "removed_variables": [
+        "E_LEAD",
+        "E_AIRPRT"
+      ],
+      "lasso_path": [
+        {
+          "alpha": 1.5576706111999465,
+          "mse": 28.71818508637337,
+          "bic": 1668.6926827594832,
+          "selected_count": 0
+        },
+        {
+          "alpha": 1.2712774161872304,
+          "mse": 27.907993622285037,
+          "bic": 1660.6784293287235,
+          "selected_count": 1
+        },
+        {
+          "alpha": 1.0375404512913597,
+          "mse": 26.905664334915052,
+          "bic": 1648.7085868047661,
+          "selected_count": 2
+        },
+        {
+          "alpha": 0.8467783462200165,
+          "mse": 25.788672077495388,
+          "bic": 1640.0522184910449,
+          "selected_count": 4
+        },
+        {
+          "alpha": 0.6910897466548513,
+          "mse": 24.900364908934186,
+          "bic": 1622.6309418996425,
+          "selected_count": 4
+        },
+        {
+          "alpha": 0.5640260406557109,
+          "mse": 24.216805732354047,
+          "bic": 1621.2138215712862,
+          "selected_count": 6
+        },
+        {
+          "alpha": 0.4603242575622208,
+          "mse": 23.604862287069203,
+          "bic": 1614.7021319846974,
+          "selected_count": 7
+        },
+        {
+          "alpha": 0.37568907608213675,
+          "mse": 23.05947349544421,
+          "bic": 1615.501421506661,
+          "selected_count": 9
+        },
+        {
+          "alpha": 0.3066149123552797,
+          "mse": 22.621609931817716,
+          "bic": 1612.1820038834617,
+          "selected_count": 10
+        },
+        {
+          "alpha": 0.250240718891922,
+          "mse": 22.222796126456142,
+          "bic": 1615.7590317538861,
+          "selected_count": 12
+        },
+        {
+          "alpha": 0.20423148016684398,
+          "mse": 21.90175003271891,
+          "bic": 1614.7352426076677,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.1666814964240676,
+          "mse": 21.646418777663268,
+          "bic": 1621.3243434821238,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.13603544971357875,
+          "mse": 21.427031802639615,
+          "bic": 1616.2615371364575,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.11102398272027705,
+          "mse": 21.280902394709074,
+          "bic": 1612.8604548538015,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.09061112206432466,
+          "mse": 21.183567842251353,
+          "bic": 1610.5820627287337,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.07395136834932174,
+          "mse": 21.118734792980803,
+          "bic": 1609.0586444413586,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.060354675630821274,
+          "mse": 21.075550983477,
+          "bic": 1608.0413331906975,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.049257869756984166,
+          "mse": 21.046786423597187,
+          "bic": 1607.3625489938802,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.040201321730854576,
+          "mse": 21.027627345328142,
+          "bic": 1606.9099193928996,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.03280990990639686,
+          "mse": 21.01443016250512,
+          "bic": 1612.8064885300444,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.026777482473658826,
+          "mse": 21.005542535967336,
+          "bic": 1618.804838036146,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.021854176670180615,
+          "mse": 20.999304765152313,
+          "bic": 1618.6572278284177,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.017836069481187763,
+          "mse": 20.995149378902344,
+          "bic": 1618.5588706993603,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.01455673116122605,
+          "mse": 20.992381539781572,
+          "bic": 1618.493345720162,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.011880331724638399,
+          "mse": 20.990538131174805,
+          "bic": 1618.4497006337635,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.009696014876155866,
+          "mse": 20.98931005869601,
+          "bic": 1618.4206222998268,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.007913306350164,
+          "mse": 20.98849205834789,
+          "bic": 1618.4012527210225,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0064583664723473246,
+          "mse": 20.98794725757978,
+          "bic": 1618.3883518658677,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.005270931725052646,
+          "mse": 20.987584317488054,
+          "bic": 1618.3797572766475,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.004301818636202088,
+          "mse": 20.987342572340502,
+          "bic": 1618.374032557286,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.003510886602992521,
+          "mse": 20.98718154582517,
+          "bic": 1618.370219283411,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.00286537527066804,
+          "mse": 20.987074288641445,
+          "bic": 1618.367679306501,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.002338547600699431,
+          "mse": 20.98700284628028,
+          "bic": 1618.3659874597272,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.001908582424340549,
+          "mse": 20.986955248924396,
+          "bic": 1618.3648602900746,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0015576706111999465,
+          "mse": 20.98692355567573,
+          "bic": 1618.364109749737,
+          "selected_count": 17
+        }
+      ]
+    },
+    {
+      "model": "LASSO linear regression",
+      "dependent_variable": "CHECKUP_CrudePrev",
+      "dependent_variable_label": "Recent checkup prevalence",
+      "data_file": "data/Clean_NM.csv",
+      "predictor_data_file": "data/EJI_NM.csv",
+      "predictor_source": "CDC/ATSDR Environmental Justice Index environmental burden raw estimate variables",
+      "method_note": "Used CHECKUP_CrudePrev as the dependent variable and used 17 Environmental Justice Index environmental burden raw estimate variables as candidate predictors. Predictors were standardized before LASSO selection. The alpha penalty was selected by scanning a warm-started LASSO path and choosing the model with the lowest BIC. P-values are approximate post-LASSO OLS p-values from refitting ordinary least squares on the selected variables.",
+      "row_count_total": 498,
+      "row_count_used": 497,
+      "candidate_crude_prev_columns": 30,
+      "candidate_environmental_predictor_count": 17,
+      "candidate_predictor_count": 17,
+      "selected_variable_count": 9,
+      "removed_variable_count": 8,
+      "alpha": 0.135129,
+      "intercept": 66.09176,
+      "metrics": {
+        "r_squared": 0.2002,
+        "rmse": 2.8619,
+        "mae": 2.2866
+      },
+      "selected_variables": [
+        {
+          "variable": "E_HOUAGE",
+          "label": "Percentage of houses built pre-1980 (lead exposure)",
+          "coefficient": 0.032429,
+          "standardized_coefficient": 0.810506,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.040033,
+          "standard_error": 0.005484,
+          "test_statistic": 7.300339,
+          "p_value": 0.0,
+          "significance": "***"
+        },
+        {
+          "variable": "E_TRI",
+          "label": "Proportion of tract's area within 1-mi buffer of EPA Toxic Release Inventory site",
+          "coefficient": -0.020154,
+          "standardized_coefficient": -0.571437,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.020807,
+          "standard_error": 0.005554,
+          "test_statistic": -3.746534,
+          "p_value": 0.0001793,
+          "significance": "***"
+        },
+        {
+          "variable": "E_PARK",
+          "label": "Proportion of tract's area within 1-mi buffer of green space",
+          "coefficient": 0.011818,
+          "standardized_coefficient": 0.505831,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.020316,
+          "standard_error": 0.003928,
+          "test_statistic": 5.171904,
+          "p_value": 2.3e-07,
+          "significance": "***"
+        },
+        {
+          "variable": "E_AIRPRT",
+          "label": "Proportion of tract's area within 1-mi buffer of airport",
+          "coefficient": -0.024187,
+          "standardized_coefficient": -0.322468,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.031626,
+          "standard_error": 0.009926,
+          "test_statistic": -3.186245,
+          "p_value": 0.00144133,
+          "significance": "**"
+        },
+        {
+          "variable": "E_WLKIND",
+          "label": "A nationwide geographic data resource that ranks block groups according to their relative walkability",
+          "coefficient": -0.073124,
+          "standardized_coefficient": -0.292591,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.148491,
+          "standard_error": 0.048638,
+          "test_statistic": -3.053018,
+          "p_value": 0.00226552,
+          "significance": "**"
+        },
+        {
+          "variable": "E_LEAD",
+          "label": "Proportion of tract's area within 1-mi buffer of lead mines",
+          "coefficient": 2.40938,
+          "standardized_coefficient": 0.197071,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 3.628598,
+          "standard_error": 1.580491,
+          "test_statistic": 2.295867,
+          "p_value": 0.02168349,
+          "significance": "*"
+        },
+        {
+          "variable": "E_IMPWTR",
+          "label": "Percent of tract that intersects an impaired/impacted watershed at the HUC12 level",
+          "coefficient": -0.002873,
+          "standardized_coefficient": -0.084493,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.008212,
+          "standard_error": 0.004762,
+          "test_statistic": -1.724399,
+          "p_value": 0.08463588,
+          "significance": "not significant"
+        },
+        {
+          "variable": "E_ROAD",
+          "label": "Proportion of tract's area within 1-mi buffer of high-volume road or highway",
+          "coefficient": -0.001662,
+          "standardized_coefficient": -0.063917,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.005001,
+          "standard_error": 0.003816,
+          "test_statistic": -1.310619,
+          "p_value": 0.18998652,
+          "significance": "not significant"
+        },
+        {
+          "variable": "E_COAL",
+          "label": "Proportion of tract's area within 1-mi buffer of coal mines",
+          "coefficient": -0.501154,
+          "standardized_coefficient": -0.062023,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -1.586436,
+          "standard_error": 1.039421,
+          "test_statistic": -1.526269,
+          "p_value": 0.12694289,
+          "significance": "not significant"
+        }
+      ],
+      "removed_variables": [
+        "E_OZONE",
+        "E_PM",
+        "E_DSLPM",
+        "E_TOTCR",
+        "E_NPL",
+        "E_TSD",
+        "E_RMP",
+        "E_RAIL"
+      ],
+      "lasso_path": [
+        {
+          "alpha": 0.8411336994049325,
+          "mse": 10.240359824945651,
+          "bic": 1156.189368799976,
+          "selected_count": 0
+        },
+        {
+          "alpha": 0.6864829241554262,
+          "mse": 9.972744920781174,
+          "bic": 1155.4455445163078,
+          "selected_count": 2
+        },
+        {
+          "alpha": 0.560266228175593,
+          "mse": 9.609569560463765,
+          "bic": 1137.0086173508648,
+          "selected_count": 2
+        },
+        {
+          "alpha": 0.45725572390644953,
+          "mse": 9.300815080147846,
+          "bic": 1126.9864836329707,
+          "selected_count": 3
+        },
+        {
+          "alpha": 0.37318472278090364,
+          "mse": 9.038638587294283,
+          "bic": 1118.9841165676105,
+          "selected_count": 4
+        },
+        {
+          "alpha": 0.30457100925335306,
+          "mse": 8.797384373426096,
+          "bic": 1111.74681029445,
+          "selected_count": 5
+        },
+        {
+          "alpha": 0.24857260765218256,
+          "mse": 8.616621016094285,
+          "bic": 1107.6369682803424,
+          "selected_count": 6
+        },
+        {
+          "alpha": 0.20287006772731983,
+          "mse": 8.441002563686629,
+          "bic": 1103.6113712764625,
+          "selected_count": 7
+        },
+        {
+          "alpha": 0.16557039316768002,
+          "mse": 8.291432103968663,
+          "bic": 1107.1429946237477,
+          "selected_count": 9
+        },
+        {
+          "alpha": 0.1351286338137721,
+          "mse": 8.190326293398181,
+          "bic": 1101.0453177898273,
+          "selected_count": 9
+        },
+        {
+          "alpha": 0.11028389391987554,
+          "mse": 8.086857770371095,
+          "bic": 1119.5610728591114,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.09000710593205727,
+          "mse": 8.001270269736377,
+          "bic": 1126.6902058491148,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.07345840657521938,
+          "mse": 7.942152370492529,
+          "bic": 1123.0044564030472,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.05995234976940106,
+          "mse": 7.902369885824198,
+          "bic": 1126.7173023342827,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.0489295154965301,
+          "mse": 7.8687084126019515,
+          "bic": 1130.8043154739391,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.03993333865868083,
+          "mse": 7.8457748634276685,
+          "bic": 1129.353681452917,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.03259119818061517,
+          "mse": 7.830499247918137,
+          "bic": 1128.3850860765835,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.02659898306843003,
+          "mse": 7.820325090645096,
+          "bic": 1127.7389147609256,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.021708496151437672,
+          "mse": 7.813547545586542,
+          "bic": 1127.3079991223635,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.017717173771064774,
+          "mse": 7.809033541509372,
+          "bic": 1127.0207917683063,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.01445969560693485,
+          "mse": 7.806026696854703,
+          "bic": 1126.8293865749827,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.01180113711966181,
+          "mse": 7.80402360533779,
+          "bic": 1126.701835866292,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.009631380984968147,
+          "mse": 7.802689422244966,
+          "bic": 1126.6168610227644,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.00786055604108296,
+          "mse": 7.801800697712727,
+          "bic": 1126.560249612894,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.006415314830909496,
+          "mse": 7.801208732055524,
+          "bic": 1126.5225380505067,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.005235795554994497,
+          "mse": 7.8008143779537376,
+          "bic": 1126.4974138743344,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.004273142599583647,
+          "mse": 7.800551759346746,
+          "bic": 1126.4806818206748,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0034874829401920185,
+          "mse": 7.800376746604395,
+          "bic": 1126.4695310314228,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.002846274603453535,
+          "mse": 7.800260259770702,
+          "bic": 1126.462109032395,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0023229587806438213,
+          "mse": 7.80018267002051,
+          "bic": 1126.4571653130379,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0018958597635037777,
+          "mse": 7.800130932130305,
+          "bic": 1126.4538687470729,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0015472871377753966,
+          "mse": 7.800096526768252,
+          "bic": 1126.451676539942,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.001262803047362847,
+          "mse": 7.800073609985492,
+          "bic": 1126.4502163454786,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0010306241792467964,
+          "mse": 7.800058316120301,
+          "bic": 1126.4492418600016,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0008411336994049326,
+          "mse": 7.800048158555981,
+          "bic": 1126.4485946452564,
+          "selected_count": 17
+        }
+      ]
+    },
+    {
+      "model": "LASSO linear regression",
+      "dependent_variable": "CASTHMA_CrudePrev",
+      "dependent_variable_label": "Asthma prevalence",
+      "data_file": "data/Clean_NM.csv",
+      "predictor_data_file": "data/EJI_NM.csv",
+      "predictor_source": "CDC/ATSDR Environmental Justice Index environmental burden raw estimate variables",
+      "method_note": "Used CASTHMA_CrudePrev as the dependent variable and used 17 Environmental Justice Index environmental burden raw estimate variables as candidate predictors. Predictors were standardized before LASSO selection. The alpha penalty was selected by scanning a warm-started LASSO path and choosing the model with the lowest BIC. P-values are approximate post-LASSO OLS p-values from refitting ordinary least squares on the selected variables.",
+      "row_count_total": 498,
+      "row_count_used": 497,
+      "candidate_crude_prev_columns": 30,
+      "candidate_environmental_predictor_count": 17,
+      "candidate_predictor_count": 17,
+      "selected_variable_count": 1,
+      "removed_variable_count": 16,
+      "alpha": 0.178071,
+      "intercept": 10.573978,
+      "metrics": {
+        "r_squared": 0.0645,
+        "rmse": 1.3694,
+        "mae": 0.9353
+      },
+      "selected_variables": [
+        {
+          "variable": "E_PARK",
+          "label": "Proportion of tract's area within 1-mi buffer of green space",
+          "coefficient": -0.005217,
+          "standardized_coefficient": -0.223289,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.009377,
+          "standard_error": 0.001426,
+          "test_statistic": -6.576587,
+          "p_value": 0.0,
+          "significance": "***"
+        }
+      ],
+      "removed_variables": [
+        "E_OZONE",
+        "E_PM",
+        "E_DSLPM",
+        "E_TOTCR",
+        "E_NPL",
+        "E_TRI",
+        "E_TSD",
+        "E_RMP",
+        "E_COAL",
+        "E_LEAD",
+        "E_HOUAGE",
+        "E_WLKIND",
+        "E_RAIL",
+        "E_ROAD",
+        "E_AIRPRT",
+        "E_IMPWTR"
+      ],
+      "lasso_path": [
+        {
+          "alpha": 0.4013593587675792,
+          "mse": 2.004706792060208,
+          "bic": 345.6624124102769,
+          "selected_count": 0
+        },
+        {
+          "alpha": 0.3275654589024766,
+          "mse": 1.950916587055876,
+          "bic": 338.3533454974047,
+          "selected_count": 1
+        },
+        {
+          "alpha": 0.26733929961285724,
+          "mse": 1.9150877583073789,
+          "bic": 329.14102386845116,
+          "selected_count": 1
+        },
+        {
+          "alpha": 0.21818631719277615,
+          "mse": 1.8912227262000323,
+          "bic": 322.90870181726933,
+          "selected_count": 1
+        },
+        {
+          "alpha": 0.17807059822138183,
+          "mse": 1.8753265951408065,
+          "bic": 318.7136557057022,
+          "selected_count": 1
+        },
+        {
+          "alpha": 0.14533055215788132,
+          "mse": 1.8501808653538057,
+          "bic": 324.4216195640134,
+          "selected_count": 3
+        },
+        {
+          "alpha": 0.11861008836650593,
+          "mse": 1.8223362560586334,
+          "bic": 329.3022596653859,
+          "selected_count": 5
+        },
+        {
+          "alpha": 0.09680244692820707,
+          "mse": 1.8003435468345048,
+          "bic": 323.26777063399953,
+          "selected_count": 5
+        },
+        {
+          "alpha": 0.07900435671485874,
+          "mse": 1.782536744505946,
+          "bic": 343.16194133471686,
+          "selected_count": 9
+        },
+        {
+          "alpha": 0.06447862195629983,
+          "mse": 1.7560254444160135,
+          "bic": 354.3404139050199,
+          "selected_count": 12
+        },
+        {
+          "alpha": 0.05262358763819304,
+          "mse": 1.7294827065353982,
+          "bic": 346.77078837889337,
+          "selected_count": 12
+        },
+        {
+          "alpha": 0.042948218989410564,
+          "mse": 1.7108094390140223,
+          "bic": 347.5840778279796,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.035051762852892875,
+          "mse": 1.6953718472840482,
+          "bic": 349.28760192875836,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.02860714851524748,
+          "mse": 1.6849054540222221,
+          "bic": 346.20985793853566,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.02334744045850137,
+          "mse": 1.6779332160798588,
+          "bic": 344.14897571221366,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.019054781907841288,
+          "mse": 1.6732891152444982,
+          "bic": 342.7714964735954,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.01555137121778965,
+          "mse": 1.6701715811814586,
+          "bic": 348.0532534850147,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.012692097339302214,
+          "mse": 1.667991544012851,
+          "bic": 347.4041068818107,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.010358529329301048,
+          "mse": 1.666539451566496,
+          "bic": 346.9712484124101,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.008454010948507994,
+          "mse": 1.6655723889445866,
+          "bic": 346.682764616194,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.006899657166131276,
+          "mse": 1.6649282440569586,
+          "bic": 346.49051723454176,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.00563108674688295,
+          "mse": 1.6644991890495089,
+          "bic": 346.36242293354417,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.0045957555842880355,
+          "mse": 1.6642133117104634,
+          "bic": 346.27705597089874,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.0037507803271199886,
+          "mse": 1.664022983288816,
+          "bic": 346.22021311643914,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.003061162153707045,
+          "mse": 1.663896208766651,
+          "bic": 346.1823474508924,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.0024983371229537147,
+          "mse": 1.6638117121954508,
+          "bic": 346.1571079786232,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.002038993057708493,
+          "mse": 1.663755484280967,
+          "bic": 346.1403117597335,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.001664103955861708,
+          "mse": 1.6637179931369768,
+          "bic": 346.12911221227483,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.0013581419345423246,
+          "mse": 1.6636930266373169,
+          "bic": 346.1216539510276,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.0011084340661922298,
+          "mse": 1.6636764302603497,
+          "bic": 346.11669604090696,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.0009046374667088612,
+          "mse": 1.6636653751167128,
+          "bic": 346.1133934608241,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.000738310893840303,
+          "mse": 1.6636580030043497,
+          "bic": 346.1111911261376,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.0006025651114654714,
+          "mse": 1.6636531013169222,
+          "bic": 346.10972679738984,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.0004917775378700174,
+          "mse": 1.6636498360640437,
+          "bic": 346.10875133425276,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.00040135935876757923,
+          "mse": 1.663647661484686,
+          "bic": 346.10810169835963,
+          "selected_count": 15
+        }
+      ]
+    },
+    {
+      "model": "LASSO linear regression",
+      "dependent_variable": "COPD_CrudePrev",
+      "dependent_variable_label": "COPD prevalence",
+      "data_file": "data/Clean_NM.csv",
+      "predictor_data_file": "data/EJI_NM.csv",
+      "predictor_source": "CDC/ATSDR Environmental Justice Index environmental burden raw estimate variables",
+      "method_note": "Used COPD_CrudePrev as the dependent variable and used 17 Environmental Justice Index environmental burden raw estimate variables as candidate predictors. Predictors were standardized before LASSO selection. The alpha penalty was selected by scanning a warm-started LASSO path and choosing the model with the lowest BIC. P-values are approximate post-LASSO OLS p-values from refitting ordinary least squares on the selected variables.",
+      "row_count_total": 498,
+      "row_count_used": 497,
+      "candidate_crude_prev_columns": 30,
+      "candidate_environmental_predictor_count": 17,
+      "candidate_predictor_count": 17,
+      "selected_variable_count": 6,
+      "removed_variable_count": 11,
+      "alpha": 0.127138,
+      "intercept": 8.850745,
+      "metrics": {
+        "r_squared": 0.3188,
+        "rmse": 1.6457,
+        "mae": 1.1693
+      },
+      "selected_variables": [
+        {
+          "variable": "E_HOUAGE",
+          "label": "Percentage of houses built pre-1980 (lead exposure)",
+          "coefficient": 0.020824,
+          "standardized_coefficient": 0.520446,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.027896,
+          "standard_error": 0.003156,
+          "test_statistic": 8.838153,
+          "p_value": 0.0,
+          "significance": "***"
+        },
+        {
+          "variable": "E_PARK",
+          "label": "Proportion of tract's area within 1-mi buffer of green space",
+          "coefficient": -0.011339,
+          "standardized_coefficient": -0.485345,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.012027,
+          "standard_error": 0.002248,
+          "test_statistic": -5.349877,
+          "p_value": 9e-08,
+          "significance": "***"
+        },
+        {
+          "variable": "E_PM",
+          "label": "Annual mean days above PM2.5 regulatory standard - 3-year average",
+          "coefficient": -0.401211,
+          "standardized_coefficient": -0.307661,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.532669,
+          "standard_error": 0.110053,
+          "test_statistic": -4.840109,
+          "p_value": 1.3e-06,
+          "significance": "***"
+        },
+        {
+          "variable": "E_WLKIND",
+          "label": "A nationwide geographic data resource that ranks block groups according to their relative walkability",
+          "coefficient": -0.07551,
+          "standardized_coefficient": -0.302138,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.101062,
+          "standard_error": 0.026135,
+          "test_statistic": -3.866938,
+          "p_value": 0.00011021,
+          "significance": "***"
+        },
+        {
+          "variable": "E_IMPWTR",
+          "label": "Percent of tract that intersects an impaired/impacted watershed at the HUC12 level",
+          "coefficient": -0.001201,
+          "standardized_coefficient": -0.035319,
+          "direction": "negative",
+          "post_lasso_ols_coefficient": -0.003605,
+          "standard_error": 0.002696,
+          "test_statistic": -1.337071,
+          "p_value": 0.18119933,
+          "significance": "not significant"
+        },
+        {
+          "variable": "E_OZONE",
+          "label": "Annual mean days above O3 regulatory standard - 3-year average",
+          "coefficient": 0.094692,
+          "standardized_coefficient": 0.017231,
+          "direction": "positive",
+          "post_lasso_ols_coefficient": 0.94981,
+          "standard_error": 0.422275,
+          "test_statistic": 2.24927,
+          "p_value": 0.02449533,
+          "significance": "*"
+        }
+      ],
+      "removed_variables": [
+        "E_DSLPM",
+        "E_TOTCR",
+        "E_NPL",
+        "E_TRI",
+        "E_TSD",
+        "E_RMP",
+        "E_COAL",
+        "E_LEAD",
+        "E_RAIL",
+        "E_ROAD",
+        "E_AIRPRT"
+      ],
+      "lasso_path": [
+        {
+          "alpha": 0.7913959002572248,
+          "mse": 3.9759450870211204,
+          "bic": 685.9904513610198,
+          "selected_count": 0
+        },
+        {
+          "alpha": 0.645889912813556,
+          "mse": 3.76093419286365,
+          "bic": 670.7768689512601,
+          "selected_count": 2
+        },
+        {
+          "alpha": 0.527136644678991,
+          "mse": 3.5434109598945414,
+          "bic": 641.1668162305723,
+          "selected_count": 2
+        },
+        {
+          "alpha": 0.4302173430035225,
+          "mse": 3.295615644095687,
+          "bic": 617.5530773333362,
+          "selected_count": 4
+        },
+        {
+          "alpha": 0.3511176164459643,
+          "mse": 3.0844472696669523,
+          "bic": 584.6414798117411,
+          "selected_count": 4
+        },
+        {
+          "alpha": 0.2865611593386784,
+          "mse": 2.943790920065198,
+          "bic": 561.4443552388854,
+          "selected_count": 4
+        },
+        {
+          "alpha": 0.23387404731418537,
+          "mse": 2.8501018875990027,
+          "bic": 545.3696677114975,
+          "selected_count": 4
+        },
+        {
+          "alpha": 0.19087398352710083,
+          "mse": 2.7873270970520276,
+          "bic": 540.5092542592988,
+          "selected_count": 5
+        },
+        {
+          "alpha": 0.1557799080569217,
+          "mse": 2.7430639839147704,
+          "bic": 532.5534924853863,
+          "selected_count": 5
+        },
+        {
+          "alpha": 0.12713822651884576,
+          "mse": 2.708441104618969,
+          "bic": 532.4490360782318,
+          "selected_count": 6
+        },
+        {
+          "alpha": 0.10376260227635385,
+          "mse": 2.6807607348484335,
+          "bic": 533.552133616047,
+          "selected_count": 7
+        },
+        {
+          "alpha": 0.08468481845281081,
+          "mse": 2.6596258410895026,
+          "bic": 535.8268896814766,
+          "selected_count": 8
+        },
+        {
+          "alpha": 0.06911467444971574,
+          "mse": 2.639711163911665,
+          "bic": 538.300053505958,
+          "selected_count": 9
+        },
+        {
+          "alpha": 0.05640725588792518,
+          "mse": 2.6250516856774864,
+          "bic": 541.7408913198941,
+          "selected_count": 10
+        },
+        {
+          "alpha": 0.04603622229488716,
+          "mse": 2.6128613254722968,
+          "bic": 545.6361096088579,
+          "selected_count": 11
+        },
+        {
+          "alpha": 0.037572006115580946,
+          "mse": 2.5995144531929517,
+          "bic": 543.0908556585014,
+          "selected_count": 11
+        },
+        {
+          "alpha": 0.030664020051576497,
+          "mse": 2.590334025994787,
+          "bic": 553.7497273150718,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.025026135757322644,
+          "mse": 2.5821115597425544,
+          "bic": 552.1695969485233,
+          "selected_count": 13
+        },
+        {
+          "alpha": 0.020424832422184094,
+          "mse": 2.57650693623456,
+          "bic": 557.29824707147,
+          "selected_count": 14
+        },
+        {
+          "alpha": 0.016669524353244897,
+          "mse": 2.572586227890229,
+          "bic": 562.7499689028726,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.013604666927970355,
+          "mse": 2.569963121289845,
+          "bic": 562.2429502998665,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.01110331394578642,
+          "mse": 2.5682157029700146,
+          "bic": 561.904905647027,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.009061859524486534,
+          "mse": 2.5670519670131533,
+          "bic": 561.6796489252239,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.007395746751148102,
+          "mse": 2.5662768207254065,
+          "bic": 561.5295522827262,
+          "selected_count": 15
+        },
+        {
+          "alpha": 0.00603596534015098,
+          "mse": 2.565721225449106,
+          "bic": 567.6305308674638,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.004926193231514874,
+          "mse": 2.5653078903662445,
+          "bic": 567.5504582223901,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.004020463734739727,
+          "mse": 2.5650324750198124,
+          "bic": 567.4970966839504,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.0032812615913945043,
+          "mse": 2.564849104509298,
+          "bic": 567.4615655932803,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.002677969095487386,
+          "mse": 2.5647269644426207,
+          "bic": 567.4378975114216,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.0021855979100214628,
+          "mse": 2.5646455669305044,
+          "bic": 567.4221238224264,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.0017837540516578698,
+          "mse": 2.564591351651085,
+          "bic": 567.4116173887015,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.0014557931732166714,
+          "mse": 2.564555279511888,
+          "bic": 567.4046268093828,
+          "selected_count": 16
+        },
+        {
+          "alpha": 0.0011881311558701135,
+          "mse": 2.564531056367124,
+          "bic": 573.6085224699884,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0009696814558005554,
+          "mse": 2.56451450156979,
+          "bic": 573.605314179408,
+          "selected_count": 17
+        },
+        {
+          "alpha": 0.0007913959002572249,
+          "mse": 2.5645034750441016,
+          "bic": 573.6031772466492,
+          "selected_count": 17
+        }
+      ]
+    }
+  ]
+}

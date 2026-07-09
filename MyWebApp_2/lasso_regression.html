@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>LASSO Regression - CDC Health Stats Visualizer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="JS_CSS_downloaded_libraries/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="myCSS_styleFiles/main.css">
+    <link rel="stylesheet" type="text/css" href="myCSS_styleFiles/cdc_nm.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">CDC Health Stats Visualizer - NM</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="index.html#health-outcomes">Health Outcomes</a></li>
+                    <li><a href="index.html#prevention">Prevention</a></li>
+                    <li><a href="index.html#health-risk-behaviors">Risk Behaviors</a></li>
+                    <li><a href="index.html#disabilities">Disabilities</a></li>
+                    <li><a href="index.html#health-status">Health Status</a></li>
+                    <li><a href="index.html#health-related-social-needs">Social Needs</a></li>
+                    <li><a href="index.html#cdc-data-table-section">Data Table</a></li>
+                    <li class="active"><a href="lasso_regression.html">Regression</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main id="top" class="container-fluid cdc-page regression-page">
+        <section class="cdc-hero regression-hero">
+            <div class="row">
+                <div class="col-md-8 col-sm-12">
+                    <h1>LASSO Regression</h1>
+                    <p>
+                        Explore LASSO regression models for selected CDC PLACES health measures in New Mexico census
+                        tracts. Choose a dependent variable below; each model uses the remaining crude prevalence
+                        variables as candidate predictors.
+                    </p>
+                    <p class="text-muted">
+                        The results are generated from <code>data/Clean_NM.csv</code> by
+                        <code>run_lasso_sleep_regression.py</code>.
+                    </p>
+                </div>
+                <div class="col-md-4 col-sm-12 cdc-data-note">
+                    <h4>Model Setup</h4>
+                    <p><b>Method:</b> LASSO linear regression</p>
+                    <p><b>Predictors:</b> 39 remaining crude prevalence variables</p>
+                    <p><b>Selection:</b> BIC-selected alpha penalty</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="cdc-section regression-workspace">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="lasso-control-row">
+                        <label class="cdc-select-label" for="lasso-dependent-variable-select">Dependent variable:</label>
+                        <select id="lasso-dependent-variable-select"
+                            class="form-control cdc-measure-select lasso-dependent-select">
+                            <option value="SLEEP_CrudePrev">Short sleep duration prevalence</option>
+                        </select>
+                    </div>
+                    <div class="lasso-histogram-panel">
+                        <h3 id="lasso-histogram-title">Dependent Variable Distribution</h3>
+                        <div id="lasso-histogram-summary" class="lasso-histogram-summary">Loading histogram...</div>
+                        <div id="lasso-histogram" class="lasso-histogram"></div>
+                    </div>
+                    <div id="lasso-regression-output" class="lasso-output">
+                        <div class="alert alert-info">Loading LASSO regression results...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="JS_CSS_downloaded_libraries/d3/d3v5.16.0.js"></script>
+    <script src="JS_CSS_downloaded_libraries/jQuery/jQuery.js"></script>
+    <script src="JS_CSS_downloaded_libraries/bootstrap/Bootstrap.js"></script>
+    <script src="myJS_scripts/lasso_regression.js?v=20260708-ols-checkbox-dropdown"></script>
+</body>
+
+</html>

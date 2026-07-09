@@ -1,0 +1,22 @@
+LASSO regression for Short sleep duration prevalence
+====================================================
+Dependent variable: SLEEP_CrudePrev
+Rows used: 497 of 498
+Candidate predictors: 17
+Selected predictors: 5
+Removed predictors: 12
+Alpha: 0.238142
+Intercept: 32.974168
+R-squared: 0.1765
+RMSE: 2.9573
+MAE: 2.2758
+
+Selected variables:
+E_PARK: coefficient=-0.02303, standardized=-0.985715, post_lasso_ols=-0.030915, p_value=0.0, significance=***, direction=negative
+E_OZONE: coefficient=1.787329, standardized=0.325244, post_lasso_ols=2.685499, p_value=0.00031848, significance=***, direction=positive
+E_HOUAGE: coefficient=0.007113, standardized=0.177772, post_lasso_ols=0.018034, p_value=0.00092049, significance=***, direction=positive
+E_NPL: coefficient=0.008669, standardized=0.121418, post_lasso_ols=0.023421, p_value=0.01485662, significance=*, direction=positive
+E_TOTCR: coefficient=0.001336, standardized=0.013911, post_lasso_ols=0.023486, p_value=0.07441599, significance=not significant, direction=positive
+
+Removed variables:
+E_PM, E_DSLPM, E_TRI, E_TSD, E_RMP, E_COAL, E_LEAD, E_WLKIND, E_RAIL, E_ROAD, E_AIRPRT, E_IMPWTR

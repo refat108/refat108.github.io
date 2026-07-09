@@ -1,0 +1,583 @@
+/*
+    CDC/NM ADAPTATION COMMENT:
+    These styles are intentionally added in a new CSS file instead of editing the old main.css heavily.
+    This keeps the original lab design structure available while giving the CDC maps their own layout.
+*/
+
+body {
+    padding-top: 55px;
+}
+
+.cdc-page {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.cdc-hero {
+    padding: 28px 24px;
+    margin: 18px 0 22px 0;
+    background: #f5f7fa;
+    border-radius: 10px;
+    border: 1px solid #d9e2ec;
+}
+
+.cdc-hero h1 {
+    margin-top: 0;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.cdc-data-note {
+    background: white;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.cdc-status-panel {
+    margin-bottom: 24px;
+}
+
+.cdc-stat-card {
+    min-height: 92px;
+    padding: 18px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #d9e2ec;
+    background: white;
+}
+
+.cdc-stat-label {
+    display: block;
+    font-size: 13px;
+    color: #52606d;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.cdc-stat-value {
+    display: block;
+    margin-top: 8px;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.cdc-section {
+    padding-top: 72px;
+    margin-top: -52px;
+    margin-bottom: 26px;
+}
+
+.cdc-map-card {
+    margin-bottom: 26px;
+    border: 1px solid #d9e2ec;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.cdc-map-card-header {
+    padding: 16px 18px 10px 18px;
+    border-bottom: 1px solid #e6edf3;
+    background: #fbfcfd;
+}
+
+.cdc-map-card-header h2 {
+    margin: 0 0 6px 0;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.cdc-map-card-body {
+    padding: 16px 18px 18px 18px;
+}
+
+.cdc-select-label {
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.cdc-measure-select {
+    min-width: 280px;
+    max-width: 100%;
+    margin-bottom: 12px;
+}
+
+.cdc-map {
+    height: 390px;
+    width: 100%;
+    border: 1px solid #ccd6e0;
+    border-radius: 8px;
+}
+
+.cdc-legend {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.cdc-legend-title {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.cdc-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 3px 0;
+}
+
+.cdc-swatch {
+    width: 18px;
+    height: 14px;
+    border: 1px solid #555;
+    display: inline-block;
+}
+
+.cdc-summary {
+    margin-top: 12px;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border-left: 4px solid #4a5568;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.cdc-placeholder {
+    padding: 28px;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: repeating-linear-gradient(45deg,
+            #f5f7fa,
+            #f5f7fa 10px,
+            #edf2f7 10px,
+            #edf2f7 20px);
+    border: 1px dashed #9aa5b1;
+    border-radius: 8px;
+}
+
+.cdc-placeholder strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 17px;
+}
+
+.cdc-modal p {
+    font-size: 15px;
+}
+
+.leaflet-popup-content {
+    font-size: 13px;
+}
+
+.leaflet-popup-content b {
+    color: #1f2933;
+}
+
+.cdc-compare-box {
+    margin-top: 12px;
+    padding: 12px;
+    background: #f8fafc;
+    border: 1px solid #d9e2ec;
+    border-left: 4px solid #2563eb;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.cdc-compare-box table {
+    width: 100%;
+    margin-top: 8px;
+    border-collapse: collapse;
+}
+
+.cdc-compare-box th,
+.cdc-compare-box td {
+    padding: 6px;
+    border-bottom: 1px solid #d9e2ec;
+    text-align: left;
+}
+
+.cdc-compare-box th {
+    font-weight: 700;
+    background: #eef2f7;
+}
+
+.cdc-north-arrow {
+    width: 52px;
+    height: 84px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 4px;
+}
+
+.north-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.north-svg {
+    width: 30px;
+    height: 58px;
+    display: block;
+}
+
+.compass-arrow {
+    position: relative;
+    width: 34px;
+    height: 52px;
+    margin: 0 auto;
+}
+
+.arrow-left {
+    position: absolute;
+    left: 7px;
+    top: 2px;
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 50px solid #000000;
+    transform: skewX(-8deg);
+}
+
+.arrow-right {
+    position: absolute;
+    right: 7px;
+    top: 2px;
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 50px solid #ffffff;
+    transform: skewX(8deg);
+    filter: drop-shadow(0 0 1px #000000);
+}
+
+.cdc-coordinates-control {
+    background: #ffffff;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: #333333;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    min-width: 165px;
+    line-height: 1.2;
+}
+
+.leaflet-control-scale {
+    background: #ffffff;
+    padding: 2px 8px 4px 8px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 0 !important;
+}
+
+.leaflet-control-scale-line {
+    border: 2px solid #333333;
+    border-top: none;
+    background: transparent;
+    line-height: 1.1;
+}
+
+.lasso-output {
+    padding: 18px;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.lasso-control-row {
+    margin-bottom: 16px;
+}
+
+.lasso-dependent-select {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.regression-page {
+    max-width: 1440px;
+}
+
+.regression-hero {
+    margin-top: 18px;
+}
+
+.regression-workspace {
+    padding-top: 12px;
+    margin-top: 0;
+}
+
+.lasso-histogram-panel {
+    margin-bottom: 18px;
+    padding: 18px;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.lasso-histogram-panel h3 {
+    margin-top: 0;
+}
+
+.lasso-histogram-summary {
+    margin-bottom: 10px;
+    color: #52606d;
+    font-size: 13px;
+}
+
+.lasso-histogram {
+    min-height: 300px;
+}
+
+.lasso-histogram-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.lasso-histogram-bar {
+    fill: #2f7d8c;
+}
+
+.lasso-histogram-bar:hover {
+    fill: #245f6b;
+}
+
+.lasso-histogram-grid line {
+    stroke: #e6edf3;
+}
+
+.lasso-histogram-grid path {
+    display: none;
+}
+
+.lasso-histogram-axis path,
+.lasso-histogram-axis line {
+    stroke: #52606d;
+}
+
+.lasso-histogram-axis text,
+.lasso-histogram-axis-label {
+    fill: #1f2933;
+    font-size: 12px;
+}
+
+.lasso-relationship-panel {
+    margin: 18px 0 20px 0;
+    padding: 18px;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.lasso-relationship-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.lasso-relationship-header h3 {
+    margin-top: 0;
+}
+
+.lasso-relationship-note {
+    margin-bottom: 0;
+    color: #52606d;
+    font-size: 13px;
+}
+
+.lasso-relationship-control {
+    min-width: 280px;
+}
+
+.lasso-relationship-plot {
+    min-height: 360px;
+}
+
+.lasso-relationship-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.lasso-relationship-point {
+    fill: #2f7d8c;
+    fill-opacity: 0.68;
+    stroke: #ffffff;
+    stroke-width: 0.5;
+}
+
+.lasso-relationship-line {
+    stroke: #b91c1c;
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.lasso-ols-refit-panel {
+    margin: 18px 0 20px 0;
+    padding: 18px;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.lasso-ols-dropdown {
+    margin-top: 6px;
+}
+
+.lasso-ols-dropdown .dropdown-toggle {
+    min-width: 280px;
+    max-width: 100%;
+    text-align: left;
+}
+
+.lasso-ols-exclude-menu {
+    width: 320px;
+    max-width: 80vw;
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 8px 0;
+}
+
+.lasso-ols-checkbox-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+    padding: 6px 12px;
+    margin: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.lasso-ols-checkbox-option:hover {
+    background: #f5f7fa;
+}
+
+.lasso-ols-checkbox-option input {
+    margin-top: 2px;
+}
+
+.lasso-ols-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(140px, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.lasso-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(150px, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.lasso-summary-card {
+    min-height: 86px;
+    padding: 14px;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.lasso-method-note {
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    border-left: 4px solid #2563eb;
+    border-radius: 6px;
+    background: #f8fafc;
+}
+
+.lasso-table th,
+.lasso-table td {
+    font-size: 13px;
+}
+
+.lasso-details {
+    padding: 12px 14px;
+    border: 1px solid #d9e2ec;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.lasso-details dt {
+    color: #52606d;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.lasso-details dd {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.lasso-pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.lasso-pill {
+    display: inline-block;
+    padding: 5px 8px;
+    border: 1px solid #ccd6e0;
+    border-radius: 4px;
+    background: #f8fafc;
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .cdc-page {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .cdc-map {
+        height: 320px;
+    }
+
+    .cdc-measure-select {
+        width: 100%;
+    }
+
+    .lasso-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lasso-relationship-header {
+        display: block;
+    }
+
+    .lasso-relationship-control {
+        min-width: 0;
+        margin-top: 12px;
+    }
+
+    .lasso-ols-stat-grid {
+        grid-template-columns: 1fr;
+    }
+}

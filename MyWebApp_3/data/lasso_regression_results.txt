@@ -1,0 +1,215 @@
+LASSO regression for Diabetes prevalence
+========================================
+Dependent variable: DIABETES_CrudePrev
+Rows used: 497 of 498
+Candidate predictors: 17
+Selected predictors: 11
+Removed predictors: 6
+Alpha: 0.039666
+Intercept: 18.266248
+R-squared: 0.408
+RMSE: 2.5228
+MAE: 1.9216
+
+Selected variables:
+E_HOUAGE: coefficient=0.04661, standardized=1.164917, post_lasso_ols=0.048701, p_value=0.0, significance=***, direction=positive
+E_PARK: coefficient=-0.021897, standardized=-0.937233, post_lasso_ols=-0.023542, p_value=0.0, significance=***, direction=negative
+E_WLKIND: coefficient=-0.231036, standardized=-0.924447, post_lasso_ols=-0.256282, p_value=1e-08, significance=***, direction=negative
+E_PM: coefficient=-1.09111, standardized=-0.836697, post_lasso_ols=-1.215017, p_value=0.0, significance=***, direction=negative
+E_OZONE: coefficient=3.041912, standardized=0.553543, post_lasso_ols=3.38389, p_value=4e-07, significance=***, direction=positive
+E_DSLPM: coefficient=2.155151, standardized=0.529106, post_lasso_ols=2.88697, p_value=0.00010267, significance=***, direction=positive
+E_RAIL: coefficient=0.012743, standardized=0.411609, post_lasso_ols=0.0136, p_value=0.00046155, significance=***, direction=positive
+E_AIRPRT: coefficient=-0.014271, standardized=-0.190263, post_lasso_ols=-0.017145, p_value=0.05262261, significance=not significant, direction=negative
+E_LEAD: coefficient=1.797089, standardized=0.146989, post_lasso_ols=2.207587, p_value=0.11877289, significance=not significant, direction=positive
+E_IMPWTR: coefficient=0.002779, standardized=0.081714, post_lasso_ols=0.004471, p_value=0.29838325, significance=not significant, direction=positive
+E_TSD: coefficient=-0.004997, standardized=-0.059841, post_lasso_ols=-0.008095, p_value=0.41411695, significance=not significant, direction=negative
+
+Removed variables:
+E_TOTCR, E_NPL, E_TRI, E_RMP, E_COAL, E_ROAD
+
+LASSO regression for Obesity prevalence
+=======================================
+Dependent variable: OBESITY_CrudePrev
+Rows used: 497 of 498
+Candidate predictors: 17
+Selected predictors: 5
+Removed predictors: 12
+Alpha: 0.412607
+Intercept: 31.269038
+R-squared: 0.2871
+RMSE: 4.8688
+MAE: 3.7675
+
+Selected variables:
+E_PARK: coefficient=-0.045286, standardized=-1.938324, post_lasso_ols=-0.048048, p_value=0.0, significance=***, direction=negative
+E_HOUAGE: coefficient=0.042579, standardized=1.064167, post_lasso_ols=0.0649, p_value=0.0, significance=***, direction=positive
+E_WLKIND: coefficient=-0.171528, standardized=-0.686338, post_lasso_ols=-0.329039, p_value=7.1e-06, significance=***, direction=negative
+E_RAIL: coefficient=0.010441, standardized=0.337245, post_lasso_ols=0.023147, p_value=0.00112592, significance=**, direction=positive
+E_OZONE: coefficient=1.656797, standardized=0.301491, post_lasso_ols=3.815792, p_value=0.00153006, significance=**, direction=positive
+
+Removed variables:
+E_PM, E_DSLPM, E_TOTCR, E_NPL, E_TRI, E_TSD, E_RMP, E_COAL, E_LEAD, E_ROAD, E_AIRPRT, E_IMPWTR
+
+LASSO regression for Frequent mental distress prevalence
+========================================================
+Dependent variable: MHLTH_CrudePrev
+Rows used: 497 of 498
+Candidate predictors: 17
+Selected predictors: 2
+Removed predictors: 15
+Alpha: 0.361982
+Intercept: 15.174943
+R-squared: 0.0753
+RMSE: 2.6468
+MAE: 1.9748
+
+Selected variables:
+E_PARK: coefficient=-0.010453, standardized=-0.447406, post_lasso_ols=-0.017973, p_value=0.0, significance=***, direction=negative
+E_OZONE: coefficient=0.28644, standardized=0.052124, post_lasso_ols=2.055228, p_value=0.00152853, significance=**, direction=positive
+
+Removed variables:
+E_PM, E_DSLPM, E_TOTCR, E_NPL, E_TRI, E_TSD, E_RMP, E_COAL, E_LEAD, E_HOUAGE, E_WLKIND, E_RAIL, E_ROAD, E_AIRPRT, E_IMPWTR
+
+LASSO regression for Poor mental health / depression prevalence
+===============================================================
+Dependent variable: DEPRESSION_CrudePrev
+Rows used: 497 of 498
+Candidate predictors: 17
+Selected predictors: 0
+Removed predictors: 17
+Alpha: 0.248602
+Intercept: 19.652716
+R-squared: 0.0
+RMSE: 1.7906
+MAE: 1.3197
+
+Selected variables:
+
+Removed variables:
+E_OZONE, E_PM, E_DSLPM, E_TOTCR, E_NPL, E_TRI, E_TSD, E_RMP, E_COAL, E_LEAD, E_PARK, E_HOUAGE, E_WLKIND, E_RAIL, E_ROAD, E_AIRPRT, E_IMPWTR
+
+LASSO regression for Short sleep duration prevalence
+====================================================
+Dependent variable: SLEEP_CrudePrev
+Rows used: 497 of 498
+Candidate predictors: 17
+Selected predictors: 5
+Removed predictors: 12
+Alpha: 0.238142
+Intercept: 32.974168
+R-squared: 0.1765
+RMSE: 2.9573
+MAE: 2.2758
+
+Selected variables:
+E_PARK: coefficient=-0.02303, standardized=-0.985715, post_lasso_ols=-0.030915, p_value=0.0, significance=***, direction=negative
+E_OZONE: coefficient=1.787329, standardized=0.325244, post_lasso_ols=2.685499, p_value=0.00031848, significance=***, direction=positive
+E_HOUAGE: coefficient=0.007113, standardized=0.177772, post_lasso_ols=0.018034, p_value=0.00092049, significance=***, direction=positive
+E_NPL: coefficient=0.008669, standardized=0.121418, post_lasso_ols=0.023421, p_value=0.01485662, significance=*, direction=positive
+E_TOTCR: coefficient=0.001336, standardized=0.013911, post_lasso_ols=0.023486, p_value=0.07441599, significance=not significant, direction=positive
+
+Removed variables:
+E_PM, E_DSLPM, E_TRI, E_TSD, E_RMP, E_COAL, E_LEAD, E_WLKIND, E_RAIL, E_ROAD, E_AIRPRT, E_IMPWTR
+
+LASSO regression for Lack of health insurance prevalence
+========================================================
+Dependent variable: ACCESS2_CrudePrev
+Rows used: 497 of 498
+Candidate predictors: 17
+Selected predictors: 15
+Removed predictors: 2
+Alpha: 0.040201
+Intercept: 6.568274
+R-squared: 0.2678
+RMSE: 4.5856
+MAE: 3.5553
+
+Selected variables:
+E_PARK: coefficient=-0.032383, standardized=-1.386039, post_lasso_ols=-0.033569, p_value=6.6e-07, significance=***, direction=negative
+E_RAIL: coefficient=0.031769, standardized=1.026138, post_lasso_ols=0.03229, p_value=3.613e-05, significance=***, direction=positive
+E_WLKIND: coefficient=-0.250109, standardized=-1.000766, post_lasso_ols=-0.294494, p_value=0.00047026, significance=***, direction=negative
+E_OZONE: coefficient=4.577538, standardized=0.832984, post_lasso_ols=4.753212, p_value=0.00013791, significance=***, direction=positive
+E_PM: coefficient=1.084996, standardized=0.832008, post_lasso_ols=1.125369, p_value=0.00239761, significance=**, direction=positive
+E_HOUAGE: coefficient=0.032832, standardized=0.820567, post_lasso_ols=0.035355, p_value=0.000141, significance=***, direction=positive
+E_IMPWTR: coefficient=0.025735, standardized=0.756772, post_lasso_ols=0.028221, p_value=0.00048102, significance=***, direction=positive
+E_TRI: coefficient=0.018995, standardized=0.538567, post_lasso_ols=0.022882, p_value=0.02477672, significance=*, direction=positive
+E_RMP: coefficient=-0.03252, standardized=-0.39364, post_lasso_ols=-0.042379, p_value=0.04411294, significance=*, direction=negative
+E_TSD: coefficient=-0.032665, standardized=-0.391147, post_lasso_ols=-0.036774, p_value=0.05178778, significance=not significant, direction=negative
+E_NPL: coefficient=0.026176, standardized=0.366612, post_lasso_ols=0.030713, p_value=0.07814744, significance=not significant, direction=positive
+E_DSLPM: coefficient=1.40346, standardized=0.34456, post_lasso_ols=1.760188, p_value=0.21855691, significance=not significant, direction=positive
+E_ROAD: coefficient=0.008727, standardized=0.335702, post_lasso_ols=0.009279, p_value=0.1850517, significance=not significant, direction=positive
+E_COAL: coefficient=-1.768453, standardized=-0.218863, post_lasso_ols=-2.149983, p_value=0.2050095, significance=not significant, direction=negative
+E_TOTCR: coefficient=0.020627, standardized=0.214721, post_lasso_ols=0.021404, p_value=0.3697808, significance=not significant, direction=positive
+
+Removed variables:
+E_LEAD, E_AIRPRT
+
+LASSO regression for Recent checkup prevalence
+==============================================
+Dependent variable: CHECKUP_CrudePrev
+Rows used: 497 of 498
+Candidate predictors: 17
+Selected predictors: 9
+Removed predictors: 8
+Alpha: 0.135129
+Intercept: 66.09176
+R-squared: 0.2002
+RMSE: 2.8619
+MAE: 2.2866
+
+Selected variables:
+E_HOUAGE: coefficient=0.032429, standardized=0.810506, post_lasso_ols=0.040033, p_value=0.0, significance=***, direction=positive
+E_TRI: coefficient=-0.020154, standardized=-0.571437, post_lasso_ols=-0.020807, p_value=0.0001793, significance=***, direction=negative
+E_PARK: coefficient=0.011818, standardized=0.505831, post_lasso_ols=0.020316, p_value=2.3e-07, significance=***, direction=positive
+E_AIRPRT: coefficient=-0.024187, standardized=-0.322468, post_lasso_ols=-0.031626, p_value=0.00144133, significance=**, direction=negative
+E_WLKIND: coefficient=-0.073124, standardized=-0.292591, post_lasso_ols=-0.148491, p_value=0.00226552, significance=**, direction=negative
+E_LEAD: coefficient=2.40938, standardized=0.197071, post_lasso_ols=3.628598, p_value=0.02168349, significance=*, direction=positive
+E_IMPWTR: coefficient=-0.002873, standardized=-0.084493, post_lasso_ols=-0.008212, p_value=0.08463588, significance=not significant, direction=negative
+E_ROAD: coefficient=-0.001662, standardized=-0.063917, post_lasso_ols=-0.005001, p_value=0.18998652, significance=not significant, direction=negative
+E_COAL: coefficient=-0.501154, standardized=-0.062023, post_lasso_ols=-1.586436, p_value=0.12694289, significance=not significant, direction=negative
+
+Removed variables:
+E_OZONE, E_PM, E_DSLPM, E_TOTCR, E_NPL, E_TSD, E_RMP, E_RAIL
+
+LASSO regression for Asthma prevalence
+======================================
+Dependent variable: CASTHMA_CrudePrev
+Rows used: 497 of 498
+Candidate predictors: 17
+Selected predictors: 1
+Removed predictors: 16
+Alpha: 0.178071
+Intercept: 10.573978
+R-squared: 0.0645
+RMSE: 1.3694
+MAE: 0.9353
+
+Selected variables:
+E_PARK: coefficient=-0.005217, standardized=-0.223289, post_lasso_ols=-0.009377, p_value=0.0, significance=***, direction=negative
+
+Removed variables:
+E_OZONE, E_PM, E_DSLPM, E_TOTCR, E_NPL, E_TRI, E_TSD, E_RMP, E_COAL, E_LEAD, E_HOUAGE, E_WLKIND, E_RAIL, E_ROAD, E_AIRPRT, E_IMPWTR
+
+LASSO regression for COPD prevalence
+====================================
+Dependent variable: COPD_CrudePrev
+Rows used: 497 of 498
+Candidate predictors: 17
+Selected predictors: 6
+Removed predictors: 11
+Alpha: 0.127138
+Intercept: 8.850745
+R-squared: 0.3188
+RMSE: 1.6457
+MAE: 1.1693
+
+Selected variables:
+E_HOUAGE: coefficient=0.020824, standardized=0.520446, post_lasso_ols=0.027896, p_value=0.0, significance=***, direction=positive
+E_PARK: coefficient=-0.011339, standardized=-0.485345, post_lasso_ols=-0.012027, p_value=9e-08, significance=***, direction=negative
+E_PM: coefficient=-0.401211, standardized=-0.307661, post_lasso_ols=-0.532669, p_value=1.3e-06, significance=***, direction=negative
+E_WLKIND: coefficient=-0.07551, standardized=-0.302138, post_lasso_ols=-0.101062, p_value=0.00011021, significance=***, direction=negative
+E_IMPWTR: coefficient=-0.001201, standardized=-0.035319, post_lasso_ols=-0.003605, p_value=0.18119933, significance=not significant, direction=negative
+E_OZONE: coefficient=0.094692, standardized=0.017231, post_lasso_ols=0.94981, p_value=0.02449533, significance=*, direction=positive
+
+Removed variables:
+E_DSLPM, E_TOTCR, E_NPL, E_TRI, E_TSD, E_RMP, E_COAL, E_LEAD, E_RAIL, E_ROAD, E_AIRPRT

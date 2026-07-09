@@ -1,0 +1,41 @@
+LASSO regression for Short sleep duration prevalence
+====================================================
+Dependent variable: SLEEP_CrudePrev
+Rows used: 497 of 498
+Candidate predictors: 29
+Selected predictors: 24
+Removed predictors: 5
+Alpha: 0.004337
+Intercept: 17.781711
+R-squared: 0.9611
+RMSE: 0.6425
+MAE: 0.478
+
+Selected variables:
+MHLTH_CrudePrev: coefficient=1.88894, standardized=5.199215, post_lasso_ols=2.301989, p_value=0.0, significance=***, direction=positive
+ARTHRITIS_CrudePrev: coefficient=0.629204, standardized=2.686363, post_lasso_ols=0.721105, p_value=0.0, significance=***, direction=positive
+CASTHMA_CrudePrev: coefficient=-1.676022, standardized=-2.37304, post_lasso_ols=-2.140339, p_value=0.0, significance=***, direction=negative
+COPD_CrudePrev: coefficient=-1.119719, standardized=-2.232695, post_lasso_ols=-1.352488, p_value=0.0, significance=***, direction=negative
+CSMOKING_CrudePrev: coefficient=0.291389, standardized=1.690737, post_lasso_ols=0.319226, p_value=0.0, significance=***, direction=positive
+COREM_CrudePrev: coefficient=0.153431, standardized=1.308255, post_lasso_ols=0.177716, p_value=0.0, significance=***, direction=positive
+DENTAL_CrudePrev: coefficient=-0.123918, standardized=-1.218045, post_lasso_ols=-0.165664, p_value=0.0, significance=***, direction=negative
+CANCER_CrudePrev: coefficient=-0.777012, standardized=-1.210416, post_lasso_ols=-0.945905, p_value=0.0, significance=***, direction=negative
+COREW_CrudePrev: coefficient=0.176374, standardized=1.190735, post_lasso_ols=0.203772, p_value=0.0, significance=***, direction=positive
+CHD_CrudePrev: coefficient=0.615837, standardized=1.027429, post_lasso_ols=0.937416, p_value=1.37e-06, significance=***, direction=positive
+OBESITY_CrudePrev: coefficient=0.150358, standardized=0.867039, post_lasso_ols=0.122209, p_value=0.0, significance=***, direction=positive
+CHOLSCREEN_CrudePrev: coefficient=0.17069, standardized=0.807738, post_lasso_ols=0.243951, p_value=0.0, significance=***, direction=positive
+CHECKUP_CrudePrev: coefficient=-0.241553, standardized=-0.772983, post_lasso_ols=-0.253693, p_value=0.0, significance=***, direction=negative
+DIABETES_CrudePrev: coefficient=0.166832, standardized=0.546991, post_lasso_ols=0.081503, p_value=0.27340698, significance=not significant, direction=positive
+BPHIGH_CrudePrev: coefficient=-0.105474, standardized=-0.518737, post_lasso_ols=-0.197241, p_value=0.0001774, significance=***, direction=negative
+TEETHLOST_CrudePrev: coefficient=-0.066619, standardized=-0.463196, post_lasso_ols=-0.062987, p_value=0.09040556, significance=not significant, direction=negative
+ACCESS2_CrudePrev: coefficient=-0.080862, standardized=-0.433335, post_lasso_ols=-0.188355, p_value=7.3e-07, significance=***, direction=negative
+CERVICAL_CrudePrev: coefficient=-0.096649, standardized=-0.359273, post_lasso_ols=-0.10466, p_value=0.00163846, significance=**, direction=negative
+DEPRESSION_CrudePrev: coefficient=-0.18715, standardized=-0.335104, post_lasso_ols=-0.360934, p_value=8.7e-07, significance=***, direction=negative
+HIGHCHOL_CrudePrev: coefficient=-0.080224, standardized=-0.313221, post_lasso_ols=-0.084301, p_value=0.02377507, significance=*, direction=negative
+BPMED_CrudePrev: coefficient=0.035174, standardized=0.204958, post_lasso_ols=0.061822, p_value=0.00070246, significance=***, direction=positive
+COLON_SCREEN_CrudePrev: coefficient=0.020565, standardized=0.133152, post_lasso_ols=-0.000892, p_value=0.97272465, significance=not significant, direction=positive
+LPA_CrudePrev: coefficient=0.019392, standardized=0.122458, post_lasso_ols=0.11318, p_value=0.01625927, significance=*, direction=positive
+MAMMOUSE_CrudePrev: coefficient=-0.027815, standardized=-0.105475, post_lasso_ols=-0.019515, p_value=0.30987527, significance=not significant, direction=negative
+
+Removed variables:
+BINGE_CrudePrev, GHLTH_CrudePrev, KIDNEY_CrudePrev, PHLTH_CrudePrev, STROKE_CrudePrev
